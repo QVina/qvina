@@ -1,0 +1,30 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+all	main.cpp	/^	bool all;$/;"	m	struct:options_occurrence	file:
+check_occurrence	main.cpp	/^void check_occurrence(boost::program_options::variables_map& vm, boost::program_options::options_description& d) {$/;"	f
+default_output	main.cpp	/^std::string default_output(const std::string& input_name) {$/;"	f
+do_randomization	main.cpp	/^void do_randomization(model& m,$/;"	f
+do_search	main.cpp	/^void do_search(model& m, const boost::optional<model>& ref, const scoring_function& sf, const precalculate& prec, const igrid& ig, const precalculate& prec_widened, const igrid& ig_widened, non_cache& nc, \/\/ nc.slope is changed$/;"	f
+doing	main.cpp	/^void doing(int verbosity, const std::string& str, tee& log) {$/;"	f
+done	main.cpp	/^void done(int verbosity, tee& log) {$/;"	f
+get_occurrence	main.cpp	/^options_occurrence get_occurrence(boost::program_options::variables_map& vm, boost::program_options::options_description& d) {$/;"	f
+main	main.cpp	/^int main(int argc, char* argv[]) {$/;"	f
+main_procedure	main.cpp	/^void main_procedure(model& m, const boost::optional<model>& ref, \/\/ m is non-const (FIXME?)$/;"	f
+make_path	main.cpp	/^path make_path(const std::string& str) {$/;"	f
+operator +=	main.cpp	/^	options_occurrence& operator+=(const options_occurrence& x) {$/;"	f	struct:options_occurrence
+options_occurrence	main.cpp	/^	options_occurrence() : some(false), all(true) {} \/\/ convenience$/;"	f	struct:options_occurrence
+options_occurrence	main.cpp	/^struct options_occurrence {$/;"	s	file:
+parse_bundle	main.cpp	/^model parse_bundle(const boost::optional<std::string>& rigid_name_opt, const boost::optional<std::string>& flex_name_opt, const std::vector<std::string>& ligand_names) {$/;"	f
+parse_bundle	main.cpp	/^model parse_bundle(const std::string& rigid_name, const boost::optional<std::string>& flex_name_opt, const std::vector<std::string>& ligand_names) {$/;"	f
+parse_bundle	main.cpp	/^model parse_bundle(const std::vector<std::string>& ligand_names) {$/;"	f
+refine_structure	main.cpp	/^void refine_structure(model& m, const precalculate& prec, non_cache& nc, output_type& out, const vec& cap, sz max_steps = 1000) {$/;"	f
+remove_redundant	main.cpp	/^output_container remove_redundant(const output_container& in, fl min_rmsd) {$/;"	f
+some	main.cpp	/^	bool some;$/;"	m	struct:options_occurrence	file:
+usage_error	main.cpp	/^	usage_error(const std::string& message) : std::runtime_error(message) {}$/;"	f	struct:usage_error
+usage_error	main.cpp	/^struct usage_error : public std::runtime_error {$/;"	s	file:
+vina_remark	main.cpp	/^std::string vina_remark(fl e, fl lb, fl ub) {$/;"	f
+write_all_output	main.cpp	/^void write_all_output(model& m, const output_container& out, sz how_many,$/;"	f

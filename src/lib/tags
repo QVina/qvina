@@ -1,0 +1,1239 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+AD	atom_type.h	/^	enum t {EL, AD, XS, SY};$/;"	e	enum:atom_type::t
+AD_TYPE_A	atom_constants.h	/^const sz AD_TYPE_A    =  1;$/;"	v
+AD_TYPE_Br	atom_constants.h	/^const sz AD_TYPE_Br   = 19;$/;"	v
+AD_TYPE_C	atom_constants.h	/^const sz AD_TYPE_C    =  0;$/;"	v
+AD_TYPE_Ca	atom_constants.h	/^const sz AD_TYPE_Ca   = 16;$/;"	v
+AD_TYPE_Cl	atom_constants.h	/^const sz AD_TYPE_Cl   = 18;$/;"	v
+AD_TYPE_F	atom_constants.h	/^const sz AD_TYPE_F    =  7;$/;"	v
+AD_TYPE_Fe	atom_constants.h	/^const sz AD_TYPE_Fe   = 17;$/;"	v
+AD_TYPE_H	atom_constants.h	/^const sz AD_TYPE_H    =  6; \/\/ non-polar hydrogen$/;"	v
+AD_TYPE_HD	atom_constants.h	/^const sz AD_TYPE_HD   = 12;$/;"	v
+AD_TYPE_I	atom_constants.h	/^const sz AD_TYPE_I    =  8;$/;"	v
+AD_TYPE_Mg	atom_constants.h	/^const sz AD_TYPE_Mg   = 13;$/;"	v
+AD_TYPE_Mn	atom_constants.h	/^const sz AD_TYPE_Mn   = 14;$/;"	v
+AD_TYPE_N	atom_constants.h	/^const sz AD_TYPE_N    =  2;$/;"	v
+AD_TYPE_NA	atom_constants.h	/^const sz AD_TYPE_NA   =  9;$/;"	v
+AD_TYPE_O	atom_constants.h	/^const sz AD_TYPE_O    =  3;$/;"	v
+AD_TYPE_OA	atom_constants.h	/^const sz AD_TYPE_OA   = 10;$/;"	v
+AD_TYPE_P	atom_constants.h	/^const sz AD_TYPE_P    =  4;$/;"	v
+AD_TYPE_S	atom_constants.h	/^const sz AD_TYPE_S    =  5;$/;"	v
+AD_TYPE_SA	atom_constants.h	/^const sz AD_TYPE_SA   = 11;$/;"	v
+AD_TYPE_SIZE	atom_constants.h	/^const sz AD_TYPE_SIZE = 20;$/;"	v
+AD_TYPE_Zn	atom_constants.h	/^const sz AD_TYPE_Zn   = 15;$/;"	v
+DISTANCE_FIXED	model.h	/^enum distance_type {DISTANCE_FIXED, DISTANCE_ROTOR, DISTANCE_VARIABLE};$/;"	e	enum:distance_type
+DISTANCE_ROTOR	model.h	/^enum distance_type {DISTANCE_FIXED, DISTANCE_ROTOR, DISTANCE_VARIABLE};$/;"	e	enum:distance_type
+DISTANCE_VARIABLE	model.h	/^enum distance_type {DISTANCE_FIXED, DISTANCE_ROTOR, DISTANCE_VARIABLE};$/;"	e	enum:distance_type
+EL	atom_type.h	/^	enum t {EL, AD, XS, SY};$/;"	e	enum:atom_type::t
+EL_TYPE_Br	atom_constants.h	/^const sz EL_TYPE_Br   =  8;$/;"	v
+EL_TYPE_C	atom_constants.h	/^const sz EL_TYPE_C    =  1;$/;"	v
+EL_TYPE_Cl	atom_constants.h	/^const sz EL_TYPE_Cl   =  7;$/;"	v
+EL_TYPE_F	atom_constants.h	/^const sz EL_TYPE_F    =  6;$/;"	v
+EL_TYPE_H	atom_constants.h	/^const sz EL_TYPE_H    =  0;$/;"	v
+EL_TYPE_I	atom_constants.h	/^const sz EL_TYPE_I    =  9;$/;"	v
+EL_TYPE_Met	atom_constants.h	/^const sz EL_TYPE_Met  = 10;$/;"	v
+EL_TYPE_N	atom_constants.h	/^const sz EL_TYPE_N    =  2;$/;"	v
+EL_TYPE_O	atom_constants.h	/^const sz EL_TYPE_O    =  3;$/;"	v
+EL_TYPE_P	atom_constants.h	/^const sz EL_TYPE_P    =  5;$/;"	v
+EL_TYPE_S	atom_constants.h	/^const sz EL_TYPE_S    =  4;$/;"	v
+EL_TYPE_SIZE	atom_constants.h	/^const sz EL_TYPE_SIZE = 11;$/;"	v
+SY	atom_type.h	/^	enum t {EL, AD, XS, SY};$/;"	e	enum:atom_type::t
+SY_TYPE_Br	atom_constants.h	/^const sz SY_TYPE_Br    = 15;$/;"	v
+SY_TYPE_C_2	atom_constants.h	/^const sz SY_TYPE_C_2   =  1;$/;"	v
+SY_TYPE_C_3	atom_constants.h	/^const sz SY_TYPE_C_3   =  0;$/;"	v
+SY_TYPE_C_ar	atom_constants.h	/^const sz SY_TYPE_C_ar  =  2;$/;"	v
+SY_TYPE_C_cat	atom_constants.h	/^const sz SY_TYPE_C_cat =  3;$/;"	v
+SY_TYPE_Cl	atom_constants.h	/^const sz SY_TYPE_Cl    = 14;$/;"	v
+SY_TYPE_F	atom_constants.h	/^const sz SY_TYPE_F     = 13;$/;"	v
+SY_TYPE_I	atom_constants.h	/^const sz SY_TYPE_I     = 16;$/;"	v
+SY_TYPE_Met	atom_constants.h	/^const sz SY_TYPE_Met   = 17;$/;"	v
+SY_TYPE_N_3	atom_constants.h	/^const sz SY_TYPE_N_3   =  4;$/;"	v
+SY_TYPE_N_am	atom_constants.h	/^const sz SY_TYPE_N_am  =  6;$/;"	v
+SY_TYPE_N_ar	atom_constants.h	/^const sz SY_TYPE_N_ar  =  5;$/;"	v
+SY_TYPE_N_pl3	atom_constants.h	/^const sz SY_TYPE_N_pl3 =  7;$/;"	v
+SY_TYPE_O_2	atom_constants.h	/^const sz SY_TYPE_O_2   =  9;$/;"	v
+SY_TYPE_O_3	atom_constants.h	/^const sz SY_TYPE_O_3   =  8;$/;"	v
+SY_TYPE_O_co2	atom_constants.h	/^const sz SY_TYPE_O_co2 = 10;$/;"	v
+SY_TYPE_P	atom_constants.h	/^const sz SY_TYPE_P     = 12;$/;"	v
+SY_TYPE_S	atom_constants.h	/^const sz SY_TYPE_S     = 11;$/;"	v
+SY_TYPE_SIZE	atom_constants.h	/^const sz SY_TYPE_SIZE  = 18;$/;"	v
+VINA_ARRAY3D_H	array3d.h	24;"	d
+VINA_ATOM_BASE_H	atom_base.h	24;"	d
+VINA_ATOM_CONSTANTS_H	atom_constants.h	24;"	d
+VINA_ATOM_H	atom.h	24;"	d
+VINA_ATOM_TYPE_H	atom_type.h	24;"	d
+VINA_BFGS_H	bfgs.h	24;"	d
+VINA_BRICK_H	brick.h	24;"	d
+VINA_CACHE_H	cache.h	24;"	d
+VINA_CHECK	common.h	196;"	d
+VINA_CHECK	common.h	198;"	d
+VINA_COMMON_H	common.h	24;"	d
+VINA_CONF_H	conf.h	24;"	d
+VINA_CONVERT_SUBSTRING_H	convert_substring.h	24;"	d
+VINA_COORDS_H	coords.h	24;"	d
+VINA_CURL_H	curl.h	24;"	d
+VINA_CURRENT_WEIGHTS_H	current_weights.h	24;"	d
+VINA_ESHOW	macros.h	35;"	d
+VINA_EVERYTHING_H	everything.h	24;"	d
+VINA_FILE_H	file.h	24;"	d
+VINA_FOR	macros.h	23;"	d
+VINA_FOR_IN	macros.h	22;"	d
+VINA_GRID_DIM_H	grid_dim.h	24;"	d
+VINA_GRID_H	grid.h	24;"	d
+VINA_IGRID_H	igrid.h	24;"	d
+VINA_INCREMENTABLE_H	incrementable.h	24;"	d
+VINA_INT_POW_H	int_pow.h	24;"	d
+VINA_I_RANGE	macros.h	28;"	d
+VINA_LOOP	macros.h	31;"	d
+VINA_LOOP_CONST	macros.h	30;"	d
+VINA_MACROS_H	macros.h	20;"	d
+VINA_MANIFOLD_H	manifold.h	24;"	d
+VINA_MATRIX_DEFINE_OPERATORS	matrix.h	138;"	d
+VINA_MATRIX_DEFINE_OPERATORS	matrix.h	30;"	d
+VINA_MATRIX_H	matrix.h	24;"	d
+VINA_MODEL_H	model.h	24;"	d
+VINA_MONTE_CARLO_H	monte_carlo.h	24;"	d
+VINA_MUTATE_H	mutate.h	24;"	d
+VINA_MY_PID_H	my_pid.h	24;"	d
+VINA_NAIVE_NON_CACHE_H	naive_non_cache.h	24;"	d
+VINA_NON_CACHE_H	non_cache.h	24;"	d
+VINA_PARALLEL_H	parallel.h	24;"	d
+VINA_PARALLEL_MC_H	parallel_mc.h	24;"	d
+VINA_PARALLEL_PROGRESS_H	parallel_progress.h	24;"	d
+VINA_PARSE_ERROR_H	parse_error.h	24;"	d
+VINA_PARSE_PDBQT_H	parse_pdbqt.h	24;"	d
+VINA_PDB_H	pdb.h	24;"	d
+VINA_PRECALCULATE_H	precalculate.h	24;"	d
+VINA_QUASI_NEWTON_H	quasi_newton.h	24;"	d
+VINA_QUATERNION_H	quaternion.h	24;"	d
+VINA_RANDOM_H	random.h	24;"	d
+VINA_RANGE	macros.h	26;"	d
+VINA_RECENT_HISTORY_H	recent_history.h	24;"	d
+VINA_SCORING_FUNCTION_H	scoring_function.h	24;"	d
+VINA_SHOW	macros.h	33;"	d
+VINA_SHOW_FAST	macros.h	34;"	d
+VINA_SSD_H	ssd.h	24;"	d
+VINA_STATISTICS_H	statistics.h	24;"	d
+VINA_SZV_GRID_H	szv_grid.h	24;"	d
+VINA_TEE_H	tee.h	24;"	d
+VINA_TERMS_H	terms.h	24;"	d
+VINA_TREE_H	tree.h	24;"	d
+VINA_TRIANGULAR_MATRIX_INDEX_H	triangular_matrix_index.h	24;"	d
+VINA_U_FOR	macros.h	24;"	d
+VINA_U_RANGE	macros.h	27;"	d
+VINA_WEIGHTED_TERMS_H	weighted_terms.h	24;"	d
+XS	atom_type.h	/^	enum t {EL, AD, XS, SY};$/;"	e	enum:atom_type::t
+XS_TYPE_Br_H	atom_constants.h	/^const sz XS_TYPE_Br_H  = 14;$/;"	v
+XS_TYPE_C_H	atom_constants.h	/^const sz XS_TYPE_C_H   =  0;$/;"	v
+XS_TYPE_C_P	atom_constants.h	/^const sz XS_TYPE_C_P   =  1;$/;"	v
+XS_TYPE_Cl_H	atom_constants.h	/^const sz XS_TYPE_Cl_H  = 13;$/;"	v
+XS_TYPE_F_H	atom_constants.h	/^const sz XS_TYPE_F_H   = 12;$/;"	v
+XS_TYPE_I_H	atom_constants.h	/^const sz XS_TYPE_I_H   = 15;$/;"	v
+XS_TYPE_Met_D	atom_constants.h	/^const sz XS_TYPE_Met_D = 16;$/;"	v
+XS_TYPE_N_A	atom_constants.h	/^const sz XS_TYPE_N_A   =  4;$/;"	v
+XS_TYPE_N_D	atom_constants.h	/^const sz XS_TYPE_N_D   =  3;$/;"	v
+XS_TYPE_N_DA	atom_constants.h	/^const sz XS_TYPE_N_DA  =  5;$/;"	v
+XS_TYPE_N_P	atom_constants.h	/^const sz XS_TYPE_N_P   =  2;$/;"	v
+XS_TYPE_O_A	atom_constants.h	/^const sz XS_TYPE_O_A   =  8;$/;"	v
+XS_TYPE_O_D	atom_constants.h	/^const sz XS_TYPE_O_D   =  7;$/;"	v
+XS_TYPE_O_DA	atom_constants.h	/^const sz XS_TYPE_O_DA  =  9;$/;"	v
+XS_TYPE_O_P	atom_constants.h	/^const sz XS_TYPE_O_P   =  6;$/;"	v
+XS_TYPE_P_P	atom_constants.h	/^const sz XS_TYPE_P_P   = 11;$/;"	v
+XS_TYPE_SIZE	atom_constants.h	/^const sz XS_TYPE_SIZE  = 17;$/;"	v
+XS_TYPE_S_P	atom_constants.h	/^const sz XS_TYPE_S_P   = 10;$/;"	v
+a	model.h	/^	sz a;$/;"	m	struct:interacting_pair
+a	parallel.h	/^	aux a;$/;"	m	struct:parallel_iter
+a	parallel.h	/^    aux a;$/;"	m	struct:parallel_for
+a	parse_pdbqt.cpp	/^		parsed_atom a;$/;"	m	struct:parsing_struct::node_t	file:
+a_info	model.cpp	/^	appender_info a_info;$/;"	m	class:appender	file:
+about	model.cpp	/^void model::about() const {$/;"	f	class:model
+acceptable_type	atom_type.h	/^	bool acceptable_type() const {$/;"	f	struct:atom_type
+acceptor_kind	atom_constants.h	/^struct acceptor_kind {$/;"	s
+acceptor_kind_data	atom_constants.h	/^const acceptor_kind acceptor_kind_data[] = { \/\/ ad_type, optimal length, depth$/;"	v
+acceptor_kinds_size	atom_constants.h	/^const sz acceptor_kinds_size = sizeof(acceptor_kind_data) \/ sizeof(acceptor_kind);$/;"	v
+ad	atom_type.h	/^	sz el, ad, xs, sy;$/;"	m	struct:atom_type
+ad4_solvation	everything.cpp	/^	ad4_solvation(fl desolvation_sigma_, fl solvation_q_, bool charge_dependent_, fl cutoff_) : distance_additive(cutoff_), solvation_q(solvation_q_), charge_dependent(charge_dependent_), desolvation_sigma(desolvation_sigma_) {$/;"	f	struct:ad4_solvation
+ad4_solvation	everything.cpp	/^struct ad4_solvation : public distance_additive {$/;"	s	file:
+ad_is_heteroatom	atom_constants.h	/^inline bool ad_is_heteroatom(sz ad) { \/\/ returns false for ad >= AD_TYPE_SIZE$/;"	f
+ad_is_hydrogen	atom_constants.h	/^inline bool ad_is_hydrogen(sz ad) {$/;"	f
+ad_type	atom_constants.h	/^	sz ad_type;$/;"	m	struct:acceptor_kind
+ad_type_property	atom_constants.h	/^inline const atom_kind& ad_type_property(sz i) {$/;"	f
+ad_type_to_el_type	atom_constants.h	/^inline sz ad_type_to_el_type(sz t) {$/;"	f
+add	model.cpp	/^	void add(sz index, const vec& coords) {$/;"	f	struct:beads
+add	parse_pdbqt.cpp	/^	void add(const parsed_atom& a, const context& c) { $/;"	f	struct:parsing_struct
+add	recent_history.h	/^	void add(fl x) {$/;"	f	struct:recent_history
+add	terms.h	/^	void add(unsigned e, T* f) { \/\/ FIXME? const T* ?$/;"	f	struct:term_set
+add	terms.h	/^	void add(unsigned e, additive* p)          {          additive_terms.add(e, p); }$/;"	f	struct:terms
+add	terms.h	/^	void add(unsigned e, conf_independent* p)  {  conf_independent_terms.add(e, p); }$/;"	f	struct:terms
+add	terms.h	/^	void add(unsigned e, distance_additive* p) { distance_additive_terms.add(e, p); }$/;"	f	struct:terms
+add	terms.h	/^	void add(unsigned e, intermolecular* p)    {    intermolecular_terms.add(e, p); }$/;"	f	struct:terms
+add	terms.h	/^	void add(unsigned e, usable* p)            {            usable_terms.add(e, p); }$/;"	f	struct:terms
+add	visited.h	/^	bool add(Conf conf, Change change)$/;"	f	struct:visited
+add_bonds	parse_pdbqt.cpp	/^void add_bonds(non_rigid_parsed& nr, boost::optional<atom_reference> atm, const atom_range& r) {$/;"	f
+add_context	parse_pdbqt.cpp	/^void add_context(context& c, std::string& str) {$/;"	f
+add_to_output_container	coords.cpp	/^void add_to_output_container(output_container& out, const output_type& t, fl min_rmsd, sz max_size) {$/;"	f
+additive	terms.h	/^	additive() : cutoff(max_fl) {}$/;"	f	struct:additive
+additive	terms.h	/^struct additive : public term {$/;"	s
+additive_terms	terms.h	/^	term_set<additive>          additive_terms;$/;"	m	struct:terms
+angle_to_quaternion	quaternion.cpp	/^qt angle_to_quaternion(const vec& axis, fl angle) { \/\/ axis is assumed to be a unit vector$/;"	f
+angle_to_quaternion	quaternion.cpp	/^qt angle_to_quaternion(const vec& rotation) {$/;"	f
+append	matrix.h	/^	void append(const matrix<T>& rectangular, const strictly_triangular_matrix<T>& triangular) {$/;"	f	class:strictly_triangular_matrix
+append	matrix.h	/^	void append(const matrix<T>& x, const T& filler_val) {$/;"	f	class:matrix
+append	matrix.h	/^	void append(const strictly_triangular_matrix<T>& m, const T& filler_val) { $/;"	f	class:strictly_triangular_matrix
+append	model.cpp	/^	void append(std::vector<T>& a, const std::vector<T>& b) { \/\/ first arg becomes aaaaaaaabbbbbbbbbbbbbbb$/;"	f	class:appender
+append	model.cpp	/^void model::append(const model& m) {$/;"	f	class:model
+appender	model.cpp	/^	appender(const model& a, const model& b) : a_info(a), b_info(b), is_a(true) {}$/;"	f	class:appender
+appender	model.cpp	/^class appender {$/;"	c	file:
+appender_info	model.cpp	/^	appender_info(const model& m) : grid_atoms_size(m.grid_atoms.size()), m_num_movable_atoms(m.m_num_movable_atoms), atoms_size(m.atoms.size()) {}$/;"	f	struct:appender_info
+appender_info	model.cpp	/^struct appender_info {$/;"	s	file:
+apply	conf.h	/^	void apply(const vecv& in, vecv& out, sz begin, sz end) const {$/;"	f	struct:rigid_conf
+array3d	array3d.h	/^	array3d() : m_i(0), m_j(0), m_k(0) {}$/;"	f	class:array3d
+array3d	array3d.h	/^	array3d(sz i, sz j, sz k) : m_i(i), m_j(j), m_k(k), m_data(checked_multiply(i, j, k)) {}$/;"	f	class:array3d
+array3d	array3d.h	/^class array3d {$/;"	c
+assign	common.h	/^	void assign(fl s) {$/;"	f	struct:vec
+assign_bonds	model.cpp	/^void model::assign_bonds(const distance_type_matrix& mobility) { \/\/ assign bonds based on relative mobility, distance and covalent length$/;"	f	class:model
+assign_el	atom_type.h	/^	void assign_el() {$/;"	f	struct:atom_type
+assign_types	model.cpp	/^void model::assign_types() {$/;"	f	class:model
+atom	atom.h	/^	atom() : coords(max_vec) {}$/;"	f	struct:atom
+atom	atom.h	/^struct atom : public atom_base {$/;"	s
+atom_base	atom_base.h	/^	atom_base() : charge(0) {}$/;"	f	struct:atom_base
+atom_base	atom_base.h	/^struct atom_base : public atom_type {$/;"	s
+atom_coords	model.cpp	/^const vec& model::atom_coords(const atom_index& i) const {$/;"	f	class:model
+atom_equivalence	atom_constants.h	/^struct atom_equivalence {$/;"	s
+atom_equivalence_data	atom_constants.h	/^const atom_equivalence atom_equivalence_data[] = {$/;"	v
+atom_equivalences_size	atom_constants.h	/^const sz atom_equivalences_size = sizeof(atom_equivalence_data) \/ sizeof(const atom_equivalence);$/;"	v
+atom_exists_between	model.cpp	/^bool model::atom_exists_between(const distance_type_matrix& mobility, const atom_index& a, const atom_index& b, const szv& relevant_atoms) const { \/\/ there is an atom closer to both a and b then they are to each other and immobile relative to them$/;"	f	class:model
+atom_frame	tree.h	/^	atom_frame(const vec& origin_, sz begin_, sz end_) : frame(origin_), atom_range(begin_, end_) {}$/;"	f	struct:atom_frame
+atom_frame	tree.h	/^struct atom_frame : public frame, public atom_range {$/;"	s
+atom_index	atom.h	/^	atom_index() : i(max_sz), in_grid(false) {}$/;"	f	struct:atom_index
+atom_index	atom.h	/^	atom_index(sz i_, bool in_grid_) : i(i_), in_grid(in_grid_) {}$/;"	f	struct:atom_index
+atom_index	atom.h	/^struct atom_index {$/;"	s
+atom_kind	atom_constants.h	/^struct atom_kind {$/;"	s
+atom_kind_data	atom_constants.h	/^const atom_kind atom_kind_data[] = { \/\/ name, radius, depth, solvation parameter, volume, covalent radius$/;"	v
+atom_kinds_size	atom_constants.h	/^const sz atom_kinds_size =  sizeof(atom_kind_data) \/ sizeof(const atom_kind);$/;"	v
+atom_range	tree.h	/^	atom_range(sz begin_, sz end_) : begin(begin_), end(end_) {}$/;"	f	struct:atom_range
+atom_range	tree.h	/^struct atom_range {$/;"	s
+atom_reference	parse_pdbqt.cpp	/^	atom_reference(sz index_, bool inflex_) : index(index_), inflex(inflex_) {}$/;"	f	struct:atom_reference
+atom_reference	parse_pdbqt.cpp	/^struct atom_reference {$/;"	s	file:
+atom_rotors	terms.cpp	/^unsigned conf_independent_inputs::atom_rotors(const model& m, const atom_index& i) const { \/\/ the number of rotatable bonds to heavy ligand atoms$/;"	f	class:conf_independent_inputs
+atom_syntax_error	parse_pdbqt.cpp	/^	atom_syntax_error(const std::string& nature_) : nature(nature_) {}$/;"	f	struct:atom_syntax_error
+atom_syntax_error	parse_pdbqt.cpp	/^struct atom_syntax_error {$/;"	s	file:
+atom_type	atom_type.h	/^	atom_type() : el(EL_TYPE_SIZE), ad(AD_TYPE_SIZE), xs(XS_TYPE_SIZE), sy(SY_TYPE_SIZE) {}$/;"	f	struct:atom_type
+atom_type	atom_type.h	/^struct atom_type {$/;"	s
+atom_typing_used	model.h	/^	atom_type::t atom_typing_used() const { return m_atom_typing_used; }$/;"	f	struct:model
+atom_typing_used	precalculate.h	/^	atom_type::t atom_typing_used() const { return m_atom_typing_used; }$/;"	f	struct:precalculate
+atom_typing_used	terms.h	/^	atom_type::t atom_typing_used;$/;"	m	struct:usable
+atom_typing_used	weighted_terms.h	/^	atom_type::t atom_typing_used() const { return atom_typing_used_; }$/;"	f	struct:weighted_terms
+atom_typing_used_	weighted_terms.h	/^	atom_type::t atom_typing_used_;$/;"	m	struct:weighted_terms
+atoms	cache.h	/^	atomv atoms; \/\/ for verification$/;"	m	struct:cache
+atoms	model.h	/^	atomv atoms; \/\/ movable, inflex$/;"	m	struct:model
+atoms	parse_pdbqt.cpp	/^	atomv atoms;$/;"	m	struct:rigid	file:
+atoms	parse_pdbqt.cpp	/^	mav atoms;$/;"	m	struct:non_rigid_parsed	file:
+atoms	parse_pdbqt.cpp	/^	std::vector<node> atoms;$/;"	m	struct:parsing_struct	file:
+atoms	pdb.h	/^	std::vector<pdb_atom> atoms;$/;"	m	struct:pdb
+atoms_atoms_bonds	parse_pdbqt.cpp	/^	distance_type_matrix atoms_atoms_bonds;$/;"	m	struct:non_rigid_parsed	file:
+atoms_inflex_bonds	parse_pdbqt.cpp	/^	matrix<distance_type> atoms_inflex_bonds;$/;"	m	struct:non_rigid_parsed	file:
+atoms_size	model.cpp	/^	sz atoms_size;$/;"	m	struct:appender_info	file:
+atomv	atom.h	/^typedef std::vector<atom> atomv;$/;"	t
+atu	cache.h	/^	atom_type::t atu;$/;"	m	struct:cache
+auto_seed	random.cpp	/^int auto_seed() { \/\/ make seed from PID and time$/;"	f
+aux	parallel.h	/^		aux(const F* f) : f(f), v(NULL) {}$/;"	f	struct:parallel_iter::aux
+aux	parallel.h	/^		aux(sz offset, parallel_for* par) : offset(offset), par(par) {}$/;"	f	struct:parallel_for::aux
+aux	parallel.h	/^	struct aux {$/;"	s	struct:parallel_iter
+aux	parallel.h	/^        aux() : par(NULL) {}$/;"	f	struct:parallel_for::aux
+aux	parallel.h	/^    struct aux {$/;"	s	struct:parallel_for
+average_difference	statistics.h	/^inline fl average_difference(const flv& b, const flv& a) { \/\/ b - a$/;"	f
+average_num_possibilities	szv_grid.cpp	/^fl szv_grid::average_num_possibilities() const {$/;"	f	class:szv_grid
+average_required_improvement	quasi_newton.h	/^	fl average_required_improvement;$/;"	m	struct:quasi_newton
+axis	tree.h	/^	vec axis;$/;"	m	struct:axis_frame
+axis_begin	parse_pdbqt.cpp	/^	boost::optional<atom_reference> axis_begin; \/\/ the index (in non_rigid_parsed::atoms) of the parent bound to immobile atom (if already known)$/;"	m	struct:parsing_struct	file:
+axis_end	parse_pdbqt.cpp	/^	boost::optional<atom_reference> axis_end; \/\/ if immobile atom has been pushed into non_rigid_parsed::atoms, this is its index there$/;"	m	struct:parsing_struct	file:
+axis_frame	tree.h	/^	axis_frame(const vec& origin_, sz begin_, sz end_, const vec& axis_root) : atom_frame(origin_, begin_, end_) {$/;"	f	struct:axis_frame
+axis_frame	tree.h	/^struct axis_frame : public atom_frame {$/;"	s
+axis_numbers	parse_pdbqt.cpp	/^typedef std::pair<sz, sz> axis_numbers;$/;"	t	file:
+axis_numbers_option	parse_pdbqt.cpp	/^typedef boost::optional<axis_numbers> axis_numbers_option;$/;"	t	file:
+b	model.h	/^	sz b;$/;"	m	struct:interacting_pair
+b_factor	pdb.h	/^	fl b_factor;$/;"	m	struct:pdb_atom
+b_info	model.cpp	/^	appender_info b_info;$/;"	m	class:appender	file:
+bad	everything.cpp	/^	fl bad;$/;"	m	struct:hydrophobic	file:
+bad	everything.cpp	/^	fl bad;$/;"	m	struct:non_dir_h_bond	file:
+bad	everything.cpp	/^	fl bad;$/;"	m	struct:non_hydrophobic	file:
+bad_conversion	convert_substring.h	/^struct bad_conversion {};$/;"	s
+beads	model.cpp	/^	beads(sz reserve_size, fl radius_sqr_) : radius_sqr(radius_sqr_) { data.reserve(reserve_size); }$/;"	f	struct:beads
+beads	model.cpp	/^struct beads {$/;"	s	file:
+begin	grid_dim.h	/^	fl begin;$/;"	m	struct:grid_dim
+begin	tree.h	/^    sz begin;$/;"	m	struct:atom_range
+bfgs	bfgs.h	/^fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_required_improvement, const sz over) { \/\/ x is I\/O, final value is returned$/;"	f
+bfgs_update	bfgs.h	/^inline bool bfgs_update(flmat& h, const Change& p, const Change& y, const fl alpha) {$/;"	f
+bond	atom.h	/^	bond() : length(0), rotatable(false) {}$/;"	f	struct:bond
+bond	atom.h	/^	bond(const atom_index& connected_atom_index_, fl length_, bool rotatable_) : connected_atom_index(connected_atom_index_), length(length_), rotatable(rotatable_) {}$/;"	f	struct:bond
+bond	atom.h	/^struct bond {$/;"	s
+bond_less	model.cpp	/^struct bond_less { \/\/ FIXME rm!?$/;"	s	file:
+bonded_to	model.cpp	/^szv model::bonded_to(sz a, sz n) const {$/;"	f	class:model
+bonded_to	model.cpp	/^void model::bonded_to(sz a, sz n, szv& out) const {$/;"	f	class:model
+bonded_to_HD	model.cpp	/^bool model::bonded_to_HD(const atom& a) const {$/;"	f	class:model
+bonded_to_heteroatom	model.cpp	/^bool model::bonded_to_heteroatom(const atom& a) const {$/;"	f	class:model
+bonds	atom.h	/^	std::vector<bond> bonds;$/;"	m	struct:atom
+boost	quaternion.h	/^namespace boost {$/;"	n
+branch	tree.h	/^typedef tree<segment> branch;$/;"	t
+branch_metrics	model.cpp	/^	branch_metrics() : length(0), corner2corner(0) {}$/;"	f	struct:branch_metrics
+branch_metrics	model.cpp	/^struct branch_metrics {$/;"	s	file:
+branches	tree.h	/^typedef std::vector<branch> branches;$/;"	t
+branches_derivative	tree.h	/^void branches_derivative(const std::vector<T>& b, const vec& origin, const vecv& coords, const vecv& forces, vecp& out, flv::iterator& d) { \/\/ adds to out$/;"	f
+branches_set_conf	tree.h	/^void branches_set_conf(std::vector<T>& b, const frame& parent, const atomv& atoms, vecv& coords, flv::const_iterator& c) {$/;"	f
+brick_closest	brick.h	/^inline vec brick_closest(const vec& begin, const vec& end, const vec& v) {$/;"	f
+brick_distance_sqr	brick.h	/^inline fl brick_distance_sqr(const vec& begin, const vec& end, const vec& v) {$/;"	f
+busy	parallel.h	/^    boost::condition busy;$/;"	m	struct:parallel_for
+c	conf.h	/^	conf c;$/;"	m	struct:output_type
+c	visited.h	/^	std::vector<Conf> c;$/;"	m	struct:visited
+cache	cache.cpp	/^cache::cache(const std::string& scoring_function_version_, const grid_dims& gd_, fl slope_, atom_type::t atom_typing_used_) $/;"	f	class:cache
+cache	cache.h	/^struct cache : public igrid {$/;"	s
+cache_mismatch	cache.h	/^struct cache_mismatch {};$/;"	s
+calculate_rs	precalculate.h	/^	flv calculate_rs() const {$/;"	f	struct:precalculate
+cap	everything.cpp	/^	fl cap;$/;"	m	struct:electrostatic	file:
+cap	everything.cpp	/^	fl cap;$/;"	m	struct:vdw	file:
+change	conf.h	/^	change(const conf_size& s) : ligands(s.ligands.size()), flex(s.flex.size()) {$/;"	f	struct:change
+change	conf.h	/^struct change {$/;"	s
+charge	atom_base.h	/^	fl charge;$/;"	m	struct:atom_base
+charge_dependent	everything.cpp	/^	bool charge_dependent;$/;"	m	struct:ad4_solvation	file:
+check	pdb.cpp	/^void pdb::check(fl min_distance) const {$/;"	f	class:pdb
+check_internal_pairs	model.cpp	/^void model::check_internal_pairs() const {$/;"	f	class:model
+checked_convert_substring	parse_pdbqt.cpp	/^T checked_convert_substring(const std::string& str, sz i, sz j, const std::string& dest_nature) {$/;"	f
+checked_multiply	array3d.h	/^inline sz checked_multiply(sz i, sz j) {$/;"	f
+checked_multiply	array3d.h	/^inline sz checked_multiply(sz i, sz j, sz k) {$/;"	f
+children	tree.h	/^	branches children;$/;"	m	struct:heterotree
+children	tree.h	/^	std::vector< tree<T> > children;$/;"	m	struct:tree
+clash_penalty	model.cpp	/^fl model::clash_penalty() const {$/;"	f	class:model
+clash_penalty_aux	model.cpp	/^fl model::clash_penalty_aux(const interacting_pairs& pairs) const {$/;"	f	class:model
+closest_between	brick.h	/^inline fl closest_between(fl begin, fl end, fl x) {$/;"	f
+cond	parallel.h	/^    boost::condition cond;$/;"	m	struct:parallel_for
+conf	conf.h	/^	conf() {}$/;"	f	struct:conf
+conf	conf.h	/^	conf(const conf_size& s) : ligands(s.ligands.size()), flex(s.flex.size()) {$/;"	f	struct:conf
+conf	conf.h	/^struct conf {$/;"	s
+conf_independent	terms.h	/^struct conf_independent : public term {$/;"	s
+conf_independent	weighted_terms.cpp	/^fl weighted_terms::conf_independent(const model& m, fl e) const {$/;"	f	class:weighted_terms
+conf_independent_inputs	terms.cpp	/^conf_independent_inputs::conf_independent_inputs() : $/;"	f	class:conf_independent_inputs
+conf_independent_inputs	terms.cpp	/^conf_independent_inputs::conf_independent_inputs(const model& m) {$/;"	f	class:conf_independent_inputs
+conf_independent_inputs	terms.h	/^struct conf_independent_inputs {$/;"	s
+conf_independent_terms	terms.h	/^	term_set<conf_independent>  conf_independent_terms;$/;"	m	struct:terms
+conf_is_legal	manifold.cpp	/^bool conf_is_legal(const conf& c, const output_container& mf, const std::vector<bool>& internal_too_close, const scale& exclusion) {$/;"	f
+conf_size	conf.h	/^struct conf_size {$/;"	s
+connected_atom_index	atom.h	/^	atom_index connected_atom_index;$/;"	m	struct:bond
+cont	model.h	/^	context cont;$/;"	m	struct:ligand
+context	model.h	/^typedef std::vector<parsed_line> context;$/;"	t
+context_index	parse_pdbqt.cpp	/^		sz context_index;$/;"	m	struct:parsing_struct::node_t	file:
+convert_substring	convert_substring.h	/^T convert_substring(const std::string& str, sz i, sz j) { \/\/ indexes are 1-based, the substring should be non-null$/;"	f
+convert_substring	convert_substring.h	/^inline unsigned convert_substring<unsigned>(const std::string& str, sz i, sz j) { \/\/ indexes are 1-based, the substring should be non-null$/;"	f
+coords	atom.h	/^    vec coords;$/;"	m	struct:atom
+coords	conf.h	/^	vecv coords;$/;"	m	struct:output_type
+coords	model.h	/^	vecv coords;$/;"	m	struct:model
+coords	pdb.h	/^	vec coords;$/;"	m	struct:pdb_atom
+coords_append	model.cpp	/^	void coords_append(std::vector<T>& a, const std::vector<T>& b) { \/\/ first arg becomes aaaaaaaabbbbbbbbbaab$/;"	f	class:appender
+coords_to_pdbqt_string	model.cpp	/^std::string coords_to_pdbqt_string(const vec& coords, const std::string& str) {$/;"	f
+corner1	parallel_mc.cpp	/^	const vec* corner1;$/;"	m	struct:parallel_mc_aux	file:
+corner2	parallel_mc.cpp	/^	const vec* corner2;$/;"	m	struct:parallel_mc_aux	file:
+corner2corner	model.cpp	/^	sz corner2corner;$/;"	m	struct:branch_metrics	file:
+cost_factor	manifold.h	/^	fl cost_factor;$/;"	m	struct:manifold
+count_finished	parallel.h	/^    sz count_finished; $/;"	m	struct:parallel_for
+count_mutable_entities	mutate.cpp	/^sz count_mutable_entities(const conf& c) {$/;"	f
+count_torsions	tree.h	/^	szv count_torsions() const {$/;"	f	struct:vector_mutable
+count_torsions	tree.h	/^	void count_torsions(sz& s) const {$/;"	f	struct:first_segment
+count_torsions	tree.h	/^	void count_torsions(sz& s) const {$/;"	f	struct:segment
+count_torsions	tree.h	/^	void count_torsions(sz& s) const {} \/\/ do nothing$/;"	f	struct:rigid_body
+count_torsions	tree.h	/^void count_torsions(const T& t, sz& s) {$/;"	f
+covalent_radius	atom_constants.h	/^	fl covalent_radius; \/\/ from http:\/\/en.wikipedia.org\/wiki\/Atomic_radii_of_the_elements_(data_page)$/;"	m	struct:atom_kind
+covalent_radius	atom_type.h	/^	fl covalent_radius() const {$/;"	f	struct:atom_type
+cross_product	common.h	/^inline vec cross_product(const vec& a, const vec& b) {$/;"	f
+curl	curl.h	/^inline void curl(fl& e, fl v) {$/;"	f
+curl	curl.h	/^void curl(fl& e, T& deriv, fl v) {$/;"	f
+current_weights	current_weights.cpp	/^flv current_weights(const terms& t) { \/\/ verifies size compatibility with t$/;"	f
+cutoff	terms.h	/^	fl cutoff;$/;"	m	struct:additive
+cutoff	terms.h	/^	fl cutoff;$/;"	m	struct:distance_additive
+cutoff	weighted_terms.h	/^	fl cutoff() const { return cutoff_; }$/;"	f	struct:weighted_terms
+cutoff_	weighted_terms.h	/^	fl cutoff_;$/;"	m	struct:weighted_terms
+cutoff_sqr	precalculate.h	/^	fl cutoff_sqr() const { return m_cutoff_sqr; }$/;"	f	struct:precalculate
+data	common.h	/^	fl data[3];$/;"	m	struct:vec
+data	common.h	/^	fl data[9];$/;"	m	struct:mat
+data	model.cpp	/^	std::vector<std::pair<vec, szv> > data;$/;"	m	struct:beads	file:
+data	precalculate.h	/^	triangular_matrix<precalculate_element> data;$/;"	m	struct:precalculate
+degrees_of_freedom	model.h	/^	unsigned degrees_of_freedom; \/\/ can be different from the apparent number of rotatable bonds, because of the disabled torsions$/;"	m	struct:ligand
+depth	atom_constants.h	/^	fl depth;$/;"	m	struct:acceptor_kind
+depth	atom_constants.h	/^	fl depth;$/;"	m	struct:atom_kind
+derivative	tree.h	/^	vecp derivative(const vecv& coords, const vecv& forces, flv::iterator& p) const {$/;"	f	struct:tree
+derivative	tree.h	/^	void derivative(const vecv& coords, const vecv& forces, ligand_change& c) const {$/;"	f	struct:heterotree
+derivative	tree.h	/^	void derivative(const vecv& coords, const vecv& forces, residue_change& c) const {$/;"	f	struct:heterotree
+derivative	tree.h	/^	void derivative(const vecv& coords, const vecv& forces, std::vector<C>& c) const { \/\/ C == ligand_change || residue_change$/;"	f	struct:vector_mutable
+desolvation_sigma	everything.cpp	/^	fl desolvation_sigma;$/;"	m	struct:ad4_solvation	file:
+destructing	parallel.h	/^    bool destructing; \/\/ dtor called$/;"	m	struct:parallel_for
+determine_iu	manifold.cpp	/^bool determine_iu(const conf& c, const output_container& mf, std::vector<bool>& internal_too_close, fl exclusion) { \/\/ clean up$/;"	f
+deviation	statistics.h	/^inline fl deviation(const flv& v) {$/;"	f
+dim	array3d.h	/^	sz dim(sz i) const {$/;"	f	class:array3d
+dim	matrix.h	/^	sz dim() const { return m_dim; }$/;"	f	class:strictly_triangular_matrix
+dim	matrix.h	/^	sz dim() const { return m_dim; }$/;"	f	class:triangular_matrix
+dim0	array3d.h	/^	sz dim0() const { return m_i; }$/;"	f	class:array3d
+dim1	array3d.h	/^	sz dim1() const { return m_j; }$/;"	f	class:array3d
+dim2	array3d.h	/^	sz dim2() const { return m_k; }$/;"	f	class:array3d
+dim_1	matrix.h	/^	sz dim_1() const { return m_i; }$/;"	f	class:matrix
+dim_2	matrix.h	/^	sz dim_2() const { return m_j; }$/;"	f	class:matrix
+display_info	terms.cpp	/^void terms::display_info() const {$/;"	f	class:terms
+display_progress	parallel_mc.h	/^	bool display_progress;$/;"	m	struct:parallel_mc
+distance_additive	terms.h	/^	distance_additive(fl cutoff_) : cutoff(cutoff_) {}$/;"	f	struct:distance_additive
+distance_additive	terms.h	/^struct distance_additive : public term {$/;"	s
+distance_additive_terms	terms.h	/^	term_set<distance_additive> distance_additive_terms;$/;"	m	struct:terms
+distance_sqr_between	model.cpp	/^fl model::distance_sqr_between(const atom_index& a, const atom_index& b) const {$/;"	f	class:model
+distance_type	model.h	/^enum distance_type {DISTANCE_FIXED, DISTANCE_ROTOR, DISTANCE_VARIABLE};$/;"	g
+distance_type_between	model.cpp	/^distance_type model::distance_type_between(const distance_type_matrix& mobility, const atom_index& i, const atom_index& j) const {$/;"	f	class:model
+distance_type_matrix	model.h	/^typedef strictly_triangular_matrix<distance_type> distance_type_matrix;$/;"	t
+down	ssd.h	/^	fl down;$/;"	m	struct:ssd
+e	conf.h	/^	fl e;$/;"	m	struct:output_type
+e	terms.h	/^	flv e; \/\/ external$/;"	m	struct:factors
+el	atom_type.h	/^	sz el, ad, xs, sy;$/;"	m	struct:atom_type
+electrostatic	everything.cpp	/^	electrostatic(fl cap_, fl cutoff_) : distance_additive(cutoff_), cap(cap_) {$/;"	f	struct:electrostatic
+electrostatic	everything.cpp	/^struct electrostatic : public distance_additive {$/;"	s	file:
+element	pdb.h	/^	std::string element;$/;"	m	struct:pdb_atom
+elementwise_product	common.h	/^inline vec elementwise_product(const vec& a, const vec& b) {$/;"	f
+enabled	grid_dim.h	/^	bool enabled() const { return (n > 0); }$/;"	f	struct:grid_dim
+enabled	terms.h	/^	std::vector<bool> enabled;$/;"	m	struct:term_set
+enabled_usable_terms	weighted_terms.h	/^	szv enabled_usable_terms;$/;"	m	struct:weighted_terms
+end	grid_dim.h	/^	fl end;$/;"	m	struct:grid_dim
+end	tree.h	/^    sz end;$/;"	m	struct:atom_range
+endl	tee.h	/^	void endl() {$/;"	f	struct:tee
+energy_mismatch	cache.h	/^struct energy_mismatch : public cache_mismatch {};$/;"	s
+epsilon_fl	common.h	/^const fl epsilon_fl = std::numeric_limits<fl>::epsilon();$/;"	v
+eq	common.h	/^bool eq(const std::vector<T>& a, const std::vector<T>& b) {$/;"	f
+eq	common.h	/^inline bool eq(const vec& a, const vec& b) {$/;"	f
+eq	common.h	/^inline bool eq(fl a, fl b) {$/;"	f
+eq	grid_dim.h	/^inline bool eq(const grid_dim& a, const grid_dim& b) {$/;"	f
+eq	grid_dim.h	/^inline bool eq(const grid_dims& a, const grid_dims& b) {$/;"	f
+eq	quaternion.cpp	/^bool eq(const qt& a, const qt& b) { \/\/ elementwise approximate equality - may return false for equivalent rotations$/;"	f
+error_estimate_sqr	recent_history.h	/^	fl error_estimate_sqr;$/;"	m	struct:recent_history
+essentially_empty	parse_pdbqt.cpp	/^	bool essentially_empty() const { \/\/ no sub-branches besides immobile atom, including sub-sub-branches, etc$/;"	f	struct:parsing_struct
+eval	cache.cpp	/^fl cache::eval      (const model& m, fl v) const { \/\/ needs m.coords$/;"	f	class:cache
+eval	everything.cpp	/^	fl eval(const atom_base& a, const atom_base& b, fl r) const {$/;"	f	struct:ad4_solvation
+eval	everything.cpp	/^	fl eval(const atom_base& a, const atom_base& b, fl r) const {$/;"	f	struct:electrostatic
+eval	everything.cpp	/^	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {$/;"	f	struct:ligand_length
+eval	everything.cpp	/^	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {$/;"	f	struct:num_heavy_atoms
+eval	everything.cpp	/^	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {$/;"	f	struct:num_heavy_atoms_div
+eval	everything.cpp	/^	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {$/;"	f	struct:num_hydrophobic_atoms
+eval	everything.cpp	/^	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {$/;"	f	struct:num_ligands
+eval	everything.cpp	/^	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {$/;"	f	struct:num_tors_add
+eval	everything.cpp	/^	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {$/;"	f	struct:num_tors_div
+eval	everything.cpp	/^	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {$/;"	f	struct:num_tors_sqr
+eval	everything.cpp	/^	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {$/;"	f	struct:num_tors_sqrt
+eval	everything.cpp	/^	fl eval(sz t1, sz t2, fl r) const {$/;"	f	struct:gauss
+eval	everything.cpp	/^	fl eval(sz t1, sz t2, fl r) const {$/;"	f	struct:hydrophobic
+eval	everything.cpp	/^	fl eval(sz t1, sz t2, fl r) const {$/;"	f	struct:non_dir_h_bond
+eval	everything.cpp	/^	fl eval(sz t1, sz t2, fl r) const {$/;"	f	struct:non_hydrophobic
+eval	everything.cpp	/^	fl eval(sz t1, sz t2, fl r) const {$/;"	f	struct:repulsion
+eval	everything.cpp	/^	fl eval(sz t1, sz t2, fl r) const {$/;"	f	struct:vdw
+eval	model.cpp	/^fl model::eval         (const precalculate& p, const igrid& ig, const vec& v, const conf& c           ) { \/\/ clean up$/;"	f	class:model
+eval	naive_non_cache.cpp	/^fl naive_non_cache::eval(const model& m, fl v) const { \/\/ needs m.coords$/;"	f	class:naive_non_cache
+eval	non_cache.cpp	/^fl non_cache::eval      (const model& m, fl v) const { \/\/ clean up$/;"	f	class:non_cache
+eval	terms.cpp	/^factors terms::eval(const model& m) const {$/;"	f	class:terms
+eval	terms.cpp	/^fl factors::eval(const flv& weights, bool include_internal) const {$/;"	f	class:factors
+eval	terms.h	/^	fl eval(const atom_base& a, const atom_base& b, fl r) const { \/\/ should not be overriden$/;"	f	struct:usable
+eval	terms.h	/^	virtual fl eval(sz t1, sz t2, fl r) const { return 0; } $/;"	f	struct:usable
+eval	weighted_terms.cpp	/^fl weighted_terms::eval(sz t1, sz t2, fl r) const { \/\/ intentionally not checking for cutoff$/;"	f	class:weighted_terms
+eval_additive_aux	terms.cpp	/^void terms::eval_additive_aux(const model& m, const atom_index& i, const atom_index& j, fl r, flv& out) const { \/\/ out is added to$/;"	f	class:terms
+eval_adjusted	model.cpp	/^fl model::eval_adjusted      (const scoring_function& sf, const precalculate& p, const igrid& ig, const vec& v, const conf& c, fl intramolecular_energy) {$/;"	f	class:model
+eval_conf_independent	terms.cpp	/^fl terms::eval_conf_independent(const conf_independent_inputs& in, fl x, flv::const_iterator& it) const { \/\/ evaluates enabled only$/;"	f	class:terms
+eval_deriv	cache.cpp	/^fl cache::eval_deriv(      model& m, fl v) const { \/\/ needs m.coords, sets m.minus_forces$/;"	f	class:cache
+eval_deriv	model.cpp	/^fl model::eval_deriv  (const precalculate& p, const igrid& ig, const vec& v, const conf& c, change& g) { \/\/ clean up$/;"	f	class:model
+eval_deriv	naive_non_cache.h	/^	virtual fl eval_deriv(      model& m, fl v) const { VINA_CHECK(false); return 0; } \/\/ unused$/;"	f	struct:naive_non_cache
+eval_deriv	non_cache.cpp	/^fl non_cache::eval_deriv(      model& m, fl v) const { \/\/ clean up$/;"	f	class:non_cache
+eval_deriv	precalculate.h	/^	pr eval_deriv(fl r2) const {$/;"	f	struct:precalculate_element
+eval_deriv	precalculate.h	/^	pr eval_deriv(sz type_pair_index, fl r2) const {$/;"	f	struct:precalculate
+eval_fast	precalculate.h	/^	fl eval_fast(fl r2) const {$/;"	f	struct:precalculate_element
+eval_fast	precalculate.h	/^	fl eval_fast(sz type_pair_index, fl r2) const {$/;"	f	struct:precalculate
+eval_interacting_pairs	model.cpp	/^fl eval_interacting_pairs(const precalculate& p, fl v, const interacting_pairs& pairs, const vecv& coords) { \/\/ clean up$/;"	f
+eval_interacting_pairs_deriv	model.cpp	/^fl eval_interacting_pairs_deriv(const precalculate& p, fl v, const interacting_pairs& pairs, const vecv& coords, vecv& forces) { \/\/ adds to forces  \/\/ clean up$/;"	f
+eval_intramolecular	model.cpp	/^fl model::eval_intramolecular(const precalculate& p, const vec& v, const conf& c) {$/;"	f	class:model
+evale	model.cpp	/^fl model::evale(const precalculate& p, const igrid& ig, const vec& v                          ) const { \/\/ clean up$/;"	f	class:model
+evale	terms.cpp	/^flv terms::evale(const model& m) const {$/;"	f	class:terms
+evale_robust	terms.cpp	/^flv terms::evale_robust(const model& m) const {$/;"	f	class:terms
+evali	model.cpp	/^fl model::evali(const precalculate& p,                                  const vec& v                          ) const { \/\/ clean up$/;"	f	class:model
+evali	terms.cpp	/^flv terms::evali(const model& m) const {$/;"	f	class:terms
+evals	ssd.h	/^	unsigned evals;$/;"	m	struct:ssd
+evaluate	grid.h	/^	fl evaluate(const vec& location, fl slope, fl c)             const { return evaluate_aux(location, slope, c, NULL);   }$/;"	f	class:grid
+evaluate	grid.h	/^	fl evaluate(const vec& location, fl slope, fl c, vec& deriv) const { return evaluate_aux(location, slope, c, &deriv); } \/\/ sets deriv$/;"	f	class:grid
+evaluate_aux	grid.cpp	/^fl grid::evaluate_aux(const vec& location, fl slope, fl v, vec* deriv) const { \/\/ sets *deriv if not NULL$/;"	f	class:grid
+everything	everything.cpp	/^everything::everything() { \/\/ enabled according to design.out227$/;"	f	class:everything
+everything	everything.h	/^struct everything : public terms {$/;"	s
+exclusion	manifold.h	/^	scale exclusion;$/;"	m	struct:manifold
+external_too_close	conf.h	/^	bool external_too_close(const conf& c, const scale& cutoff) const {$/;"	f	struct:conf
+extrapolate_cap	manifold.cpp	/^fl extrapolate_cap(fl from, fl to, fl progress) {$/;"	f
+extrapolate_cap	manifold.cpp	/^vec extrapolate_cap(const vec& from, const vec& to, fl progress) {$/;"	f
+f	parallel.h	/^		const F* f;$/;"	m	struct:parallel_iter::aux
+factor	precalculate.h	/^	fl factor;$/;"	m	struct:precalculate
+factor	precalculate.h	/^	fl factor;$/;"	m	struct:precalculate_element
+factors	terms.h	/^struct factors {$/;"	s
+fast	precalculate.h	/^	flv fast;$/;"	m	struct:precalculate_element
+file	common.h	/^	std::string file;$/;"	m	struct:internal_error
+file	parse_error.h	/^	path file;$/;"	m	struct:parse_error
+file_error	file.h	/^	file_error(const path& name_, bool in_) : name(name_), in(in_) {}$/;"	f	struct:file_error
+file_error	file.h	/^struct file_error {$/;"	s
+filter	terms.cpp	/^factors terms::filter(const factors& f) const {$/;"	f	class:terms
+filter	terms.h	/^	void filter(flv::const_iterator& in, flv& out) const {$/;"	f	struct:term_set
+filter_external	terms.cpp	/^flv terms::filter_external(const flv& v) const {$/;"	f	class:terms
+filter_internal	terms.cpp	/^flv terms::filter_internal(const flv& v) const {$/;"	f	class:terms
+find_closest	coords.cpp	/^std::pair<sz, fl> find_closest(const vecv& a, const output_container& b) {$/;"	f
+find_ligand	model.cpp	/^sz model::find_ligand(sz a) const {$/;"	f	class:model
+find_min	common.h	/^sz find_min(const std::vector<T>& v) { \/\/ returns v.size() i.e. 0 for empty vectors; the index of the smallest elt otherwise$/;"	f
+find_vdw_coefficients	everything.cpp	/^void find_vdw_coefficients(fl position, fl depth, fl& c_n, fl& c_m) {$/;"	f
+finished	parallel.h	/^    sz finished; \/\/ the number of jobs given to run() the work finished on$/;"	m	struct:parallel_for
+first_segment	tree.h	/^	first_segment(const segment& s) : axis_frame(s) {}$/;"	f	struct:first_segment
+first_segment	tree.h	/^	first_segment(const vec& origin_, sz begin_, sz end_, const vec& axis_root) : axis_frame(origin_, begin_, end_, axis_root) {}$/;"	f	struct:first_segment
+first_segment	tree.h	/^struct first_segment : public axis_frame {$/;"	s
+fl	common.h	/^typedef double fl;$/;"	t
+fl_to_sz	common.h	/^inline sz fl_to_sz(fl x, sz max_sz) { \/\/ return a value in [0, max_sz]$/;"	f
+fl_tolerance	common.h	/^const fl fl_tolerance = fl(0.001);$/;"	v
+flex	conf.h	/^	std::vector<residue_change> flex;$/;"	m	struct:change
+flex	conf.h	/^	std::vector<residue_conf> flex;$/;"	m	struct:conf
+flex	conf.h	/^	szv flex;$/;"	m	struct:conf_size
+flex	model.h	/^	vector_mutable<residue> flex;$/;"	m	struct:model
+flex	parse_pdbqt.cpp	/^	vector_mutable<residue> flex;$/;"	m	struct:non_rigid_parsed	file:
+flex_context	model.h	/^	context flex_context;$/;"	m	struct:model
+flexible_body	tree.h	/^typedef heterotree<rigid_body> flexible_body;$/;"	t
+flmat	bfgs.h	/^typedef triangular_matrix<fl> flmat;$/;"	t
+flush	tee.h	/^	void flush() {$/;"	f	struct:tee
+flv	common.h	/^typedef std::vector<fl> flv;$/;"	t
+frame	tree.h	/^	frame(const vec& origin_) : origin(origin_), orientation_q(qt_identity), orientation_m(quaternion_to_r3(qt_identity)) {}$/;"	f	struct:frame
+frame	tree.h	/^struct frame {$/;"	s
+fun	terms.h	/^	boost::ptr_vector<T> fun; \/\/ FIXME? const T?$/;"	m	struct:term_set
+g	visited.h	/^	std::vector<Change> g;$/;"	m	struct:visited
+gauss	everything.cpp	/^	gauss(fl offset_, fl width_, fl cutoff_) : usable(cutoff_), offset(offset_), width(width_) {$/;"	f	struct:gauss
+gauss	everything.cpp	/^struct gauss : public usable {$/;"	s	file:
+gaussian	everything.cpp	/^inline fl gaussian(fl x, fl width) {$/;"	f
+gd	cache.h	/^	grid_dims gd;$/;"	m	struct:cache
+gd	non_cache.h	/^	grid_dims gd;$/;"	m	struct:non_cache
+generate	conf.h	/^	void generate(fl position_spread, fl orientation_spread, fl rp, const rigid_conf* rs, rng& generator) {$/;"	f	struct:rigid_conf
+generate_external	conf.h	/^	void generate_external(const scale& spread, fl rp, const conf* rs, rng& generator) { \/\/ torsions are not normalized after this$/;"	f	struct:conf
+generate_external	manifold.cpp	/^conf generate_external(const conf& internal_conf, const output_container& mf, const std::vector<bool>& internal_too_close, bool uniq, const scale& spread, const scale& exclusion, fl rp, const conf* rs, unsigned num_attempts, bool& failed, rng& generator) {$/;"	f
+generate_internal	conf.h	/^	void generate_internal(fl torsion_spread, fl rp, const conf* rs, rng& generator) { \/\/ torsions are not normalized after this$/;"	f	struct:conf
+generator	parallel_mc.cpp	/^	rng generator;$/;"	m	struct:parallel_mc_task	file:
+get	atom_type.h	/^	sz get(t atom_typing_used) const {$/;"	f	struct:atom_type
+get_atom	model.h	/^	      atom& get_atom(const atom_index& i)       { return (i.in_grid ? grid_atoms[i.i] : atoms[i.i]); }$/;"	f	struct:model
+get_atom	model.h	/^	const atom& get_atom(const atom_index& i) const { return (i.in_grid ? grid_atoms[i.i] : atoms[i.i]); }$/;"	f	struct:model
+get_atom_range	model.cpp	/^atom_range get_atom_range(const T& t) {$/;"	f
+get_branch_metrics	model.cpp	/^branch_metrics get_branch_metrics(const T& t) {$/;"	f
+get_heavy_atom_movable_coords	model.h	/^	vecv get_heavy_atom_movable_coords() const { \/\/ FIXME mv$/;"	f	struct:model
+get_initial_conf	model.cpp	/^conf model::get_initial_conf() const { \/\/ torsions = 0, orientations = identity, ligand positions = current$/;"	f	class:model
+get_ligand_coords	model.h	/^	vecv get_ligand_coords() const { \/\/ FIXME rm$/;"	f	struct:model
+get_ligand_internal_coords	model.h	/^	vecv get_ligand_internal_coords() const { \/\/ FIXME rm$/;"	f	struct:model
+get_movable_atom_types	model.cpp	/^szv model::get_movable_atom_types(atom_type::t atom_typing_used_) const {$/;"	f	class:model
+get_names	terms.cpp	/^std::vector<std::string> conf_independent_inputs::get_names() const { \/\/ FIXME should probably be static$/;"	f	class:conf_independent_inputs
+get_names	terms.cpp	/^std::vector<std::string> terms::get_names(bool enabled_only) const { \/\/ does not include conf-independent$/;"	f	class:terms
+get_names	terms.h	/^	void get_names(bool enabled_only, std::vector<std::string>& out) const { \/\/ appends to "out"$/;"	f	struct:term_set
+get_next	parallel.h	/^	boost::optional<sz> get_next() {$/;"	f	struct:parallel_for
+get_origin	tree.h	/^	const vec& get_origin() const { return origin; }$/;"	f	struct:frame
+get_rankings	statistics.h	/^inline flv get_rankings(const flv& x) {$/;"	f
+get_size	model.cpp	/^conf_size model::get_size() const {$/;"	f	class:model
+get_size	parallel.h	/^	boost::optional<sz> get_size(sz offset) {$/;"	f	struct:parallel_for
+get_type_pair_index	atom_type.h	/^inline sz get_type_pair_index(atom_type::t atom_typing_used, const atom_type& a, const atom_type& b) { \/\/ throws error if any arg is unassigned in the given typing scheme$/;"	f
+good	everything.cpp	/^	fl good;$/;"	m	struct:hydrophobic	file:
+good	everything.cpp	/^	fl good;$/;"	m	struct:non_dir_h_bond	file:
+good	everything.cpp	/^	fl good;$/;"	m	struct:non_hydrophobic	file:
+grid	grid.h	/^	grid() : m_init(0, 0, 0), m_range(1, 1, 1), m_factor(1, 1, 1), m_dim_fl_minus_1(-1, -1, -1), m_factor_inv(1, 1, 1) {} \/\/ not private$/;"	f	class:grid
+grid	grid.h	/^	grid(const grid_dims& gd) { init(gd); }$/;"	f	class:grid
+grid	grid.h	/^class grid { \/\/ FIXME rm 'm_', consistent with my new style$/;"	c
+grid_atoms	model.h	/^	atomv grid_atoms;$/;"	m	struct:model
+grid_atoms_size	model.cpp	/^	sz grid_atoms_size;$/;"	m	struct:appender_info	file:
+grid_dim	grid_dim.h	/^	grid_dim() : begin(0), end(0), n(0) {}$/;"	f	struct:grid_dim
+grid_dim	grid_dim.h	/^struct grid_dim {$/;"	s
+grid_dims	grid_dim.h	/^typedef boost::array<grid_dim, 3> grid_dims;$/;"	t
+grid_dims_begin	grid_dim.h	/^inline vec grid_dims_begin(const grid_dims& gd) {$/;"	f
+grid_dims_end	grid_dim.h	/^inline vec grid_dims_end(const grid_dims& gd) {$/;"	f
+grid_dims_mismatch	cache.h	/^struct grid_dims_mismatch : public cache_mismatch {};$/;"	s
+grids	cache.h	/^	std::vector<grid> grids;$/;"	m	struct:cache
+gyration_radius	model.cpp	/^fl model::gyration_radius(sz ligand_number) const {$/;"	f	class:model
+has	common.h	/^bool has(const std::vector<T>& v, const T& element) {$/;"	f
+heterotree	tree.h	/^	heterotree(const Node& node_) : node(node_) {}$/;"	f	struct:heterotree
+heterotree	tree.h	/^struct heterotree {$/;"	s
+hunt_cap	manifold.h	/^	vec hunt_cap;$/;"	m	struct:manifold
+hunt_cap	monte_carlo.h	/^	vec hunt_cap;$/;"	m	struct:monte_carlo
+hydrophobic	everything.cpp	/^	hydrophobic(fl good_, fl bad_, fl cutoff_) : usable(cutoff_), good(good_), bad(bad_) {$/;"	f	struct:hydrophobic
+hydrophobic	everything.cpp	/^struct hydrophobic : public usable {$/;"	s	file:
+i	atom.h	/^	sz i;$/;"	m	struct:atom_index
+i	statistics.h	/^	sz i;$/;"	m	struct:spearman_aux
+i	terms.h	/^	flv i; \/\/ internal$/;"	m	struct:factors
+iarchive	cache.cpp	/^	typedef boost::archive::text_iarchive iarchive;$/;"	t	file:
+id	pdb.h	/^	unsigned id;$/;"	m	struct:pdb_atom
+ifile	file.h	/^	ifile(const path& name) : boost::filesystem::ifstream(name) {$/;"	f	struct:ifile
+ifile	file.h	/^	ifile(const path& name, std::ios_base::openmode mode) : boost::filesystem::ifstream(name, mode) {$/;"	f	struct:ifile
+ifile	file.h	/^struct ifile : public boost::filesystem::ifstream { \/\/ never use ifstream pointer to destroy ifile - no virtual destructors, possibly$/;"	s
+ig	parallel_mc.cpp	/^	const igrid* ig;$/;"	m	struct:parallel_mc_aux	file:
+ig	quasi_newton.cpp	/^	const igrid* ig;$/;"	m	struct:quasi_newton_aux	file:
+ig_widened	parallel_mc.cpp	/^	const igrid* ig_widened;$/;"	m	struct:parallel_mc_aux	file:
+igrid	igrid.h	/^struct igrid { \/\/ grids interface (that cache, etc. conform to)$/;"	s
+immobile_atom	parse_pdbqt.cpp	/^	boost::optional<sz> immobile_atom; \/\/ which of `atoms' is immobile, if any$/;"	m	struct:parsing_struct	file:
+immobile_atom_coords	parse_pdbqt.cpp	/^	const vec& immobile_atom_coords() const {$/;"	f	struct:parsing_struct
+in	file.h	/^	bool in;$/;"	m	struct:file_error
+in_grid	atom.h	/^	bool in_grid;$/;"	m	struct:atom_index
+increment	conf.h	/^	void increment(const change& c, fl factor) { \/\/ torsions get normalized, orientations do not$/;"	f	struct:conf
+increment	conf.h	/^	void increment(const ligand_change& c, fl factor) {$/;"	f	struct:ligand_conf
+increment	conf.h	/^	void increment(const residue_change& c, fl factor) {$/;"	f	struct:residue_conf
+increment	conf.h	/^	void increment(const rigid_change& c, fl factor) {$/;"	f	struct:rigid_conf
+incrementable	incrementable.h	/^struct incrementable {$/;"	s
+index	matrix.h	/^	sz index(sz i, sz j) const { return triangular_matrix_index(m_dim, i, j); }$/;"	f	class:triangular_matrix
+index	matrix.h	/^	sz index(sz i, sz j) const {$/;"	f	class:matrix
+index	matrix.h	/^	sz index(sz i, sz j) const {$/;"	f	class:strictly_triangular_matrix
+index	parse_pdbqt.cpp	/^	sz index;$/;"	m	struct:atom_reference	file:
+index_permissive	matrix.h	/^	sz index_permissive(sz i, sz j) const { return (i < j) ? index(i, j) : index(j, i); }$/;"	f	class:strictly_triangular_matrix
+index_permissive	matrix.h	/^	sz index_permissive(sz i, sz j) const { return (i < j) ? index(i, j) : index(j, i); }$/;"	f	class:triangular_matrix
+index_permissive	precalculate.h	/^	sz index_permissive(sz t1, sz t2) const { return data.index_permissive(t1, t2); }$/;"	f	struct:precalculate
+index_to_argument	grid.h	/^	vec index_to_argument(sz x, sz y, sz z) const {$/;"	f	class:grid
+index_to_coord	szv_grid.cpp	/^vec szv_grid::index_to_coord(sz i, sz j, sz k) const {$/;"	f	class:szv_grid
+inflex	parse_pdbqt.cpp	/^	atomv inflex;$/;"	m	struct:non_rigid_parsed	file:
+inflex	parse_pdbqt.cpp	/^	bool inflex;$/;"	m	struct:atom_reference	file:
+inflex_inflex_bonds	parse_pdbqt.cpp	/^	distance_type_matrix inflex_inflex_bonds;$/;"	m	struct:non_rigid_parsed	file:
+init	grid.cpp	/^void grid::init(const grid_dims& gd) {$/;"	f	class:grid
+init	parallel_progress.h	/^	void init(unsigned long n) { p = new boost::progress_display(n); }$/;"	f	struct:parallel_progress
+init	tee.h	/^	void init(const path& name) {$/;"	f	struct:tee
+init_from_smooth_fst	precalculate.h	/^	void init_from_smooth_fst(const flv& rs) {$/;"	f	struct:precalculate_element
+initial_factor	ssd.h	/^	fl initial_factor;$/;"	m	struct:ssd
+initialize	model.cpp	/^void model::initialize(const distance_type_matrix& mobility) {$/;"	f	class:model
+initialize	parse_pdbqt.cpp	/^	void initialize(const distance_type_matrix& mobility) {$/;"	f	struct:pdbqt_initializer
+initialize_from_nrp	parse_pdbqt.cpp	/^	void initialize_from_nrp(const non_rigid_parsed& nrp, const context& c, bool is_ligand) { \/\/ static really$/;"	f	struct:pdbqt_initializer
+initialize_from_rigid	parse_pdbqt.cpp	/^	void initialize_from_rigid(const rigid& r) { \/\/ static really$/;"	f	struct:pdbqt_initializer
+initialize_pairs	model.cpp	/^void model::initialize_pairs(const distance_type_matrix& mobility) {$/;"	f	class:model
+initialized	grid.h	/^	bool initialized() const {$/;"	f	class:grid
+inner_product_shortest	terms.cpp	/^inline fl inner_product_shortest(const flv& a, const flv& b) {$/;"	f
+insert	parse_pdbqt.cpp	/^		void insert(non_rigid_parsed& nr, context& c, const vec& frame_origin) {$/;"	f	struct:parsing_struct::node_t
+insert_immobile	parse_pdbqt.cpp	/^	void insert_immobile(non_rigid_parsed& nr, context& c, const vec& frame_origin) {$/;"	f	struct:parsing_struct
+insert_immobile_inflex	parse_pdbqt.cpp	/^	void insert_immobile_inflex(non_rigid_parsed& nr) {$/;"	f	struct:parsing_struct
+insert_immobiles	parse_pdbqt.cpp	/^		void insert_immobiles(non_rigid_parsed& nr, context& c, const vec& frame_origin) {$/;"	f	struct:parsing_struct::node_t
+insert_immobiles_inflex	parse_pdbqt.cpp	/^		void insert_immobiles_inflex(non_rigid_parsed& nr) {$/;"	f	struct:parsing_struct::node_t
+insert_inflex	parse_pdbqt.cpp	/^		void insert_inflex(non_rigid_parsed& nr) {$/;"	f	struct:parsing_struct::node_t
+int_pow	int_pow.h	/^inline fl int_pow(fl x) {$/;"	f
+int_pow	int_pow.h	/^inline fl int_pow<0>(fl x) {$/;"	f
+interacting_pair	model.h	/^	interacting_pair(sz type_pair_index_, sz a_, sz b_) : type_pair_index(type_pair_index_), a(a_), b(b_) {}$/;"	f	struct:interacting_pair
+interacting_pair	model.h	/^struct interacting_pair {$/;"	s
+interacting_pairs	model.h	/^typedef std::vector<interacting_pair> interacting_pairs;$/;"	t
+intermolecular	terms.h	/^struct intermolecular : public term {$/;"	s
+intermolecular_terms	terms.h	/^	term_set<intermolecular>    intermolecular_terms;$/;"	m	struct:terms
+internal_coords	model.h	/^	vecv internal_coords;$/;"	m	struct:model
+internal_error	common.h	/^	internal_error(const std::string& file_, unsigned line_) : file(file_), line(line_) {}$/;"	f	struct:internal_error
+internal_error	common.h	/^struct internal_error {$/;"	s
+internal_too_close	conf.h	/^	bool internal_too_close(const conf& c, fl torsions_cutoff) const {$/;"	f	struct:conf
+is_a	model.cpp	/^	bool is_a;$/;"	m	class:appender	file:
+is_heteroatom	atom_type.h	/^	bool is_heteroatom() const {$/;"	f	struct:atom_type
+is_hydrogen	atom_type.h	/^	bool is_hydrogen() const {$/;"	f	struct:atom_type
+is_non_ad_metal_name	atom_constants.h	/^inline bool is_non_ad_metal_name(const std::string& name) {$/;"	f
+length	atom.h	/^	fl length;$/;"	m	struct:bond
+length	model.cpp	/^	sz length;$/;"	m	struct:branch_metrics	file:
+ligand	model.h	/^	ligand(const flexible_body& f, unsigned degrees_of_freedom_) : flexible_body(f), atom_range(0, 0), degrees_of_freedom(degrees_of_freedom_) {}$/;"	f	struct:ligand
+ligand	model.h	/^struct ligand : public flexible_body, atom_range {$/;"	s
+ligand_change	conf.h	/^struct ligand_change {$/;"	s
+ligand_conf	conf.h	/^struct ligand_conf {$/;"	s
+ligand_degrees_of_freedom	model.h	/^	sz ligand_degrees_of_freedom(sz ligand_number) const { return ligands[ligand_number].degrees_of_freedom; }$/;"	f	struct:model
+ligand_length	everything.cpp	/^	ligand_length() { name = "ligand_length"; }$/;"	f	struct:ligand_length
+ligand_length	everything.cpp	/^struct ligand_length : public conf_independent {$/;"	s	file:
+ligand_length	model.cpp	/^sz model::ligand_length(sz ligand_number) const {$/;"	f	class:model
+ligand_lengths_sum	terms.h	/^	fl ligand_lengths_sum;$/;"	m	struct:conf_independent_inputs
+ligand_longest_branch	model.cpp	/^sz model::ligand_longest_branch(sz ligand_number) const {$/;"	f	class:model
+ligand_max_num_h_bonds	terms.h	/^	fl ligand_max_num_h_bonds;$/;"	m	struct:conf_independent_inputs
+ligands	conf.h	/^	std::vector<ligand_change> ligands;$/;"	m	struct:change
+ligands	conf.h	/^	std::vector<ligand_conf> ligands;$/;"	m	struct:conf
+ligands	conf.h	/^	szv ligands;$/;"	m	struct:conf_size
+ligands	model.h	/^	vector_mutable<ligand> ligands;$/;"	m	struct:model
+ligands	parse_pdbqt.cpp	/^	vector_mutable<ligand> ligands;$/;"	m	struct:non_rigid_parsed	file:
+line	common.h	/^	unsigned line;$/;"	m	struct:internal_error
+line	parse_error.h	/^	unsigned line;$/;"	m	struct:parse_error
+line	parse_pdbqt.cpp	/^	unsigned line;$/;"	m	struct:stream_parse_error	file:
+line_search	bfgs.h	/^fl line_search(F& f, sz n, const Conf& x, const Change& g, const fl f0, const Change& p, Conf& x_new, Change& g_new, fl& f1) { \/\/ returns alpha$/;"	f
+load	cache.cpp	/^void cache::load(Archive& ar, const unsigned version) {$/;"	f	class:cache
+load	quaternion.h	/^		void load(Archive& ar, qt& q, const unsigned version) {$/;"	f	namespace:boost::serialization
+local_to_lab	tree.h	/^	vec local_to_lab(const vec& local_coords) const {$/;"	f	struct:frame
+local_to_lab_direction	tree.h	/^	vec local_to_lab_direction(const vec& local_direction) const {$/;"	f	struct:frame
+loop	parallel.h	/^	void loop() {$/;"	f	struct:parallel_for
+loop	parallel.h	/^	void loop(sz offset) {$/;"	f	struct:parallel_for
+m	parallel_mc.cpp	/^	model m;$/;"	m	struct:parallel_mc_task	file:
+m	parse_pdbqt.cpp	/^	model m;$/;"	m	struct:pdbqt_initializer	file:
+m	quasi_newton.cpp	/^	model* m;$/;"	m	struct:quasi_newton_aux	file:
+m_atom_typing_used	model.h	/^	atom_type::t m_atom_typing_used;$/;"	m	struct:model
+m_atom_typing_used	precalculate.h	/^	atom_type::t m_atom_typing_used;$/;"	m	struct:precalculate
+m_cutoff_sqr	precalculate.h	/^	fl m_cutoff_sqr;$/;"	m	struct:precalculate
+m_data	array3d.h	/^	std::vector<T> m_data;$/;"	m	class:array3d
+m_data	grid.h	/^	array3d<fl> m_data; \/\/ FIXME? - make cache a friend, and convert this back to private?$/;"	m	class:grid
+m_data	matrix.h	/^	std::vector<T> m_data;$/;"	m	class:matrix
+m_data	matrix.h	/^	std::vector<T> m_data;$/;"	m	class:strictly_triangular_matrix
+m_data	matrix.h	/^	std::vector<T> m_data;$/;"	m	class:triangular_matrix
+m_data	szv_grid.h	/^	array3d<szv> m_data;$/;"	m	struct:szv_grid
+m_dim	matrix.h	/^	sz m_dim;$/;"	m	class:strictly_triangular_matrix
+m_dim	matrix.h	/^	sz m_dim;$/;"	m	class:triangular_matrix
+m_dim_fl_minus_1	grid.h	/^    vec m_dim_fl_minus_1;$/;"	m	class:grid
+m_f	parallel.h	/^    const F* m_f; \/\/ does not keep a local copy!$/;"	m	struct:parallel_for
+m_factor	grid.h	/^    vec m_factor;$/;"	m	class:grid
+m_factor_inv	grid.h	/^	vec m_factor_inv;$/;"	m	class:grid
+m_i	array3d.h	/^	sz m_i, m_j, m_k;$/;"	m	class:array3d
+m_i	matrix.h	/^	sz m_i, m_j;$/;"	m	class:matrix
+m_init	grid.h	/^    vec m_init;$/;"	m	class:grid
+m_init	szv_grid.h	/^	vec m_init;$/;"	m	struct:szv_grid
+m_j	array3d.h	/^	sz m_i, m_j, m_k;$/;"	m	class:array3d
+m_j	matrix.h	/^	sz m_i, m_j;$/;"	m	class:matrix
+m_k	array3d.h	/^	sz m_i, m_j, m_k;$/;"	m	class:array3d
+m_num_movable_atoms	model.cpp	/^	sz m_num_movable_atoms;$/;"	m	struct:appender_info	file:
+m_num_movable_atoms	model.h	/^	sz m_num_movable_atoms;$/;"	m	struct:model
+m_range	grid.h	/^    vec m_range;$/;"	m	class:grid
+m_range	szv_grid.h	/^	vec m_range;$/;"	m	struct:szv_grid
+main_branch	tree.h	/^typedef heterotree<first_segment> main_branch;$/;"	t
+manifold	manifold.h	/^	manifold() $/;"	f	struct:manifold
+manifold	manifold.h	/^struct manifold {$/;"	s
+manifold_lambda	manifold.h	/^	fl manifold_lambda;$/;"	m	struct:manifold
+manifold_phase	manifold.cpp	/^void manifold_phase(sz phase, output_type& out, model& m, const output_container& mf, const precalculate& p, const igrid& ig, fl corner2corner, fl init_manifold_factor, recent_history& e_internal_stats, const manifold& par, rng& generator) { \/\/ out.first is starting conf on input$/;"	f
+many_runs	monte_carlo.cpp	/^output_type monte_carlo::many_runs(model& m, const precalculate& p, const igrid& ig, const vec& corner1, const vec& corner2, sz num_runs, rng& generator) const {$/;"	f	class:monte_carlo
+many_runs	monte_carlo.cpp	/^void monte_carlo::many_runs(model& m, output_container& out, const precalculate& p, const igrid& ig, const vec& corner1, const vec& corner2, sz num_runs, rng& generator) const {$/;"	f	class:monte_carlo
+mat	common.h	/^	mat() {$/;"	f	struct:mat
+mat	common.h	/^	mat(fl xx, fl xy, fl xz,$/;"	f	struct:mat
+mat	common.h	/^struct mat {$/;"	s
+matrix	matrix.h	/^	matrix() : m_i(0), m_j(0) {}$/;"	f	class:matrix
+matrix	matrix.h	/^	matrix(sz i, sz j, const T& filler_val) : m_data(i*j, filler_val), m_i(i), m_j(j) {}$/;"	f	class:matrix
+matrix	matrix.h	/^class matrix {$/;"	c
+mav	parse_pdbqt.cpp	/^typedef std::vector<movable_atom> mav;$/;"	t	file:
+max_covalent_radius	atom_constants.h	/^inline fl max_covalent_radius() {$/;"	f
+max_cutoff	terms.h	/^	fl max_cutoff() const {$/;"	f	struct:term_set
+max_fl	common.h	/^const fl max_fl = (std::numeric_limits<fl>::max)();$/;"	v
+max_prob	manifold.h	/^	fl max_prob;$/;"	m	struct:manifold
+max_r_cutoff	terms.cpp	/^fl terms::max_r_cutoff() const {$/;"	f	class:terms
+max_steps	quasi_newton.h	/^	unsigned max_steps;$/;"	m	struct:quasi_newton
+max_sz	common.h	/^const sz max_sz = (std::numeric_limits<sz>::max)();$/;"	v
+max_unsigned	common.h	/^const unsigned max_unsigned = (std::numeric_limits<unsigned>::max)();$/;"	v
+mc	parallel_mc.cpp	/^	const monte_carlo* mc;$/;"	m	struct:parallel_mc_aux	file:
+mc	parallel_mc.h	/^	monte_carlo mc;$/;"	m	struct:parallel_mc
+mean	statistics.h	/^inline fl mean(const flv& v) {$/;"	f
+merge_output_containers	parallel_mc.cpp	/^void merge_output_containers(const output_container& in, output_container& out, fl min_rmsd, sz max_size) {$/;"	f
+merge_output_containers	parallel_mc.cpp	/^void merge_output_containers(const parallel_mc_task_container& many, output_container& out, fl min_rmsd, sz max_size) {$/;"	f
+metal_covalent_radius	atom_constants.h	/^const fl metal_covalent_radius = 1.75; \/\/ for metals not on the list \/\/ FIXME this info should be moved to non_ad_metals$/;"	v
+metal_solvation_parameter	atom_constants.h	/^const fl metal_solvation_parameter = -0.00110;$/;"	v
+metropolis_accept	monte_carlo.cpp	/^bool metropolis_accept(fl old_f, fl new_f, fl temperature, rng& generator) {$/;"	f
+min_factor	ssd.h	/^	fl min_factor;$/;"	m	struct:ssd
+min_rmsd	manifold.h	/^	fl min_rmsd;$/;"	m	struct:manifold
+min_rmsd	monte_carlo.h	/^	fl min_rmsd;$/;"	m	struct:monte_carlo
+min_smooth_fst	precalculate.h	/^	sz min_smooth_fst() const {$/;"	f	struct:precalculate_element
+minus_forces	model.h	/^	vecv minus_forces;$/;"	m	struct:model
+minus_mat_vec_product	bfgs.h	/^void minus_mat_vec_product(const flmat& m, const Change& in, Change& out) {$/;"	f
+mobility_matrix	parse_pdbqt.cpp	/^	distance_type_matrix mobility_matrix() const {$/;"	f	struct:non_rigid_parsed
+model	model.h	/^	model() : m_num_movable_atoms(0), m_atom_typing_used(atom_type::XS) {};$/;"	f	struct:model
+model	model.h	/^struct model {$/;"	s
+monte_carlo	monte_carlo.h	/^	monte_carlo() : num_steps(2500), temperature(1.2), hunt_cap(10, 1.5, 10), min_rmsd(0.5), num_saved_mins(50), mutation_amplitude(2) {} \/\/ T = 600K, R = 2cal\/(K*mol) -> temperature = RT = 1.2;  num_steps = 50*lig_atoms = 2500$/;"	f	struct:monte_carlo
+monte_carlo	monte_carlo.h	/^struct monte_carlo {$/;"	s
+movable_atom	model.h	/^	const atom_base& movable_atom  (sz i) const { assert(i < m_num_movable_atoms); return  atoms[i]; }$/;"	f	struct:model
+movable_atom	parse_pdbqt.cpp	/^	movable_atom(const atom& a, const vec& relative_coords_) : atom(a) {$/;"	f	struct:movable_atom
+movable_atom	parse_pdbqt.cpp	/^struct movable_atom : public atom {$/;"	s	file:
+movable_atoms_box	model.cpp	/^grid_dims model::movable_atoms_box(fl add_to_each_dimension, fl granularity) const {$/;"	f	class:model
+movable_coords	model.h	/^	const vec&       movable_coords(sz i) const { assert(i < m_num_movable_atoms); return coords[i]; }$/;"	f	struct:model
+mutate_conf	mutate.cpp	/^void mutate_conf(conf& c, const model& m, fl amplitude, rng& generator) { \/\/ ONE OF: 2A for position, similar amp for orientation, randomize torsion$/;"	f
+mutate_orientation	conf.h	/^	void mutate_orientation(fl spread, rng& generator) {$/;"	f	struct:rigid_conf
+mutate_position	conf.h	/^	void mutate_position(fl spread, rng& generator) {$/;"	f	struct:rigid_conf
+mutation_amplitude	monte_carlo.h	/^	fl mutation_amplitude;$/;"	m	struct:monte_carlo
+my_pid	my_pid.cpp	/^int my_pid() {$/;"	f
+n	grid_dim.h	/^	sz n; \/\/ number of intervals == number of sample points - 1$/;"	m	struct:grid_dim
+n	precalculate.h	/^	sz n;$/;"	m	struct:precalculate
+naive_non_cache	naive_non_cache.cpp	/^naive_non_cache::naive_non_cache(const precalculate* p_) : p(p_) {}$/;"	f	class:naive_non_cache
+naive_non_cache	naive_non_cache.h	/^struct naive_non_cache : public igrid {$/;"	s
+name	atom_constants.h	/^	std::string name;$/;"	m	struct:atom_equivalence
+name	atom_constants.h	/^    std::string name;$/;"	m	struct:atom_kind
+name	file.h	/^	path name;$/;"	m	struct:file_error
+name	pdb.h	/^	std::string name;$/;"	m	struct:pdb_atom
+name	terms.h	/^	std::string name;$/;"	m	struct:term
+nature	parse_pdbqt.cpp	/^	std::string nature;$/;"	m	struct:atom_syntax_error	file:
+new_grid_index	model.cpp	/^	sz new_grid_index(sz x) const {$/;"	f	class:appender	file:
+node	parse_pdbqt.cpp	/^	typedef node_t<parsing_struct> node;$/;"	t	struct:parsing_struct	file:
+node	tree.h	/^	Node node;$/;"	m	struct:heterotree
+node	tree.h	/^	T node;$/;"	m	struct:tree
+node_t	parse_pdbqt.cpp	/^		node_t(const parsed_atom& a_, sz context_index_) : context_index(context_index_), a(a_) {}$/;"	f	struct:parsing_struct::node_t
+node_t	parse_pdbqt.cpp	/^	struct node_t {$/;"	s	struct:parsing_struct	file:
+non_ad_metal_names	atom_constants.h	/^const std::string non_ad_metal_names[] = { \/\/ expand as necessary$/;"	v
+non_cache	non_cache.cpp	/^non_cache::non_cache(const model& m, const grid_dims& gd_, const precalculate* p_, fl slope_) : sgrid(m, szv_grid_dims(gd_), p_->cutoff_sqr()), gd(gd_), p(p_), slope(slope_) {}$/;"	f	class:non_cache
+non_cache	non_cache.h	/^struct non_cache : public igrid {$/;"	s
+non_dir_h_bond	everything.cpp	/^	non_dir_h_bond(fl good_, fl bad_, fl cutoff_) : usable(cutoff_), good(good_), bad(bad_) {$/;"	f	struct:non_dir_h_bond
+non_dir_h_bond	everything.cpp	/^struct non_dir_h_bond : public usable {$/;"	s	file:
+non_hydrophobic	everything.cpp	/^	non_hydrophobic(fl good_, fl bad_, fl cutoff_) : usable(cutoff_), good(good_), bad(bad_) {$/;"	f	struct:non_hydrophobic
+non_hydrophobic	everything.cpp	/^struct non_hydrophobic : public usable {$/;"	s	file:
+non_rigid_parsed	parse_pdbqt.cpp	/^struct non_rigid_parsed {$/;"	s	file:
+norm	common.h	/^	fl norm() const {$/;"	f	struct:vec
+norm_sqr	common.h	/^    fl norm_sqr() const {$/;"	f	struct:vec
+normalize_angle	common.h	/^inline void normalize_angle(fl& x) { \/\/ subtract or add enough 2*pi's to make x be in [-pi, pi]$/;"	f
+normalized_angle	common.h	/^inline fl normalized_angle(fl x) {$/;"	f
+not_a_num	common.h	/^const fl not_a_num = std::sqrt(fl(-1)); \/\/ FIXME? check $/;"	v
+not_max	common.h	/^inline bool not_max(fl x) {$/;"	f
+nr_update_matrixes	parse_pdbqt.cpp	/^void nr_update_matrixes(non_rigid_parsed& nr) {$/;"	f
+num_atom_types	atom_type.h	/^inline sz num_atom_types(atom_type::t atom_typing_used) {$/;"	f
+num_attempts	manifold.h	/^	unsigned num_attempts;$/;"	m	struct:manifold
+num_bonded_heavy_atoms	terms.cpp	/^unsigned conf_independent_inputs::num_bonded_heavy_atoms(const model& m, const atom_index& i) const { \/\/ FIXME? - could be static, but I don't feel like declaring function friends$/;"	f	class:conf_independent_inputs
+num_degrees_of_freedom	conf.h	/^	sz num_degrees_of_freedom() const {$/;"	f	struct:conf_size
+num_enabled	terms.h	/^	sz num_enabled() const {$/;"	f	struct:term_set
+num_final_tunings	manifold.h	/^	sz num_final_tunings;$/;"	m	struct:manifold
+num_flex	model.h	/^	sz num_flex() const { return flex.size(); }$/;"	f	struct:model
+num_floats	conf.h	/^	sz num_floats() const {$/;"	f	struct:change
+num_heavy_atoms	everything.cpp	/^	num_heavy_atoms() { name = "num_heavy_atoms"; }$/;"	f	struct:num_heavy_atoms
+num_heavy_atoms	everything.cpp	/^struct num_heavy_atoms : public conf_independent {$/;"	s	file:
+num_heavy_atoms	terms.h	/^	fl num_heavy_atoms;$/;"	m	struct:conf_independent_inputs
+num_heavy_atoms_div	everything.cpp	/^	num_heavy_atoms_div() { name = "num_heavy_atoms_div"; }$/;"	f	struct:num_heavy_atoms_div
+num_heavy_atoms_div	everything.cpp	/^struct num_heavy_atoms_div : public conf_independent {$/;"	s	file:
+num_hydrophobic_atoms	everything.cpp	/^	num_hydrophobic_atoms() { name = "num_hydrophobic_atoms"; }$/;"	f	struct:num_hydrophobic_atoms
+num_hydrophobic_atoms	everything.cpp	/^struct num_hydrophobic_atoms : public conf_independent {$/;"	s	file:
+num_hydrophobic_atoms	terms.h	/^	fl num_hydrophobic_atoms;$/;"	m	struct:conf_independent_inputs
+num_internal_pairs	model.cpp	/^sz model::num_internal_pairs() const {$/;"	f	class:model
+num_ligands	everything.cpp	/^	num_ligands() { name = "num_ligands"; }$/;"	f	struct:num_ligands
+num_ligands	everything.cpp	/^struct num_ligands : public conf_independent {$/;"	s	file:
+num_ligands	model.h	/^	sz num_ligands() const { return ligands.size(); }$/;"	f	struct:model
+num_ligands	terms.h	/^	fl num_ligands;$/;"	m	struct:conf_independent_inputs
+num_movable_atoms	model.h	/^	sz num_movable_atoms() const { return m_num_movable_atoms; }$/;"	f	struct:model
+num_other_pairs	model.h	/^	sz num_other_pairs() const { return other_pairs.size(); }$/;"	f	struct:model
+num_phases	manifold.h	/^	sz num_phases;$/;"	m	struct:manifold
+num_rotors	terms.h	/^	fl num_rotors;$/;"	m	struct:conf_independent_inputs
+num_saved_mins	monte_carlo.h	/^	sz num_saved_mins;$/;"	m	struct:monte_carlo
+num_steps	manifold.h	/^	unsigned num_steps;$/;"	m	struct:manifold
+num_steps	monte_carlo.h	/^	unsigned num_steps;$/;"	m	struct:monte_carlo
+num_tasks	parallel_mc.h	/^	sz num_tasks;$/;"	m	struct:parallel_mc
+num_threads	parallel.h	/^	sz num_threads;$/;"	m	struct:parallel_for
+num_threads	parallel_mc.h	/^	sz num_threads;$/;"	m	struct:parallel_mc
+num_tors	terms.h	/^	fl num_tors;$/;"	m	struct:conf_independent_inputs
+num_tors_add	everything.cpp	/^	num_tors_add() { name = "num_tors_add"; }$/;"	f	struct:num_tors_add
+num_tors_add	everything.cpp	/^struct num_tors_add : public conf_independent {$/;"	s	file:
+num_tors_div	everything.cpp	/^	num_tors_div() { name = "num_tors_div"; }$/;"	f	struct:num_tors_div
+num_tors_div	everything.cpp	/^struct num_tors_div : public conf_independent {$/;"	s	file:
+num_tors_sqr	everything.cpp	/^	num_tors_sqr() { name = "num_tors_sqr"; }$/;"	f	struct:num_tors_sqr
+num_tors_sqr	everything.cpp	/^struct num_tors_sqr : public conf_independent {$/;"	s	file:
+num_tors_sqrt	everything.cpp	/^	num_tors_sqrt() { name = "num_tors_sqrt"; }$/;"	f	struct:num_tors_sqrt
+num_tors_sqrt	everything.cpp	/^struct num_tors_sqrt : public conf_independent {$/;"	s	file:
+num_weights	terms.h	/^	sz num_weights() const { return (e.size() > i.size()) ? e.size() : i.size(); }$/;"	f	struct:factors
+number	parse_pdbqt.cpp	/^	unsigned number; $/;"	m	struct:parsed_atom	file:
+oarchive	cache.cpp	/^	typedef boost::archive::text_oarchive oarchive;$/;"	t	file:
+of	tee.h	/^	ofile* of;$/;"	m	struct:tee
+offset	everything.cpp	/^	fl offset; \/\/ added to optimal distance$/;"	m	struct:gauss	file:
+offset	everything.cpp	/^	fl offset; \/\/ added to vdw$/;"	m	struct:repulsion	file:
+offset	parallel.h	/^		sz offset;$/;"	m	struct:parallel_for::aux
+ofile	file.h	/^	ofile(const path& name) : boost::filesystem::ofstream(name) {$/;"	f	struct:ofile
+ofile	file.h	/^	ofile(const path& name, std::ios_base::openmode mode) : boost::filesystem::ofstream(name, mode) {$/;"	f	struct:ofile
+ofile	file.h	/^struct ofile : public boost::filesystem::ofstream { \/\/ never use ofstream pointer to destroy ofile - no virtual destructors, possibly$/;"	s
+omit_whitespace	parse_pdbqt.cpp	/^std::string omit_whitespace(const std::string& str, sz i, sz j) {$/;"	f
+operator ()	array3d.h	/^	T&       operator()(sz i, sz j, sz k)       { return m_data[i + m_i*(j + m_j*k)]; }$/;"	f	class:array3d
+operator ()	array3d.h	/^	const T& operator()(sz i, sz j, sz k) const { return m_data[i + m_i*(j + m_j*k)]; }$/;"	f	class:array3d
+operator ()	common.h	/^	      fl& operator()(sz i, sz j)       { assert(i < 3); assert(j < 3); return data[i + 3*j]; }$/;"	f	struct:mat
+operator ()	common.h	/^	const fl& operator()(sz i, sz j) const { assert(i < 3); assert(j < 3); return data[i + 3*j]; }$/;"	f	struct:mat
+operator ()	conf.h	/^	fl operator()(sz index) const { \/\/ returns by value$/;"	f	struct:change
+operator ()	conf.h	/^	fl& operator()(sz index) {$/;"	f	struct:change
+operator ()	manifold.cpp	/^output_type manifold::operator()(model& m, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, rng& generator) const {$/;"	f	class:manifold
+operator ()	manifold.cpp	/^void manifold::operator()(model& m, output_container& out, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, rng& generator) const {$/;"	f	class:manifold
+operator ()	model.cpp	/^	atom_index operator()(const atom_index& x) const { \/\/ transform atom_index$/;"	f	class:appender
+operator ()	model.cpp	/^	bool operator()(const bond& a, const bond& b) const {$/;"	f	struct:bond_less
+operator ()	model.cpp	/^	sz operator()(sz x) const { \/\/ transform coord index$/;"	f	class:appender
+operator ()	monte_carlo.cpp	/^output_type monte_carlo::operator()(model& m, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, incrementable* increment_me, rng& generator) const {$/;"	f	class:monte_carlo
+operator ()	monte_carlo.cpp	/^void monte_carlo::operator()(model& m, output_container& out, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, incrementable* increment_me, rng& generator) const {$/;"	f	class:monte_carlo
+operator ()	parallel.h	/^		void operator()() const { par->loop(); }$/;"	f	struct:parallel_for::aux
+operator ()	parallel.h	/^		void operator()() const { par->loop(offset); }$/;"	f	struct:parallel_for::aux
+operator ()	parallel.h	/^		void operator()(sz i) const { $/;"	f	struct:parallel_iter::aux
+operator ()	parallel_mc.cpp	/^	void operator()(parallel_mc_task& t) const {$/;"	f	struct:parallel_mc_aux
+operator ()	parallel_mc.cpp	/^void parallel_mc::operator()(const model& m, output_container& out, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, rng& generator) const {$/;"	f	class:parallel_mc
+operator ()	quasi_newton.cpp	/^	fl operator()(const conf& c, change& g) {$/;"	f	struct:quasi_newton_aux
+operator ()	quasi_newton.cpp	/^void quasi_newton::operator()(model& m, const precalculate& p, const igrid& ig, output_type& out, change& g, const vec& v) const { \/\/ g must have correct size$/;"	f	class:quasi_newton
+operator ()	ssd.cpp	/^void ssd::operator()(model& m, const precalculate& p, const igrid& ig, output_type& out, change& g, const vec& v) const { \/\/ g must have correct size$/;"	f	class:ssd
+operator *	common.h	/^	fl operator*(const vec& v) const {$/;"	f	struct:vec
+operator *	common.h	/^	vec operator*(const vec& v) const {$/;"	f	struct:mat
+operator *	common.h	/^inline vec operator*(fl s, const vec& v) {$/;"	f
+operator *=	common.h	/^	const mat& operator*=(fl s) {$/;"	f	struct:mat
+operator *=	common.h	/^	const vec& operator*=(fl s) {$/;"	f	struct:vec
+operator +	common.h	/^	vec operator+(const vec& v) const {$/;"	f	struct:vec
+operator ++	parallel_progress.h	/^	void operator++() {$/;"	f	struct:parallel_progress
+operator +=	common.h	/^	const vec& operator+=(const vec& v) {$/;"	f	struct:vec
+operator +=	common.h	/^	const vec& operator+=(fl s) {$/;"	f	struct:vec
+operator -	common.h	/^	vec operator-(const vec& v) const {$/;"	f	struct:vec
+operator -=	common.h	/^	const vec& operator-=(const vec& v) {$/;"	f	struct:vec
+operator -=	common.h	/^	const vec& operator-=(fl s) {$/;"	f	struct:vec
+operator <	conf.h	/^inline bool operator<(const output_type& a, const output_type& b) { \/\/ for sorting output_container$/;"	f
+operator <	statistics.h	/^inline bool operator<(const spearman_aux& a, const spearman_aux& b) {$/;"	f
+operator <<	tee.h	/^tee& operator<<(tee& out, const T& x) {$/;"	f
+operator ==	atom.h	/^inline bool operator==(const atom_index& i, const atom_index& j) {$/;"	f
+operator []	common.h	/^	      fl& operator[](sz i)       { assert(i < 3); return data[i]; }$/;"	f	struct:vec
+operator []	common.h	/^	const fl& operator[](sz i) const { assert(i < 3); return data[i]; }$/;"	f	struct:vec
+operator []	terms.h	/^	const T& operator[](sz i) const { return fun[i]; }$/;"	f	struct:term_set
+operator flv	terms.cpp	/^conf_independent_inputs::operator flv() const {$/;"	f	class:conf_independent_inputs
+optimal_covalent_bond_length	atom_type.h	/^	fl optimal_covalent_bond_length(const atom_type& x) const {$/;"	f	struct:atom_type
+optimal_distance	everything.cpp	/^inline fl optimal_distance(sz xs_t1, sz xs_t2) {$/;"	f
+orientation	conf.h	/^	fl orientation;$/;"	m	struct:scale
+orientation	conf.h	/^	qt orientation;$/;"	m	struct:rigid_conf
+orientation	conf.h	/^	vec orientation;$/;"	m	struct:rigid_change
+orientation	tree.h	/^	const qt& orientation() const { return orientation_q; }$/;"	f	struct:frame
+orientation_m	tree.h	/^	mat orientation_m;$/;"	m	struct:frame
+orientation_q	tree.h	/^	qt  orientation_q;$/;"	m	struct:frame
+origin	tree.h	/^	vec origin;$/;"	m	struct:frame
+other_pairs	model.h	/^	interacting_pairs other_pairs; \/\/ all except internal to one ligand: ligand-other ligands; ligand-flex\/inflex; flex-flex\/inflex$/;"	m	struct:model
+out	parallel_mc.cpp	/^	output_container out;$/;"	m	struct:parallel_mc_task	file:
+output_container	conf.h	/^typedef boost::ptr_vector<output_type> output_container;$/;"	t
+output_type	conf.h	/^	output_type(const conf& c_, fl e_) : c(c_), e(e_) {}$/;"	f	struct:output_type
+output_type	conf.h	/^struct output_type {$/;"	s
+p	naive_non_cache.h	/^	const precalculate* p;$/;"	m	struct:naive_non_cache
+p	non_cache.h	/^	const precalculate* p;$/;"	m	struct:non_cache
+p	parallel_mc.cpp	/^	const precalculate* p;$/;"	m	struct:parallel_mc_aux	file:
+p	parallel_progress.h	/^	boost::progress_display* p;$/;"	m	struct:parallel_progress
+p	quasi_newton.cpp	/^	const precalculate* p;$/;"	m	struct:quasi_newton_aux	file:
+pK_to_energy	common.h	/^inline fl pK_to_energy(fl pK) { return pK_to_energy_factor * pK; }$/;"	f
+pK_to_energy_factor	common.h	/^const fl pK_to_energy_factor = -8.31 \/* RT in J\/K\/mol *\/ * 0.001 \/* kilo *\/ * 300 \/* K *\/ \/ 4.184 \/* J\/cal *\/ * std::log(10.0); \/\/  -0.6 kcal\/mol * log(10) = -1.38$/;"	v
+p_widened	parallel_mc.cpp	/^	const precalculate* p_widened;$/;"	m	struct:parallel_mc_aux	file:
+pairs	model.h	/^	interacting_pairs pairs;$/;"	m	struct:ligand
+pairwise_clash_penalty	model.cpp	/^fl pairwise_clash_penalty(fl r, fl covalent_r) {$/;"	f
+par	parallel.h	/^        parallel_for* par;$/;"	m	struct:parallel_for::aux
+parallel_for	parallel.h	/^	parallel_for(const F* f, sz num_threads) : m_f(f), destructing(false), size(0), started(0), finished(0) {$/;"	f	struct:parallel_for
+parallel_for	parallel.h	/^	parallel_for(const F* f, sz num_threads) : m_f(f), destructing(false), size(0), thread_finished(num_threads, true), count_finished(0), num_threads(num_threads) {$/;"	f	struct:parallel_for
+parallel_for	parallel.h	/^struct parallel_for : private boost::thread_group {$/;"	s
+parallel_for	parallel.h	/^struct parallel_for<F, true> : private boost::thread_group {$/;"	s
+parallel_iter	parallel.h	/^	parallel_iter(const F* f, sz num_threads) : a(f), pf(&a, num_threads) {}$/;"	f	struct:parallel_iter
+parallel_iter	parallel.h	/^struct parallel_iter { $/;"	s
+parallel_mc	parallel_mc.h	/^	parallel_mc() : num_tasks(8), num_threads(1), display_progress(true) {}$/;"	f	struct:parallel_mc
+parallel_mc	parallel_mc.h	/^struct parallel_mc {$/;"	s
+parallel_mc_aux	parallel_mc.cpp	/^	parallel_mc_aux(const monte_carlo* mc_, const precalculate* p_, const igrid* ig_, const precalculate* p_widened_, const igrid* ig_widened_, const vec* corner1_, const vec* corner2_, parallel_progress* pg_)$/;"	f	struct:parallel_mc_aux
+parallel_mc_aux	parallel_mc.cpp	/^struct parallel_mc_aux {$/;"	s	file:
+parallel_mc_task	parallel_mc.cpp	/^	parallel_mc_task(const model& m_, int seed) : m(m_), generator(static_cast<rng::result_type>(seed)) {}$/;"	f	struct:parallel_mc_task
+parallel_mc_task	parallel_mc.cpp	/^struct parallel_mc_task {$/;"	s	file:
+parallel_mc_task_container	parallel_mc.cpp	/^typedef boost::ptr_vector<parallel_mc_task> parallel_mc_task_container;$/;"	t	file:
+parallel_progress	parallel_progress.h	/^	parallel_progress() : p(NULL) {}$/;"	f	struct:parallel_progress
+parallel_progress	parallel_progress.h	/^struct parallel_progress : public incrementable {$/;"	s
+parse_error	parse_error.h	/^	parse_error() {}$/;"	f	struct:parse_error
+parse_error	parse_error.h	/^	parse_error(const path& file_, unsigned line_, const std::string& reason_ = "") : file(file_), line(line_), reason(reason_) {}$/;"	f	struct:parse_error
+parse_error	parse_error.h	/^struct parse_error {$/;"	s
+parse_ligand_pdbqt	parse_pdbqt.cpp	/^model parse_ligand_pdbqt  (const path& name) { \/\/ can throw parse_error$/;"	f
+parse_one_unsigned	parse_pdbqt.cpp	/^unsigned parse_one_unsigned(const std::string& str, const std::string& start, unsigned count) {$/;"	f
+parse_pdb	pdb.cpp	/^pdb parse_pdb(const path& name) {$/;"	f
+parse_pdbqt_atom_string	parse_pdbqt.cpp	/^parsed_atom parse_pdbqt_atom_string(const std::string& str) {$/;"	f
+parse_pdbqt_aux	parse_pdbqt.cpp	/^void parse_pdbqt_aux(std::istream& in, unsigned& count, parsing_struct& p, context& c, boost::optional<unsigned>& torsdof, bool residue) {$/;"	f
+parse_pdbqt_branch	parse_pdbqt.cpp	/^void parse_pdbqt_branch(std::istream& in, unsigned& count, parsing_struct& p, context& c, unsigned from, unsigned to) {$/;"	f
+parse_pdbqt_branch_aux	parse_pdbqt.cpp	/^void parse_pdbqt_branch_aux(std::istream& in, unsigned& count, const std::string& str, parsing_struct& p, context& c) {$/;"	f
+parse_pdbqt_flex	parse_pdbqt.cpp	/^void parse_pdbqt_flex(const path& name, non_rigid_parsed& nr, context& c) {$/;"	f
+parse_pdbqt_ligand	parse_pdbqt.cpp	/^void parse_pdbqt_ligand(const path& name, non_rigid_parsed& nr, context& c) {$/;"	f
+parse_pdbqt_residue	parse_pdbqt.cpp	/^void parse_pdbqt_residue(std::istream& in, unsigned& count, parsing_struct& p, context& c) { $/;"	f
+parse_pdbqt_rigid	parse_pdbqt.cpp	/^void parse_pdbqt_rigid(const path& name, rigid& r) {$/;"	f
+parse_pdbqt_root	parse_pdbqt.cpp	/^void parse_pdbqt_root(std::istream& in, unsigned& count, parsing_struct& p, context& c) {$/;"	f
+parse_pdbqt_root_aux	parse_pdbqt.cpp	/^void parse_pdbqt_root_aux(std::istream& in, unsigned& count, parsing_struct& p, context& c) {$/;"	f
+parse_receptor_pdbqt	parse_pdbqt.cpp	/^model parse_receptor_pdbqt(const path& rigid_name) { \/\/ can throw parse_error$/;"	f
+parse_receptor_pdbqt	parse_pdbqt.cpp	/^model parse_receptor_pdbqt(const path& rigid_name, const path& flex_name) { \/\/ can throw parse_error$/;"	f
+parse_two_unsigneds	parse_pdbqt.cpp	/^void parse_two_unsigneds(const std::string& str, const std::string& start, unsigned count, unsigned& first, unsigned& second) {$/;"	f
+parsed_atom	parse_pdbqt.cpp	/^	parsed_atom(sz ad_, fl charge_, const vec& coords_, unsigned number_) : number(number_) {$/;"	f	struct:parsed_atom
+parsed_atom	parse_pdbqt.cpp	/^struct parsed_atom : public atom {$/;"	s	file:
+parsed_line	model.h	/^typedef std::pair<std::string, boost::optional<sz> > parsed_line;$/;"	t
+parsing_struct	parse_pdbqt.cpp	/^struct parsing_struct {$/;"	s	file:
+path	common.h	/^typedef boost::filesystem::path path;$/;"	t
+pdb	pdb.h	/^struct pdb {$/;"	s
+pdb_atom	pdb.h	/^struct pdb_atom {$/;"	s
+pdbqt_initializer	parse_pdbqt.cpp	/^struct pdbqt_initializer {$/;"	s	file:
+pearson	statistics.h	/^inline fl pearson(const flv& x, const flv& y) {$/;"	f
+pf	parallel.h	/^	parallel_for<aux, Sync> pf;$/;"	m	struct:parallel_iter
+pg	parallel_mc.cpp	/^	parallel_progress* pg;$/;"	m	struct:parallel_mc_aux	file:
+pi	common.h	/^const fl pi = fl(3.1415926535897931);$/;"	v
+populate	cache.cpp	/^void cache::populate(const model& m, const precalculate& p, const szv& atom_types_needed, bool display_progress) {$/;"	f	class:cache
+position	conf.h	/^	fl position;$/;"	m	struct:scale
+position	conf.h	/^	vec position;$/;"	m	struct:rigid_change
+position	conf.h	/^	vec position;$/;"	m	struct:rigid_conf
+possibilities	szv_grid.cpp	/^const szv& szv_grid::possibilities(const vec& coords) const {$/;"	f	class:szv_grid
+possibly_smaller_than	recent_history.h	/^	bool possibly_smaller_than(fl x) const {$/;"	f	struct:recent_history
+postprocess_branch	parse_pdbqt.cpp	/^void postprocess_branch(non_rigid_parsed& nr, parsing_struct& p, context& c, B& b) {$/;"	f
+postprocess_ligand	parse_pdbqt.cpp	/^void postprocess_ligand(non_rigid_parsed& nr, parsing_struct& p, context& c, unsigned torsdof) {$/;"	f
+postprocess_residue	parse_pdbqt.cpp	/^void postprocess_residue(non_rigid_parsed& nr, parsing_struct& p, context& c) {$/;"	f
+pr	common.h	/^typedef std::pair<fl, fl> pr;$/;"	t
+precalculate	precalculate.h	/^	precalculate(const scoring_function& sf, fl v = max_fl, fl factor_ = 32) : \/\/ sf should not be discontinuous, even near cutoff, for the sake of the derivatives$/;"	f	struct:precalculate
+precalculate	precalculate.h	/^struct precalculate {$/;"	s
+precalculate_element	precalculate.h	/^	precalculate_element(sz n, fl factor_) : fast(n, 0), smooth(n, pr(0, 0)), factor(factor_) {}$/;"	f	struct:precalculate_element
+precalculate_element	precalculate.h	/^struct precalculate_element {$/;"	s
+print	common.h	/^inline void print(const vec& v, std::ostream& out = std::cout) {$/;"	f
+print	common.h	/^inline void print(fl x, std::ostream& out = std::cout) {$/;"	f
+print	common.h	/^inline void print(sz x, std::ostream& out = std::cout) {$/;"	f
+print	common.h	/^void print(const std::vector<T>& v, std::ostream& out = std::cout) {$/;"	f
+print	conf.h	/^	void print() const {$/;"	f	struct:change
+print	conf.h	/^	void print() const {$/;"	f	struct:conf
+print	conf.h	/^	void print() const {$/;"	f	struct:ligand_change
+print	conf.h	/^	void print() const {$/;"	f	struct:ligand_conf
+print	conf.h	/^	void print() const {$/;"	f	struct:residue_change
+print	conf.h	/^	void print() const {$/;"	f	struct:residue_conf
+print	conf.h	/^	void print() const {$/;"	f	struct:rigid_change
+print	conf.h	/^	void print() const {$/;"	f	struct:rigid_conf
+print	grid_dim.h	/^inline void print(const grid_dims& gd, std::ostream& out = std::cout) {$/;"	f
+print	manifold.h	/^	void print() const { $/;"	f	struct:manifold
+print	quaternion.cpp	/^void print(const qt& q, std::ostream& out) { \/\/ print as an angle$/;"	f
+print	ssd.h	/^	void print() const { std::cout << "evals=" << evals << ", initial_factor=" << initial_factor << ", min_factor=" << min_factor << ", up=" << up << ", down=" << down; }$/;"	f	struct:ssd
+print_stuff	model.cpp	/^void model::print_stuff() const {$/;"	f	class:model
+printnl	common.h	/^void printnl(const T& x, std::ostream& out = std::cout) {$/;"	f
+prv	common.h	/^typedef std::vector<pr> prv;$/;"	t
+ps	parse_pdbqt.cpp	/^		std::vector<T> ps;$/;"	m	struct:parsing_struct::node_t	file:
+qt	quaternion.h	/^typedef boost::math::quaternion<fl> qt;$/;"	t
+quasi_newton	quasi_newton.h	/^	quasi_newton() : max_steps(1000), average_required_improvement(0.0) {}$/;"	f	struct:quasi_newton
+quasi_newton	quasi_newton.h	/^struct quasi_newton {$/;"	s
+quasi_newton_aux	quasi_newton.cpp	/^	quasi_newton_aux(model* m_, const precalculate* p_, const igrid* ig_, const vec& v_) : m(m_), p(p_), ig(ig_), v(v_) {}$/;"	f	struct:quasi_newton_aux
+quasi_newton_aux	quasi_newton.cpp	/^struct quasi_newton_aux {$/;"	s	file:
+quaternion_difference	quaternion.cpp	/^vec quaternion_difference(const qt& b, const qt& a) { \/\/ rotation that needs to be applied to convert a to b$/;"	f
+quaternion_increment	quaternion.cpp	/^void quaternion_increment(qt& q, const vec& rotation) {$/;"	f
+quaternion_is_normalized	quaternion.cpp	/^bool quaternion_is_normalized(const qt& q) { \/\/ not in the interface, used in assertions$/;"	f
+quaternion_norm_sqr	quaternion.h	/^inline fl quaternion_norm_sqr(const qt& q) { \/\/ equivalent to sqr(boost::math::abs(const qt&))$/;"	f
+quaternion_normalize	quaternion.h	/^inline void quaternion_normalize(qt& q) {$/;"	f
+quaternion_normalize_approx	quaternion.h	/^inline void quaternion_normalize_approx(qt& q, const fl tolerance = 1e-6) {$/;"	f
+quaternion_to_angle	quaternion.cpp	/^vec quaternion_to_angle(const qt& q) {$/;"	f
+quaternion_to_r3	quaternion.cpp	/^mat quaternion_to_r3(const qt& q) {$/;"	f
+radius	atom_constants.h	/^	fl radius;$/;"	m	struct:acceptor_kind
+radius	atom_constants.h	/^    fl radius;$/;"	m	struct:atom_kind
+radius_sqr	model.cpp	/^	fl radius_sqr;$/;"	m	struct:beads	file:
+random_fl	random.cpp	/^fl random_fl(fl a, fl b, rng& generator) { \/\/ expects a < b, returns rand in [a, b]$/;"	f
+random_in_box	random.cpp	/^vec random_in_box(const vec& corner1, const vec& corner2, rng& generator) { \/\/ expects corner1[i] < corner2[i]$/;"	f
+random_inside_sphere	random.cpp	/^vec random_inside_sphere(rng& generator) {$/;"	f
+random_int	random.cpp	/^int random_int(int a, int b, rng& generator) { \/\/ expects a <= b, returns rand in [a, b]$/;"	f
+random_normal	random.cpp	/^fl random_normal(fl mean, fl sigma, rng& generator) { \/\/ expects sigma >= 0$/;"	f
+random_orientation	quaternion.cpp	/^qt random_orientation(rng& generator) {$/;"	f
+random_sz	random.cpp	/^sz random_sz(sz a, sz b, rng& generator) { \/\/ expects a <= b, returns rand in [a, b]$/;"	f
+randomize	conf.h	/^	void randomize(const vec& corner1, const vec& corner2, rng& generator) {$/;"	f	struct:conf
+randomize	conf.h	/^	void randomize(const vec& corner1, const vec& corner2, rng& generator) {$/;"	f	struct:ligand_conf
+randomize	conf.h	/^	void randomize(const vec& corner1, const vec& corner2, rng& generator) {$/;"	f	struct:rigid_conf
+randomize	conf.h	/^	void randomize(rng& generator) {$/;"	f	struct:residue_conf
+read_iterator	everything.cpp	/^inline fl read_iterator(flv::const_iterator& i) {$/;"	f
+reason	parse_error.h	/^	std::string reason;$/;"	m	struct:parse_error
+reason	parse_pdbqt.cpp	/^	std::string reason;$/;"	m	struct:stream_parse_error	file:
+recent_history	recent_history.h	/^	recent_history(fl initial_x_estimate, fl initial_error_estimate, fl lifetime)$/;"	f	struct:recent_history
+recent_history	recent_history.h	/^struct recent_history {$/;"	s
+relative_axis	tree.h	/^	vec relative_axis;$/;"	m	struct:segment
+relative_coords	parse_pdbqt.cpp	/^	vec relative_coords;$/;"	m	struct:movable_atom	file:
+relative_origin	tree.h	/^	vec relative_origin;$/;"	m	struct:segment
+relative_pair_cost	manifold.h	/^	fl relative_pair_cost; \/\/ the cost of calculating  pairwise energy \/ interaction of atom with grid$/;"	m	struct:manifold
+repulsion	everything.cpp	/^	repulsion(fl offset_, fl cutoff_) : usable(cutoff_), offset(offset_) {$/;"	f	struct:repulsion
+repulsion	everything.cpp	/^struct repulsion : public usable {$/;"	s	file:
+residue	model.h	/^	residue(const main_branch& m) : main_branch(m) {}$/;"	f	struct:residue
+residue	model.h	/^struct residue : public main_branch {$/;"	s
+residue_change	conf.h	/^struct residue_change {$/;"	s
+residue_conf	conf.h	/^struct residue_conf {$/;"	s
+residue_id	pdb.h	/^	int residue_id;$/;"	m	struct:pdb_atom
+residue_name	pdb.h	/^	std::string residue_name;$/;"	m	struct:pdb_atom
+resize	array3d.h	/^	void resize(sz i, sz j, sz k) { \/\/ data is essentially garbled$/;"	f	class:array3d
+resize	matrix.h	/^	void resize(sz m, sz n, const T& filler_val) { \/\/ new sizes should be the same or greater than the old$/;"	f	class:matrix
+resize	matrix.h	/^	void resize(sz n, const T& filler_val) {$/;"	f	class:strictly_triangular_matrix
+rigid	conf.h	/^	rigid_change rigid;$/;"	m	struct:ligand_change
+rigid	conf.h	/^	rigid_conf rigid;$/;"	m	struct:ligand_conf
+rigid	parse_pdbqt.cpp	/^struct rigid {$/;"	s	file:
+rigid_body	tree.h	/^	rigid_body(const vec& origin_, sz begin_, sz end_) : atom_frame(origin_, begin_, end_) {}$/;"	f	struct:rigid_body
+rigid_body	tree.h	/^struct rigid_body : public atom_frame {$/;"	s
+rigid_change	conf.h	/^	rigid_change() : position(0, 0, 0), orientation(0, 0, 0) {}$/;"	f	struct:rigid_change
+rigid_change	conf.h	/^struct rigid_change {$/;"	s
+rigid_conf	conf.h	/^	rigid_conf() : position(0, 0, 0), orientation(qt_identity) {}$/;"	f	struct:rigid_conf
+rigid_conf	conf.h	/^struct rigid_conf {$/;"	s
+rigid_mismatch	cache.h	/^struct rigid_mismatch : public cache_mismatch {};$/;"	s
+rmsd	statistics.h	/^inline fl rmsd(const flv& a, const flv& b) {$/;"	f
+rmsd_ligands_upper_bound	model.cpp	/^fl model::rmsd_ligands_upper_bound(const model& m) const {$/;"	f	class:model
+rmsd_lower_bound	model.cpp	/^fl model::rmsd_lower_bound(const model& m) const {$/;"	f	class:model
+rmsd_lower_bound_asymmetric	model.cpp	/^fl model::rmsd_lower_bound_asymmetric(const model& x, const model& y) const { \/\/ actually static$/;"	f	class:model
+rmsd_upper_bound	coords.cpp	/^fl rmsd_upper_bound(const vecv& a, const vecv& b) {$/;"	f
+rmsd_upper_bound	model.cpp	/^fl model::rmsd_upper_bound(const model& m) const {$/;"	f	class:model
+rng	random.h	/^typedef boost::mt19937 rng;$/;"	t
+rotatable	atom.h	/^	bool rotatable;$/;"	m	struct:bond
+rstart_fraction	manifold.h	/^	fl rstart_fraction;$/;"	m	struct:manifold
+run	parallel.h	/^	void run(Container& v) {$/;"	f	struct:parallel_iter
+run	parallel.h	/^	void run(sz size_) {$/;"	f	struct:parallel_for
+same_element	atom_type.h	/^	bool same_element(const atom_type& a) const { \/\/ does not distinguish metals or unassigned types$/;"	f	struct:atom_type
+save	cache.cpp	/^void cache::save(Archive& ar, const unsigned version) const {$/;"	f	class:cache
+save	quaternion.h	/^		void save(Archive& ar, const qt& q, const unsigned version) {$/;"	f	namespace:boost::serialization
+scalar_product	bfgs.h	/^inline fl scalar_product(const Change& a, const Change& b, sz n) {$/;"	f
+scale	conf.h	/^	scale(fl position_, fl orientation_, fl torsion_) : position(position_), orientation(orientation_), torsion(torsion_) {}$/;"	f	struct:scale
+scale	conf.h	/^struct scale {$/;"	s
+scoring_function	scoring_function.h	/^struct scoring_function {$/;"	s
+scoring_function_version	cache.h	/^	std::string scoring_function_version;$/;"	m	struct:cache
+segment	tree.h	/^	segment(const vec& origin_, sz begin_, sz end_, const vec& axis_root, const frame& parent) : axis_frame(origin_, begin_, end_, axis_root) {$/;"	f	struct:segment
+segment	tree.h	/^struct segment : public axis_frame {$/;"	s
+select_rs	manifold.cpp	/^const conf* select_rs(const output_container& mf, sz rstart, rng& generator) { \/\/ clean up$/;"	f
+self	parallel.h	/^	boost::mutex self; \/\/ any modification or reading of mutables should lock this first$/;"	m	struct:parallel_for
+self	parallel_progress.h	/^	boost::mutex self;$/;"	m	struct:parallel_progress
+serialization	quaternion.h	/^	namespace serialization {$/;"	n	namespace:boost
+serialize	array3d.h	/^	void serialize(Archive& ar, const unsigned version) {$/;"	f	class:array3d
+serialize	atom.h	/^	void serialize(Archive& ar, const unsigned version) {$/;"	f	struct:atom
+serialize	atom.h	/^	void serialize(Archive& ar, const unsigned version) {$/;"	f	struct:atom_index
+serialize	atom.h	/^	void serialize(Archive& ar, const unsigned version) {$/;"	f	struct:bond
+serialize	atom_base.h	/^	void serialize(Archive& ar, const unsigned version) {$/;"	f	struct:atom_base
+serialize	atom_type.h	/^	void serialize(Archive& ar, const unsigned version) {$/;"	f	struct:atom_type
+serialize	common.h	/^	void serialize(Archive& ar, const unsigned version) {$/;"	f	struct:vec
+serialize	conf.h	/^	void serialize(Archive & ar, const unsigned version) {$/;"	f	struct:conf
+serialize	conf.h	/^	void serialize(Archive & ar, const unsigned version) {$/;"	f	struct:ligand_conf
+serialize	conf.h	/^	void serialize(Archive & ar, const unsigned version) {$/;"	f	struct:residue_conf
+serialize	conf.h	/^	void serialize(Archive & ar, const unsigned version) {$/;"	f	struct:rigid_conf
+serialize	grid.h	/^	void serialize(Archive& ar, const unsigned version) {$/;"	f	class:grid
+serialize	grid_dim.h	/^	void serialize(Archive& ar, const unsigned version) {$/;"	f	struct:grid_dim
+serialize	terms.h	/^	void serialize(Archive & ar, const unsigned version) {$/;"	f	struct:conf_independent_inputs
+serialize	terms.h	/^	void serialize(Archive & ar, const unsigned version) {$/;"	f	struct:factors
+set	model.cpp	/^void model::set         (const conf& c) {$/;"	f	class:model
+set_conf	tree.h	/^	void set_conf(const atomv& atoms, vecv& coords, const ligand_conf& c) {$/;"	f	struct:heterotree
+set_conf	tree.h	/^	void set_conf(const atomv& atoms, vecv& coords, const residue_conf& c) {$/;"	f	struct:heterotree
+set_conf	tree.h	/^	void set_conf(const atomv& atoms, vecv& coords, const rigid_conf& c) {$/;"	f	struct:rigid_body
+set_conf	tree.h	/^	void set_conf(const atomv& atoms, vecv& coords, const std::vector<C>& c) { \/\/ C == ligand_conf || residue_conf$/;"	f	struct:vector_mutable
+set_conf	tree.h	/^	void set_conf(const atomv& atoms, vecv& coords, fl torsion) {$/;"	f	struct:first_segment
+set_conf	tree.h	/^	void set_conf(const frame& parent, const atomv& atoms, vecv& coords, flv::const_iterator& c) {$/;"	f	struct:segment
+set_conf	tree.h	/^	void set_conf(const frame& parent, const atomv& atoms, vecv& coords, flv::const_iterator& c) {$/;"	f	struct:tree
+set_coords	tree.h	/^	void set_coords(const atomv& atoms, vecv& coords) const {$/;"	f	struct:atom_frame
+set_derivative	tree.h	/^	void set_derivative(const vecp& force_torque, fl& c) const {$/;"	f	struct:axis_frame
+set_derivative	tree.h	/^	void set_derivative(const vecp& force_torque, rigid_change& c) const {$/;"	f	struct:rigid_body
+set_diagonal	bfgs.h	/^inline void set_diagonal(flmat& m, fl x) {$/;"	f
+set_orientation	tree.h	/^	void set_orientation(const qt& q) { \/\/ does not normalize the orientation$/;"	f	struct:frame
+set_range	model.cpp	/^void ligand::set_range() {$/;"	f	class:ligand
+set_rotor	parse_pdbqt.cpp	/^void set_rotor(non_rigid_parsed& nr, boost::optional<atom_reference> axis_begin, boost::optional<atom_reference> axis_end) {$/;"	f
+set_to_null	conf.h	/^	void set_to_null() {$/;"	f	struct:conf
+set_to_null	conf.h	/^	void set_to_null() {$/;"	f	struct:ligand_conf
+set_to_null	conf.h	/^	void set_to_null() {$/;"	f	struct:residue_conf
+set_to_null	conf.h	/^	void set_to_null() {$/;"	f	struct:rigid_conf
+sete	model.cpp	/^void model::sete(const conf& c) {$/;"	f	class:model
+setf	tee.h	/^	void setf(std::ios::fmtflags a) {$/;"	f	struct:tee
+setf	tee.h	/^	void setf(std::ios::fmtflags a, std::ios::fmtflags b) {$/;"	f	struct:tee
+seti	model.cpp	/^void model::seti(const conf& c) {$/;"	f	class:model
+sgrid	non_cache.h	/^	szv_grid sgrid;$/;"	m	struct:non_cache
+single_run	monte_carlo.cpp	/^void monte_carlo::single_run(model& m, output_type& out, const precalculate& p, const igrid& ig, rng& generator) const {$/;"	f	class:monte_carlo
+size	common.h	/^	sz size() const { return 3; }$/;"	f	struct:vec
+size	everything.cpp	/^	sz size() const { return 1; }$/;"	f	struct:ligand_length
+size	everything.cpp	/^	sz size() const { return 1; }$/;"	f	struct:num_heavy_atoms
+size	everything.cpp	/^	sz size() const { return 1; }$/;"	f	struct:num_heavy_atoms_div
+size	everything.cpp	/^	sz size() const { return 1; }$/;"	f	struct:num_hydrophobic_atoms
+size	everything.cpp	/^	sz size() const { return 1; }$/;"	f	struct:num_ligands
+size	everything.cpp	/^	sz size() const { return 1; }$/;"	f	struct:num_tors_add
+size	everything.cpp	/^	sz size() const { return 1; }$/;"	f	struct:num_tors_div
+size	everything.cpp	/^	sz size() const { return 1; }$/;"	f	struct:num_tors_sqr
+size	everything.cpp	/^	sz size() const { return 1; }$/;"	f	struct:num_tors_sqrt
+size	parallel.h	/^    sz size; \/\/ size of the vector given to run() \/\/ FIXME?$/;"	m	struct:parallel_for
+size	parallel.h	/^    sz size; \/\/ size of the vector given to run()$/;"	m	struct:parallel_for
+size	terms.h	/^	sz size() const { return e.size() + i.size(); }$/;"	f	struct:factors
+size	terms.h	/^	sz size() const { return fun.size(); }$/;"	f	struct:term_set
+size	terms.h	/^	sz size() const { return size_internal() + intermolecular_terms.size(); }$/;"	f	struct:terms
+size_conf_independent	terms.cpp	/^sz terms::size_conf_independent(bool enabled_only) const { \/\/ number of parameters does not necessarily equal the number of operators$/;"	f	class:terms
+size_internal	terms.cpp	/^sz terms::size_internal() const {$/;"	f	class:terms
+slope	cache.h	/^	fl slope; \/\/ does not get (de-)serialized$/;"	m	struct:cache
+slope	non_cache.h	/^	fl slope;$/;"	m	struct:non_cache
+slope_step	everything.cpp	/^inline fl slope_step(fl x_bad, fl x_good, fl x) {$/;"	f
+smooth	precalculate.h	/^	prv smooth; \/\/ [(e, dor)]$/;"	m	struct:precalculate_element
+smooth_div	everything.cpp	/^fl smooth_div(fl x, fl y) {$/;"	f
+smoothing	everything.cpp	/^	fl smoothing;$/;"	m	struct:vdw	file:
+solvation	atom_constants.h	/^	fl solvation;$/;"	m	struct:atom_kind
+solvation_parameter	everything.cpp	/^fl solvation_parameter(const atom_type& a) {$/;"	f
+solvation_q	everything.cpp	/^	fl solvation_q;$/;"	m	struct:ad4_solvation	file:
+span	grid_dim.h	/^	fl span() const { return end - begin; }$/;"	f	struct:grid_dim
+spearman	statistics.h	/^inline fl spearman(const flv& x, const flv& y) {$/;"	f
+spearman_aux	statistics.h	/^	spearman_aux(fl x, sz i) : x(x), i(i) {}$/;"	f	struct:spearman_aux
+spearman_aux	statistics.h	/^struct spearman_aux {$/;"	s
+sqr	common.h	/^T sqr(T x) {$/;"	f
+sqr	common.h	/^inline fl sqr(const vec& v) {$/;"	f
+ssd	ssd.h	/^	ssd() : evals(300), initial_factor(1e-4), min_factor(1e-6), up(1.6), down(0.5) {}$/;"	f	struct:ssd
+ssd	ssd.h	/^struct ssd {$/;"	s
+ssd_par	manifold.h	/^	ssd ssd_par;$/;"	m	struct:manifold
+ssd_par	monte_carlo.h	/^	ssd ssd_par;$/;"	m	struct:monte_carlo
+started	parallel.h	/^    sz started; \/\/ the number of jobs given to run() the work started on$/;"	m	struct:parallel_for
+starts_with	common.h	/^inline bool starts_with(const std::string& str, const std::string& start) {$/;"	f
+stream_parse_error	parse_pdbqt.cpp	/^	stream_parse_error(unsigned line_, const std::string& reason_) : line(line_), reason(reason_) {}$/;"	f	struct:stream_parse_error
+stream_parse_error	parse_pdbqt.cpp	/^struct stream_parse_error {$/;"	s	file:
+strictly_triangular_matrix	matrix.h	/^	strictly_triangular_matrix() : m_dim(0) {}$/;"	f	class:strictly_triangular_matrix
+strictly_triangular_matrix	matrix.h	/^	strictly_triangular_matrix(sz n, const T& filler_val) : m_data(n*(n-1)\/2, filler_val), m_dim(n) {}$/;"	f	class:strictly_triangular_matrix
+strictly_triangular_matrix	matrix.h	/^class strictly_triangular_matrix {$/;"	c
+string_to_ad_type	atom_constants.h	/^inline sz string_to_ad_type(const std::string& name) { \/\/ returns AD_TYPE_SIZE if not found (no exceptions thrown, because metals unknown to AD4 are not exceptional)$/;"	f
+string_to_pdb_atom	pdb.cpp	/^pdb_atom string_to_pdb_atom(const std::string& str) {$/;"	f
+string_write_coord	model.cpp	/^void string_write_coord(sz i, fl x, std::string& str) {$/;"	f
+substring_is_blank	convert_substring.h	/^inline bool substring_is_blank(const std::string& str, sz i, sz j) { \/\/ indexes are 1-based, the substring should be non-null$/;"	f
+subtract_change	bfgs.h	/^void subtract_change(Change& b, const Change& a, sz n) { \/\/ b -= a$/;"	f
+sum	common.h	/^T sum(const std::vector<T>& v) {$/;"	f
+sum_force_and_torque	tree.h	/^	vecp sum_force_and_torque(const vecv& coords, const vecv& forces) const {$/;"	f	struct:atom_frame
+sy	atom_type.h	/^	sz el, ad, xs, sy;$/;"	m	struct:atom_type
+sz	common.h	/^typedef std::size_t sz;$/;"	t
+sz_to_atom_index	model.cpp	/^atom_index model::sz_to_atom_index(sz i) const {$/;"	f	class:model
+szv	common.h	/^typedef std::vector<sz> szv;$/;"	t
+szv_grid	szv_grid.cpp	/^szv_grid::szv_grid(const model& m, const grid_dims& gd, fl cutoff_sqr) : m_data(gd[0].n, gd[1].n, gd[2].n) {$/;"	f	class:szv_grid
+szv_grid	szv_grid.h	/^struct szv_grid {$/;"	s
+szv_grid_dims	szv_grid.cpp	/^grid_dims szv_grid_dims(const grid_dims& gd) {$/;"	f
+t	atom_type.h	/^	enum t {EL, AD, XS, SY};$/;"	g	struct:atom_type
+t	weighted_terms.h	/^	const terms* t;$/;"	m	struct:weighted_terms
+tee	tee.h	/^	tee() : of(NULL) {}$/;"	f	struct:tee
+tee	tee.h	/^struct tee {$/;"	s
+temperature	monte_carlo.h	/^	fl temperature;$/;"	m	struct:monte_carlo
+term	terms.h	/^struct term {$/;"	s
+term_set	terms.h	/^struct term_set {$/;"	s
+terms	terms.h	/^struct terms {$/;"	s
+thread_finished	parallel.h	/^	std::vector<bool> thread_finished;$/;"	m	struct:parallel_for
+to	atom_constants.h	/^	std::string to;$/;"	m	struct:atom_equivalence
+to_parse_error	parse_pdbqt.cpp	/^	parse_error to_parse_error(const path& name) const {$/;"	f	struct:stream_parse_error
+to_string	common.h	/^std::string to_string(const T& x, std::streamsize width = 0, char fill = ' ') { \/\/ default 0 width means no restrictions on width$/;"	f
+too_close	conf.h	/^	bool too_close(const conf& c, const scale& cutoff) const {$/;"	f	struct:conf
+too_close	conf.h	/^	bool too_close(const rigid_conf& c, fl position_cutoff, fl orientation_cutoff) const {$/;"	f	struct:rigid_conf
+torsion	conf.h	/^	fl torsion;$/;"	m	struct:scale
+torsions	conf.h	/^	flv torsions;$/;"	m	struct:ligand_change
+torsions	conf.h	/^	flv torsions;$/;"	m	struct:ligand_conf
+torsions	conf.h	/^	flv torsions;$/;"	m	struct:residue_change
+torsions	conf.h	/^	flv torsions;$/;"	m	struct:residue_conf
+torsions_generate	conf.h	/^inline void torsions_generate(flv& torsions, fl spread, fl rp, const flv* rs, rng& generator) {$/;"	f
+torsions_increment	conf.h	/^inline void torsions_increment(flv& torsions, const flv& c, fl factor) { \/\/ new torsions are normalized$/;"	f
+torsions_randomize	conf.h	/^inline void torsions_randomize(flv& torsions, rng& generator) {$/;"	f
+torsions_set_to_null	conf.h	/^inline void torsions_set_to_null(flv& torsions) {$/;"	f
+torsions_too_close	conf.h	/^inline bool torsions_too_close(const flv& torsions1, const flv& torsions2, fl cutoff) {$/;"	f
+transform	tree.h	/^	void transform(const F& f) {$/;"	f	struct:atom_range
+transform_ranges	tree.h	/^void transform_ranges(T& t, const F& f) {$/;"	f
+tree	tree.h	/^	tree(const T& node_) : node(node_) {}$/;"	f	struct:tree
+tree	tree.h	/^struct tree {$/;"	s
+triangular_matrix	matrix.h	/^	triangular_matrix() : m_dim(0) {}$/;"	f	class:triangular_matrix
+triangular_matrix	matrix.h	/^	triangular_matrix(sz n, const T& filler_val) : m_data(n*(n+1)\/2, filler_val), m_dim(n) {} $/;"	f	class:triangular_matrix
+triangular_matrix	matrix.h	/^class triangular_matrix {$/;"	c
+triangular_matrix_index	triangular_matrix_index.h	/^inline sz triangular_matrix_index(sz n, sz i, sz j) {$/;"	f
+triangular_matrix_index_permissive	triangular_matrix_index.h	/^inline sz triangular_matrix_index_permissive(sz n, sz i, sz j) {$/;"	f
+type_pair_index	model.h	/^	sz type_pair_index;$/;"	m	struct:interacting_pair
+up	ssd.h	/^	fl up;$/;"	m	struct:ssd
+update	model.cpp	/^	void update(atom& a) const {$/;"	f	class:appender
+update	model.cpp	/^	void update(interacting_pair& ip) const {$/;"	f	class:appender
+update	model.cpp	/^	void update(ligand& lig) const {$/;"	f	class:appender
+update	model.cpp	/^	void update(parsed_line& p) const {$/;"	f	class:appender
+update	model.cpp	/^	void update(residue& r) const {$/;"	f	class:appender
+update	model.cpp	/^	void update(vec& v) const { \/\/ coordinates & forces - do nothing$/;"	f	class:appender
+usable	terms.h	/^	usable(fl cutoff_) : distance_additive(cutoff_), atom_typing_used(atom_type::XS) {}$/;"	f	struct:usable
+usable	terms.h	/^struct usable : public distance_additive {$/;"	s
+usable_terms	terms.h	/^	term_set<usable>            usable_terms;$/;"	m	struct:terms
+use_ssd	manifold.h	/^	bool use_ssd;$/;"	m	struct:manifold
+v	parallel.h	/^		Container* v;$/;"	m	struct:parallel_iter::aux
+v	quasi_newton.cpp	/^	const vec v;$/;"	m	struct:quasi_newton_aux	file:
+vdw	everything.cpp	/^	vdw(fl smoothing_, fl cap_, fl cutoff_) $/;"	f	struct:vdw
+vdw	everything.cpp	/^struct vdw : public usable {$/;"	s	file:
+vec	common.h	/^	vec() {$/;"	f	struct:vec
+vec	common.h	/^	vec(fl x, fl y, fl z) {$/;"	f	struct:vec
+vec	common.h	/^struct vec {$/;"	s
+vec_distance_sqr	common.h	/^inline fl vec_distance_sqr(const vec& a, const vec& b) {$/;"	f
+vecp	common.h	/^typedef std::pair<vec, vec> vecp;$/;"	t
+vector_append	common.h	/^sz vector_append(std::vector<T>& x, const std::vector<T>& y) { \/\/ return old size$/;"	f
+vector_mutable	tree.h	/^struct vector_mutable : public std::vector<T> {$/;"	s
+vecv	common.h	/^typedef std::vector<vec> vecv;$/;"	t
+verify_bond_lengths	model.cpp	/^void model::verify_bond_lengths() const {$/;"	f	class:model
+visited	visited.h	/^struct visited$/;"	s
+volume	atom_constants.h	/^	fl volume;$/;"	m	struct:atom_kind
+volume	everything.cpp	/^fl volume(const atom_type& a) {$/;"	f
+weight	recent_history.h	/^	fl weight;$/;"	m	struct:recent_history
+weighted_terms	weighted_terms.cpp	/^weighted_terms::weighted_terms(const terms* t, const flv& weights) : t(t), weights(weights), cutoff_(0) { \/\/ does not own t$/;"	f	class:weighted_terms
+weighted_terms	weighted_terms.h	/^	weighted_terms() {}$/;"	f	struct:weighted_terms
+weighted_terms	weighted_terms.h	/^struct weighted_terms : public scoring_function {$/;"	s
+weights	weighted_terms.h	/^	flv weights;$/;"	m	struct:weighted_terms
+widen	precalculate.h	/^	void widen(const flv& rs, fl left, fl right) {$/;"	f	struct:precalculate_element
+widen	precalculate.h	/^	void widen(fl left, fl right) {$/;"	f	struct:precalculate
+widen_smooth_fst	precalculate.h	/^	void widen_smooth_fst(const flv& rs, fl left, fl right) {$/;"	f	struct:precalculate_element
+width	everything.cpp	/^	fl width;$/;"	m	struct:gauss	file:
+within	non_cache.cpp	/^bool non_cache::within(const model& m, fl margin) const {$/;"	f	class:non_cache
+write_context	model.cpp	/^void model::write_context(const context& c, ofile& out) const {$/;"	f	class:model
+write_context	model.h	/^	void write_context(const context& c, const path& name) const {$/;"	f	struct:model
+write_context	model.h	/^	void write_context(const context& c, const path& name, const std::string& remark) const {$/;"	f	struct:model
+write_context	model.h	/^	void write_context(const context& c, ofile& out, const std::string& remark) const {$/;"	f	struct:model
+write_flex	model.h	/^	void write_flex  (                  const path& name, const std::string& remark) const { write_context(flex_context, name, remark); }$/;"	f	struct:model
+write_ligand	model.h	/^	void write_ligand(sz ligand_number, const path& name, const std::string& remark) const { VINA_CHECK(ligand_number < ligands.size()); write_context(ligands[ligand_number].cont, name, remark); }$/;"	f	struct:model
+write_model	model.h	/^	void write_model(ofile& out, sz model_number, const std::string& remark) const {$/;"	f	struct:model
+write_structure	model.h	/^	void write_structure(const path& name) const { ofile out(name); write_structure(out); }$/;"	f	struct:model
+write_structure	model.h	/^	void write_structure(ofile& out) const {$/;"	f	struct:model
+write_structure	model.h	/^	void write_structure(ofile& out, const std::string& remark) const {$/;"	f	struct:model
+x	statistics.h	/^	fl x;$/;"	m	struct:spearman_aux
+x_estimate	recent_history.h	/^	fl x_estimate;$/;"	m	struct:recent_history
+xs	atom_type.h	/^	sz el, ad, xs, sy;$/;"	m	struct:atom_type
+xs_donor_acceptor	atom_constants.h	/^inline bool xs_donor_acceptor(sz t1, sz t2) {$/;"	f
+xs_h_bond_possible	atom_constants.h	/^inline bool xs_h_bond_possible(sz t1, sz t2) {$/;"	f
+xs_is_acceptor	atom_constants.h	/^inline bool xs_is_acceptor(sz xs) {$/;"	f
+xs_is_donor	atom_constants.h	/^inline bool xs_is_donor(sz xs) {$/;"	f
+xs_is_hydrophobic	atom_constants.h	/^inline bool xs_is_hydrophobic(sz xs) {$/;"	f
+xs_radius	atom_constants.h	/^inline fl xs_radius(sz t) {$/;"	f
+xs_vdw_radii	atom_constants.h	/^const fl xs_vdw_radii[] = {$/;"	v
+~additive	terms.h	/^	virtual ~additive() {}$/;"	f	struct:additive
+~distance_additive	terms.h	/^	virtual ~distance_additive() {}$/;"	f	struct:distance_additive
+~parallel_for	parallel.h	/^    virtual ~parallel_for() {$/;"	f	struct:parallel_for
+~parallel_progress	parallel_progress.h	/^	virtual ~parallel_progress() { delete p; }$/;"	f	struct:parallel_progress
+~tee	tee.h	/^	virtual ~tee() { delete of; }$/;"	f	struct:tee
+~term	terms.h	/^	virtual ~term() {}$/;"	f	struct:term
+~usable	terms.h	/^	virtual ~usable() {}$/;"	f	struct:usable
