@@ -114,7 +114,7 @@ struct visited
 		if (!full)
 		{
 			list.push_back(e);
-			if (list.size()>=10*n_variable)
+			if (list.size()>=n_variable*n_variable)
 			{
 				full=true;
 				p=0;
@@ -123,7 +123,7 @@ struct visited
 		else
 		{
 			list[p]=e;
-			p=(p+1)%(10*n_variable);
+			p=(p+1)%(n_variable*n_variable);
 		}
 		 
 		return true;
