@@ -88,7 +88,7 @@ bool visited::interesting(conf x, change g)
 				bool flag=false;
 				double min=1e10;
 				int p=0;
-				for (int i=0;i<(len/2);i++)
+				for (int i=0;i<(2*n_variable);i++)
 				{ 
 				   	min=1e10;
 					for (int j=0;j<len;j++)
