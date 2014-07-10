@@ -1,59 +1,74 @@
 #include "visited.h"
 
-	double ele::dist2(std::vector<double> now)
-	{
-		double out=0;
-		for (int i=0;i<size();i++)
-		{ 
-			out+=(this->x[i]-now[i])*(this->x[i]-now[i]);
-		}
-		return out;
+double ele::dist2(std::vector<double> now){
+	double out=0;
+	for (int i=0;i<size();i++){
+		double d = this->x[i] - now[i];
+		out += d * d;
 	}
-static bool comp(std::pair<int, double> p, std::pair<int, double> q)
-{
-	return (p.second<q.second);
-}
-
-bool ele::check(std::vector<double> now)
-{
-	bool out=true;
-	
-	long long now_zero=0;
-	long long now_positive=0;
-/*
-	for (int i=0;i<now.size();i++)
-	{
-		if ( (now[i]>0&&d[i]>0) || (now[i]<0&&d[i]<0) )
-		{
-			out=false;
-			break;
-		}
-	}
-	
-	if (out)
-	{
-	::print(d);
-	printf("\n");
-	::print(now);				
-	printf("\n");
-*/	for (int i=0;i<now.size();i++)
-	{
-		now_zero=now_zero<<1;
-		now_positive=now_positive<<1;
-
-		if (now[i]==0) now_zero+=1;
-		else if (now[i]>0) now_positive+=1;
-	}
-	out=((((d_positive^now_positive)|d_zero)|now_zero)==getMask());
-//	printf("mask=%ld\td_p=%ld\td_z=%ld\tn_p=%ld\tn_z=%ld\n",getMask(),d_positive,d_zero,now_positive,now_zero);
-//	printf("check=%s\n",temp?"true":"false");
-//	getchar();
-//	}
-	
 	return out;
 }
+//static bool comp(std::pair<int, double> p, std::pair<int, double> q)
+//{
+//	return (p.second<q.second);
+//}
 
-bool visited::interesting(conf x, change g)
+/** differences:
+ * 1- I check also the value of f
+ * 2- point is considered interesting if only half of number of variables contains stationary points
+*/
+bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now_d)
+{
+	bool out=false;
+	
+	int counter=0;
+	bool newXBigger, newYBigger;
+	const long long ONE=1;
+	long long bitMask =0;
+	newYBigger=(now_f -f) > 0;
+//	bool effect=false;
+
+	for (int i = 0; i < now_d.size(); i++) {
+		bitMask = ONE << i;
+
+		if((d_zero & bitMask) || !(now_d[i])){//if any of them is zero
+			counter++;
+		}else{
+			bool nowPositive= now_d[i] > 0;
+			bool dPositive= d_positive & bitMask;
+			if (nowPositive ^ dPositive) {//if both derivatives have different signs
+				counter++;
+			}
+			else {
+				newXBigger=(now_x[i]-x[i]) > 0;
+				if (nowPositive? (newXBigger ^ newYBigger): (!(newXBigger ^ newYBigger))) {//if the higher x have lower f (if both ascending), or vice versa
+					counter++;
+//					effect=true;
+				}
+			}
+		}
+
+
+//		if (counter >= (now_d.size()>>1)) {
+		if (counter >= (now_d.size())) {
+//			if (effect) {
+//				printf("Amr test passed\t ");
+//				::print(now_x);printf("\n");
+//			}
+			return true;
+		}
+	}
+
+//	out=((((d_positive^now_positive)|d_zero)|now_zero)==getMask());
+////	printf("mask=%ld\td_p=%ld\td_z=%ld\tn_p=%ld\tn_z=%ld\n",getMask(),d_positive,d_zero,now_positive,now_zero);
+////	printf("check=%s\n",temp?"true":"false");
+////	getchar();
+////	}
+////	return out;
+	return false;
+}
+
+bool visited::interesting(conf x, double f, change g)
 	{
 		int len=size();
 		if (len==0)
@@ -61,7 +76,7 @@ bool visited::interesting(conf x, change g)
 			return true;
 		} 
 		else
-		{ 
+		{
 //			if (len<2*n_variable)
 			if (!full)
 		 	{ 
@@ -78,13 +93,12 @@ bool visited::interesting(conf x, change g)
 				bool pick[len];
 				
 				memset(pick,false,sizeof(pick));
-
+				//fill dist[] with distances from conf
 				for (int i=0;i<len;i++)
  		 		{
 					dist[i]=this->get(i).dist2(conf_v);
 				} 
-//				sort(dist.begin(),dist.end(),comp);
-//				
+
 				bool flag=false;
 				double min=1e10;
 				int p=0;
@@ -100,7 +114,7 @@ bool visited::interesting(conf x, change g)
 						}
 					}
 					pick[p]=true;					
-					flag=this->get(p).check(change_v);
+					flag=this->get(p).check(conf_v, f, change_v);
 					if (flag) break;
  				}
 				

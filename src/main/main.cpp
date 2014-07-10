@@ -214,7 +214,6 @@ void do_search(model& m, const boost::optional<model>& ref, const scoring_functi
 
 		time_t start,end;
 		doing(verbosity, "Performing search", log);
-
 		time(&start);
 
 		par(m, out_cont, prec, ig, prec_widened, ig_widened, corner1, corner2, generator);
@@ -223,9 +222,9 @@ void do_search(model& m, const boost::optional<model>& ref, const scoring_functi
 		doing(verbosity, "Refining results", log);
 		VINA_FOR_IN(i, out_cont)
 			refine_structure(m, prec, nc, out_cont[i], authentic_v, par.mc.ssd_par.evals);
-		time(&end);
 
-		printf("\nsearching finished in %.2lf seconds\n",difftime(end,start));
+		time(&end);
+		printf("\nsearching finished in %.3lf seconds\n",difftime(end,start));
 
 		if(!out_cont.empty()) {
 			out_cont.sort();

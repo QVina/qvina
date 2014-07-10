@@ -11,6 +11,7 @@
 struct ele
 {
 	std::vector<double> x;	//the designing variables
+	double			    f;	//the function values
 //	std::vector<double> d;	//the deriatives
 //	the deriatives will be encoded into two string of bits, i.e. two integers
 //	string one (d_nzero) is to show whether the deriative is zero on one direction
@@ -20,29 +21,32 @@ struct ele
 	long long d_zero;// if zero, bit=1; if not zero, bit=0
 	long long d_positive;// positive, bit=1; negative, bit=0
 
-	ele(std::vector<double> x_, std::vector<double> d_)
-	{  
+	ele(std::vector<double> x_, double f_, std::vector<double> d_)
+	{
 		this->x=std::vector<double>(x_);
+		this->f= f_;
 //		this->d=std::vector<double>(d_);
 		d_zero=0;
 		d_positive=0;
+		const long long ONE=1;
+		long long bitMask =0;
 
-		for (int i=0;i<d_.size();i++)
-	 	{
-			
-			d_zero=d_zero<<1;
-			d_positive=d_positive<<1;
+		//N.B.: now, d_zero and d_positive count from right to left
+		for (int i=0;i<d_.size();i++){
+			bitMask=ONE<<i;
+//			d_zero=d_zero<<1;
+//			d_positive=d_positive<<1;
 
-			if (d_[i]==0) d_zero+=1;
-			else if (d_[i]>0) d_positive+=1;
+			if (d_[i]==0) d_zero |= bitMask;
+			else if (d_[i]>0) d_positive |= bitMask;
 		}
 	}
 
 	ele()
-	{ 
+	{
 //		this->x=NULL;
 //		this->d=NULL;
-	} 
+	}
 
 	inline long long getMask()
 	{
@@ -57,14 +61,13 @@ struct ele
 
 	void print()
 	{
-		::print(x);
-		printf("\n");
+		::print(x);printf(" %f\n",f);
 		printf("d_zero=%lld\td_positive=%lld\n",d_zero,d_positive);
 	}
 
 	double dist2(std::vector<double>);
 
-	bool check(std::vector<double>);
+	bool check(std::vector<double>, double, std::vector<double>);
 };
 
 
@@ -73,13 +76,14 @@ struct visited
 	std::vector<ele> list;
 	int n_variable;
 	std::vector<double> tempx;
+	double				tempf;
 	std::vector<double> tempd;
 	int p;
 	bool full;
 	
 
 
-	bool interesting(conf x,change g);
+	bool interesting(conf x, double f,change g);
 
 	visited()
 	{ 
@@ -89,11 +93,12 @@ struct visited
 		full=false;
 	}
 
-	bool add(conf conf_v, change change_v)
+	bool add(conf conf_v, double f, change change_v)
 	{
 		tempx=std::vector<double>();
 		tempd=std::vector<double>();
 		conf_v.getV(tempx);
+		tempf=f;
 		change_v.getV(tempd);
 
 		if (list.size()==0)
@@ -109,7 +114,7 @@ struct visited
 			}
 		}
 		
-		ele e(tempx,tempd);
+		ele e(tempx,tempf, tempd);
 		
 		if (!full)
 		{
