@@ -31,6 +31,7 @@
 #include "precalculate.h"
 #include "igrid.h"
 #include "grid_dim.h"
+#include "visited.h"
 
 struct interacting_pair {
 	sz type_pair_index;
@@ -80,6 +81,8 @@ struct model {
 	sz ligand_degrees_of_freedom(sz ligand_number) const { return ligands[ligand_number].degrees_of_freedom; }
 	sz ligand_longest_branch(sz ligand_number) const;
 	sz ligand_length(sz ligand_number) const;
+
+	visited tried;
 
 	szv get_movable_atom_types(atom_type::t atom_typing_used_) const;
 
