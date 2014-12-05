@@ -30,6 +30,7 @@
 #include <boost/filesystem/exception.hpp>
 #include <boost/filesystem/convenience.hpp> // filesystem::basename
 #include <boost/thread/thread.hpp> // hardware_concurrency // FIXME rm ?
+#include <boost/date_time/posix_time/posix_time.hpp> // for time in microseconds
 #include "parse_pdbqt.h"
 #include "parallel_mc.h"
 #include "file.h"
@@ -43,9 +44,10 @@
 #include "quasi_newton.h"
 #include "tee.h"
 #include "coords.h" // add_to_output_container
-#include <ctime>
+//#include <ctime>
 
 using boost::filesystem::path;
+using namespace boost::posix_time;
 
 path make_path(const std::string& str) {
 	return path(str, boost::filesystem::native);
@@ -212,10 +214,10 @@ void do_search(model& m, const boost::optional<model>& ref, const scoring_functi
 		log.endl();
 		output_container out_cont;
 
-		time_t start,end;
+//		time_t start,end;
 		doing(verbosity, "Performing search", log);
-
-		time(&start);
+		ptime time_start(microsec_clock::local_time());
+//		time(&start);
 
 		par(m, out_cont, prec, ig, prec_widened, ig_widened, corner1, corner2, generator);
 		done(verbosity, log);
@@ -223,9 +225,12 @@ void do_search(model& m, const boost::optional<model>& ref, const scoring_functi
 		doing(verbosity, "Refining results", log);
 		VINA_FOR_IN(i, out_cont)
 			refine_structure(m, prec, nc, out_cont[i], authentic_v, par.mc.ssd_par.evals);
-		time(&end);
 
-		printf("\nsearching finished in %.2lf seconds\n",difftime(end,start));
+		ptime time_end(microsec_clock::local_time());
+		time_duration duration(time_end - time_start);
+//		time(&end);
+//		printf("\nsearching finished in %.3lf seconds\n",difftime(end,start));
+		printf("\nsearching finished in %.3lf seconds\n",(duration.total_milliseconds()/1000.0));
 
 		if(!out_cont.empty()) {
 			out_cont.sort();
