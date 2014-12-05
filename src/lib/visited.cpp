@@ -21,43 +21,43 @@ bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now
 {
 	bool out=false;
 	
-	int counter=0;
+//	int counter=0;//no need currently
 	bool newXBigger, newYBigger;
 	const long long ONE=1;
 	long long bitMask =0;
 	newYBigger=(now_f -f) > 0;
 //	bool effect=false;
 
-	for (int i = 0; i < now_d.size(); i++) {
+	int nowDSize = now_d.size();
+	for (int i = 0; i < nowDSize; i++) {
 		bitMask = ONE << i;
 
 		if((d_zero & bitMask) || !(now_d[i])){//if any of them is zero
-			counter++;
+//			counter++;//no need currently
 		}else{
-			bool nowPositive= now_d[i] > 0;
-			bool dPositive= d_positive & bitMask;
+			const bool nowPositive= now_d[i] > 0;
+			const bool dPositive= d_positive & bitMask;
 			if (nowPositive ^ dPositive) {//if both derivatives have different signs
-				counter++;
+//				counter++;//no need currently
 			}
 			else {
 				newXBigger=(now_x[i]-x[i]) > 0;
 				if (nowPositive? (newXBigger ^ newYBigger): (!(newXBigger ^ newYBigger))) {//if the higher x have lower f (if both ascending), or vice versa
-					counter++;
+//					counter++;//no need currently
 //					effect=true;
+				}
+				//TODO this else is valid only in case the least accepted number is
+				//ALLLLLL the variables (to be removed if we want to relax the check later on)
+				else{
+					return false;
 				}
 			}
 		}
-
-
-//		if (counter >= (now_d.size()>>1)) {
-		if (counter >= (now_d.size())) {
-//			if (effect) {
-//				printf("Amr test passed\t ");
-//				::print(now_x);printf("\n");
-//			}
-			return true;
-		}
+//		if (counter >= (now_d.size())) {
+//			return true;
+//		}
 	}
+	return true; //just return true, no need for check (to be removed if we want to relax the check later on)
 
 //	out=((((d_positive^now_positive)|d_zero)|now_zero)==getMask());
 ////	printf("mask=%ld\td_p=%ld\td_z=%ld\tn_p=%ld\tn_z=%ld\n",getMask(),d_positive,d_zero,now_positive,now_zero);
@@ -65,59 +65,53 @@ bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now
 ////	getchar();
 ////	}
 ////	return out;
-	return false;
+
+//	return false;
 }
 
-bool visited::interesting(conf x, double f, change g)
-	{
+bool visited::interesting(conf x, double f, change g){
 		int len=size();
-		if (len==0)
-		{
+		if (len==0){
 			return true;
 		} 
 		else
 		{
 //			if (len<2*n_variable)
-			if (!full)
-		 	{ 
+			if (!full){
 //				printf("len==%d<%d\n",len,10*n_variable);
 				return true;
-		 	}
+			}
 			else
-		  	{
+			{
 				std::vector<double> conf_v;
 				x.getV(conf_v);
 				std::vector<double> change_v;
 				g.getV(change_v);
 				double dist[len];
-				bool pick[len];
-				
-				memset(pick,false,sizeof(pick));
+				bool notPicked[len];
+
+				memset(notPicked,true,sizeof(notPicked));
 				//fill dist[] with distances from conf
-				for (int i=0;i<len;i++)
- 		 		{
+				for (int i=0;i<len;i++){
 					dist[i]=this->get(i).dist2(conf_v);
 				} 
 
 				bool flag=false;
 				double min=1e10;
 				int p=0;
-				for (int i=0;i<(2*n_variable);i++)
-				{ 
-				   	min=1e10;
-					for (int j=0;j<len;j++)
-					{
-						if ((!pick[j])&&(dist[j]<min))
-						{
+				const int maxCheck = 2 * n_variable;
+				for (int i = 0; i < maxCheck; i++){
+					min=1e10;
+					for (int j=0;j<len;j++){
+						if (notPicked[j] && (dist[j]<min)){
 							p=j;
 							min=dist[j];
 						}
 					}
-					pick[p]=true;					
+					notPicked[p]=false;
 					flag=this->get(p).check(conf_v, f, change_v);
 					if (flag) break;
- 				}
-				
+				}
 				return flag;
 			}
 		}
