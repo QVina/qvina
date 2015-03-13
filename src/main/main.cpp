@@ -430,19 +430,28 @@ your problem report:\n\
 Thank you!\n";
 
 	const std::string cite_message = "\
-#################################################################\n\
-# If you used AutoDock Vina in your work, please cite:          #\n\
-#                                                               #\n\
-# O. Trott, A. J. Olson,                                        #\n\
-# AutoDock Vina: improving the speed and accuracy of docking    #\n\
-# with a new scoring function, efficient optimization and       #\n\
-# multithreading, Journal of Computational Chemistry 31 (2010)  #\n\
-# 455-461                                                       #\n\
-#                                                               #\n\
-# DOI 10.1002/jcc.21334                                         #\n\
-#                                                               #\n\
-# Please see http://vina.scripps.edu for more information.      #\n\
-#################################################################\n";
+############################################################################\n\
+# If you used Quick Vina 2 in your work, please cite:                      #\n\
+#                                                                          #\n\
+# Amr Alhossary, Stephanus Daniel Handoko, Yuguang Mu, and Chee-Keong Kwoh,#\n\
+# Fast, Accurate, and Reliable Molecular Docking with QuickVina 2,         #\n\
+# Bioinformatics (2015), doi: 10.1093/bioinformatics/btv082                #\n\
+#                                                                          #\n\
+# You are also encouraged to cite Quick Vina 1:                            #\n\
+# Stephanus Daniel Handoko, Xuchang Ouyang, Chinh Tran To Su, Chee Keong   #\n\
+# Kwoh, Yew Soon Ong,                                                      #\n\
+# QuickVina: Accelerating AutoDock Vina Using Gradient-Based Heuristics for#\n\
+# Global Optimization,                                                     #\n\
+# IEEE/ACM Transactions on Computational Biology and Bioinformatics,vol.9, #\n\
+# no. 5, pp. 1266-1272, Sept.-Oct. 2012, doi: 10.1109/TCBB.2012.82         #\n\
+#                                                                          #\n\
+# and original AutoDock Vina paper:                                        #\n\
+# O. Trott, A. J. Olson,                                                   #\n\
+# AutoDock Vina: improving the speed and accuracy of docking with a        #\n\
+# new scoring function, efficient optimization and multithreading,         #\n\
+# Journal of Computational Chemistry 31 (2010) 455-461                     #\n\
+# doi: 10.1002/jcc.21334                                                   #\n\
+############################################################################\n";
 
 	try {
 		std::string rigid_name, ligand_name, flex_name, config_name, out_name, log_name;
