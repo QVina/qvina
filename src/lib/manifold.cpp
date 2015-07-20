@@ -159,6 +159,7 @@ void manifold::operator()(model& m, output_container& out, const precalculate& p
 	output_container* nullOutputTypePointer=NULL;
 	output_container& nullOutputTypeRef= *nullOutputTypePointer;
 	VINA_FOR(phase, np) {
+		std::cout<<"Might cause a problem"<<std::endl;
 		output_type tmp(s, 0);
 		tmp.c.randomize(corner1, corner2, generator);
 		manifold_phase(phase, tmp, m, out, p_widened, ig_widened, corner2corner, 1, e_internal_stats, *this, generator); // 1 - initial manifold
@@ -166,7 +167,8 @@ void manifold::operator()(model& m, output_container& out, const precalculate& p
 			ssd_par(m, p, ig, tmp, g, authentic_v);
 		else {
 			quasi_newton quasi_newton_par; quasi_newton_par.max_steps = ssd_par.evals;
-			quasi_newton_par(m, p, ig, tmp, g, authentic_v,nullOutputTypeRef);
+			quasi_newton_par(m, p, ig, tmp, g, authentic_v,nullOutputTypeRef
+, NULL); //FIXME added tried by Amr without proper knowledge
 		}
 		m.set(tmp.c);
 		tmp.coords = m.get_heavy_atom_movable_coords();

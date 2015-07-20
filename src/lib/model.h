@@ -31,7 +31,7 @@
 #include "precalculate.h"
 #include "igrid.h"
 #include "grid_dim.h"
-#include "visited.h"
+//#include "visited.h"
 
 struct interacting_pair {
 	sz type_pair_index;
@@ -82,7 +82,7 @@ struct model {
 	sz ligand_longest_branch(sz ligand_number) const;
 	sz ligand_length(sz ligand_number) const;
 
-	visited tried;
+//	visited tried;
 
 	szv get_movable_atom_types(atom_type::t atom_typing_used_) const;
 
@@ -181,7 +181,9 @@ private:
 	friend struct pdbqt_initializer;
 	friend struct model_test;
 
-	model() : m_num_movable_atoms(0), m_atom_typing_used(atom_type::XS) {};
+	model() : m_num_movable_atoms(0), m_atom_typing_used(atom_type::XS)
+   	{
+	};
 
 	const atom& get_atom(const atom_index& i) const { return (i.in_grid ? grid_atoms[i.i] : atoms[i.i]); }
 	      atom& get_atom(const atom_index& i)       { return (i.in_grid ? grid_atoms[i.i] : atoms[i.i]); }

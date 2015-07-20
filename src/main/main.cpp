@@ -124,7 +124,7 @@ void refine_structure(model& m, const precalculate& prec, non_cache& nc, output_
 	output_container* nullOutputTypePointer=NULL;
 	VINA_FOR(p, 5) {
 		nc.slope = 100 * std::pow(10.0, 2.0*p);
-		quasi_newton_par(m, prec, nc, out, g, cap, *nullOutputTypePointer);
+		quasi_newton_par(m, prec, nc, out, g, cap, *nullOutputTypePointer, NULL);
 		m.set(out.c); // just to be sure
 		if(nc.within(m))
 			break;

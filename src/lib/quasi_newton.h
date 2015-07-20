@@ -24,13 +24,14 @@
 #define VINA_QUASI_NEWTON_H
 
 #include "model.h"
+#include "visited.h"
 
 struct quasi_newton {
 	unsigned max_steps;
 	fl average_required_improvement;
 	quasi_newton() : max_steps(1000), average_required_improvement(0.0) {}
 	// clean up
-	void operator()(model& m, const precalculate& p, const igrid& ig, output_type& out, change& g, const vec& v, output_container& history) const; // g must have correct size
+	void operator()(model& m, const precalculate& p, const igrid& ig, output_type& out, change& g, const vec& v, output_container& history, visited* tried) const; // g must have correct size
 };
 
 #endif

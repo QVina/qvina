@@ -39,7 +39,7 @@ struct parallel_mc_aux {
 	parallel_mc_aux(const monte_carlo* mc_, const precalculate* p_, const igrid* ig_, const precalculate* p_widened_, const igrid* ig_widened_, const vec* corner1_, const vec* corner2_, parallel_progress* pg_)
 		: mc(mc_), p(p_), ig(ig_), p_widened(p_widened_), ig_widened(ig_widened_), corner1(corner1_), corner2(corner2_), pg(pg_) {}
 	void operator()(parallel_mc_task& t) const {
-		(*mc)(t.m, t.out, t.history, *p, *ig, *p_widened, *ig_widened, *corner1, *corner2, pg, t.generator);
+		(*mc)(t.m, t.out, t.history, *p, *ig, *p_widened, *ig_widened, *corner1, *corner2, pg, t.generator, t.tried);
 	}
 };
 

@@ -25,6 +25,7 @@
 
 #include "ssd.h"
 #include "incrementable.h"
+#include "visited.h"
 
 struct monte_carlo {
 	unsigned num_steps;
@@ -41,7 +42,7 @@ struct monte_carlo {
 
 //	void single_run(model& m, output_type& out, const precalculate& p, const igrid& ig, rng& generator) const;
 	// out is sorted
-	void operator()(model& m, output_container& out, output_container& history, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, incrementable* increment_me, rng& generator) const;
+	void operator()(model& m, output_container& out, output_container& history, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, incrementable* increment_me, rng& generator, visited* visited) const;
 //	void many_runs(model& m, output_container& out, const precalculate& p, const igrid& ig, const vec& corner1, const vec& corner2, sz num_runs, rng& generator) const;
 
 };
