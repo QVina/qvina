@@ -20,29 +20,31 @@ double ele::dist2(std::vector<double> now){
 bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now_d)
 {
 	bool out=false;
-	
 //	int counter=0;//no need currently
 	bool newXBigger, newYBigger;
-	const long long ONE=1;
-	long long bitMask =0;
-	newYBigger=(now_f -f) > 0;
+	const long long ONE=0x0000000000000001;
+	long long bitMask;
+	newYBigger=(now_f - this->f) > 0;
 //	bool effect=false;
 
 	int nowDSize = now_d.size();
 	for (int i = 0; i < nowDSize; i++) {
 		bitMask = ONE << i;
 
-		if((d_zero & bitMask) || !(now_d[i])){//if any of them is zero
+		if((this->d_zero & bitMask) || !(now_d[i])){//if any of them is zero
 //			counter++;//no need currently
+			continue;
 		}else{
 			const bool nowPositive= now_d[i] > 0;
 			const bool dPositive= d_positive & bitMask;
 			if (nowPositive ^ dPositive) {//if both derivatives have different signs
 //				counter++;//no need currently
+				continue;
 			}
 			else {
 				newXBigger=(now_x[i]-x[i]) > 0;
-				if (nowPositive? (newXBigger ^ newYBigger): (!(newXBigger ^ newYBigger))) {//if the higher x have lower f (if both ascending), or vice versa
+//				if (nowPositive? (newXBigger ^ newYBigger): (!(newXBigger ^ newYBigger))) {//if the higher x have lower f (if both ascending), or vice versa
+				if (! (nowPositive ^ newXBigger ^ newYBigger)) {//if the higher x have lower f (if both ascending), or vice versa
 //					counter++;//no need currently
 //					effect=true;
 				}
@@ -70,7 +72,11 @@ bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now
 }
 
 bool visited::interesting(conf x, double f, change g){
-		int len=size();
+
+//	printf("%d   %d\n", get_maxCheck(), get_maxSize());
+
+
+	int len=size();
 		if (len==0){
 			return true;
 		} 
@@ -99,7 +105,7 @@ bool visited::interesting(conf x, double f, change g){
 				bool flag=false;
 				double min=1e10;
 				int p=0;
-				const int maxCheck = 2 * n_variable;
+				const int maxCheck = get_maxCheck();
 				for (int i = 0; i < maxCheck; i++){
 					min=1e10;
 					for (int j=0;j<len;j++){
