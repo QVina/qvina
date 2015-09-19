@@ -11,9 +11,9 @@
 struct ele
 {
 	std::vector<double> x;	//the designing variables
-	double			    f;	//the function values
+	double			    f;	//the function value
 //	std::vector<double> d;	//the deriatives
-//	the deriatives will be encoded into two string of bits, i.e. two integers
+//	the derivatives will be encoded into two string of bits, i.e. two integers
 //	string one (d_nzero) is to show whether the deriative is zero on one direction
 //	string two (d_positive) is to show whether the deriative is positive or negative on one direction if it's not zero
 //	
@@ -26,10 +26,10 @@ struct ele
 		this->x=std::vector<double>(x_);
 		this->f= f_;
 //		this->d=std::vector<double>(d_);
-		d_zero=0;
-		d_positive=0;
-		const long long ONE=1;
-		long long bitMask =0;
+		d_zero=0x0000000000000000;
+		d_positive=0x0000000000000000;
+		const long long ONE=0x0000000000000001;
+		long long bitMask  =0x0000000000000000;
 
 		//N.B.: now, d_zero and d_positive count from right to left
 		for (int i=0;i<d_.size();i++){
@@ -37,16 +37,17 @@ struct ele
 //			d_zero=d_zero<<1;
 //			d_positive=d_positive<<1;
 
-			if (d_[i]==0) d_zero |= bitMask;
-			else if (d_[i]>0) d_positive |= bitMask;
+			if (d_[i]==0)
+				d_zero |= bitMask;
+			else if (d_[i]>0)
+				d_positive |= bitMask;
 		}
 	}
 
-	ele()
-	{
-//		this->x=NULL;
-//		this->d=NULL;
-	}
+//	ele(){
+////		this->x=NULL;
+////		this->d=NULL;
+//	}
 
 	inline long long getMask()
 	{
@@ -71,22 +72,25 @@ struct ele
 };
 
 
-struct visited
-{
+struct visited {
 	std::vector<ele> list;
 	int n_variable;
-	std::vector<double> tempx;
-	double				tempf;
-	std::vector<double> tempd;
 	int p;
 	bool full;
 	
+	inline int get_maxCheck(){
+//		return ceil(1.5*n_variable);
+		return 4*n_variable;
+	}
 
+	inline int get_maxSize(){
+		return 10*n_variable;
+	}
 
 	bool interesting(conf x, double f,change g);
 
-	visited()
-	{ 
+	visited(){
+//		std::cout<<"Visited Instance created"<<std::endl;
 		list=std::vector<ele>();
 		n_variable=0;
 		p=0;
@@ -95,20 +99,16 @@ struct visited
 
 	bool add(conf conf_v, double f, change change_v)
 	{
-		tempx=std::vector<double>();
-		tempd=std::vector<double>();
+		std::vector<double> tempx =std::vector<double>();
 		conf_v.getV(tempx);
-		tempf=f;
+		std::vector<double> tempd =std::vector<double>();
 		change_v.getV(tempd);
+		double tempf =f;
 
-		if (list.size()==0)
-		{
+		if (list.size()==0){
 			n_variable=tempx.size();
-		}
-		else
-		{
-			if (tempx.size()!=n_variable)
-			{
+		} else {
+			if (tempx.size()!=n_variable){
 				printf("local search designing variables not the same");
 				return false;
 			}
@@ -116,19 +116,15 @@ struct visited
 		
 		ele e(tempx,tempf, tempd);
 		
-		if (!full)
-		{
+		if (!full){
 			list.push_back(e);
-			if (list.size()>=10*n_variable)
-			{
+			if (list.size()>=get_maxSize()){
 				full=true;
 				p=0;
 			}
-		}
-		else
-		{
+		} else {
 			list[p]=e;
-			p=(p+1)%(10*n_variable);
+			p=(p+1)%(get_maxSize());
 		}
 		 
 		return true;
