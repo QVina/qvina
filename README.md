@@ -1,4 +1,4 @@
-# qvina
+# QuickVina 2
 Accurately speed up AutoDock Vina, the famous molecular docking tool.
 
 This is the source code repository and the temporary website until I release a new version and build new nice website.
