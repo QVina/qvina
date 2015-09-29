@@ -230,7 +230,12 @@ void do_search(model& m, const boost::optional<model>& ref, const scoring_functi
 		time_duration duration(time_end - time_start);
 //		time(&end);
 //		printf("\nsearching finished in %.3lf seconds\n",difftime(end,start));
-		printf("\nsearching finished in %.3lf seconds\n",(duration.total_milliseconds()/1000.0));
+//		printf("\nsearching finished in %.3lf seconds\n",(duration.total_milliseconds()/1000.0));
+		log << std::string("\nsearching finished in ");
+		log.setf(std::ios::fixed, std::ios::floatfield);
+		log.setf(std::ios::showpoint);
+		log<< std::setprecision(3) << (duration.total_milliseconds()/1000.0);
+		log << std::string(" seconds"); log.endl();log.flush();
 
 		if(!out_cont.empty()) {
 			out_cont.sort();
