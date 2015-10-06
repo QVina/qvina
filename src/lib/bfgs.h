@@ -24,11 +24,8 @@
 #define VINA_BFGS_H
 
 #include "matrix.h"
-#include "visited.h"
-//#include "visited.h"
 
 typedef triangular_matrix<fl> flmat;
-
 
 template<typename Change>
 void minus_mat_vec_product(const flmat& m, const Change& in, Change& out) {
@@ -101,7 +98,7 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 	//::print(f.v);
 //	printf("XOUYANG %lf\n",f.v[0]);
 		
-	sz n = g.num_floats();//
+	sz n = g.num_floats();
 	flmat h(n, 0);
 	set_diagonal(h, 1);
 
@@ -109,9 +106,6 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 	Conf x_new(x);
 
 	fl f0 = f(x, g);
-if (!(f.m->tried.interesting(x,g))) return f0;
- 	
-	f.m->tried.add(x,g);
 
 	fl f_orig = f0;
 	Change g_orig(g);
@@ -139,22 +133,14 @@ if (!(f.m->tried.interesting(x,g))) return f0;
 			if(std::abs(yy) > epsilon_fl)
 				set_diagonal(h, alpha * scalar_product(y, p, n) / yy);
   	 	}
-		
+
 		bool h_updated = bfgs_update(h, p, y, alpha);
-
-		f.m->tried.add(x,g);
- 	}  
-
+ 	}
 	if(!(f0 <= f_orig)) { // succeeds for nans too
 		f0 = f_orig;
 		x = x_orig;
 		g = g_orig;
 	}
-		
-//	f.m->tried.add(x,g);
-//		printf("%d\n",f.m->tried.size());
- 
-//	printf("database size=%d\n",f.m->tried.size());
 	return f0;
 }
 

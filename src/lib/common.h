@@ -345,7 +345,6 @@ inline void getV(const vec& v, std::vector<double>& out) {
 		getV(v[i], out);
 	}
 }
-
 template<typename T>
 void print(const std::vector<T>& v, std::ostream& out = std::cout) {
 	out << "[";
