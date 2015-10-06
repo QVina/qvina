@@ -37,6 +37,7 @@
 #endif 
 
 #include <boost/serialization/split_member.hpp>
+#include <boost/thread/thread.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/static_assert.hpp>
 #include "cache.h"
@@ -107,6 +108,98 @@ void cache::load(Archive& ar, const unsigned version) {
 	atom_type::t atu_tmp;       ar &  atu_tmp;       if(atu_tmp != atu)                       throw cache_mismatch();
 
 	ar & grids;
+}
+
+void cache::populateparalell(const model& m, const precalculate& p, const szv& atom_types_needed, bool display_progress, int noOfCpus) {
+using namespace boost::posix_time;
+	ptime time_start1(microsec_clock::local_time());
+	szv needed;
+	VINA_FOR_IN(i, atom_types_needed) {
+		sz t = atom_types_needed[i];
+		if(!grids[t].initialized()) {
+			needed.push_back(t);
+			grids[t].init(gd);
+		}
+	}
+	ptime time_end1(microsec_clock::local_time());
+	time_duration duration1(time_end1 - time_start1);
+	std::cout<< "first parallel part time: " << (duration1.total_milliseconds()/1000.0)<<std::endl;
+
+	if(needed.empty())
+		return;
+
+	grid& g = grids[needed.front()];
+
+	boost::thread_group threadGroup;
+	sz total = g.m_data.dim0() * g.m_data.dim1() * g.m_data.dim2();
+	int chunkSize = total / noOfCpus;
+//	std::cout << "CPUs = "<< noOfCpus << ", chunk size=" << chunkSize << std::endl;
+	std::cout << "starting the 2nd parallel part..."<<std::endl;
+	ptime time_start2(microsec_clock::local_time());
+	//do the parallel population part
+	for (int threadId = 0; threadId < noOfCpus; ++threadId) {
+		sz start=threadId*chunkSize;
+		if (threadId==noOfCpus-1 && total%noOfCpus != 0) {
+			chunkSize= total % noOfCpus;
+		}
+		boost::thread* th = new boost::thread(&cache::populateChunk, this,
+				threadId, m, needed, p, g, start, start + chunkSize);
+		threadGroup.add_thread(th);
+	}
+	threadGroup.join_all();
+	ptime time_end2(microsec_clock::local_time());
+	time_duration duration2(time_end2 - time_start2);
+	std::cout << "finished the 2nd parallel part. time= "<<(duration2.total_milliseconds()/1000.0)<<std::endl;
+}
+
+void cache::populateChunk(int threadId, const model& m, const szv& needed, const precalculate& p, grid& g, sz start, sz end) {
+	std::cout<<"function called with threadId "<<threadId << std::endl;
+	flv affinities(needed.size());
+	sz nat = num_atom_types(atu);
+	const fl cutoff_sqr = p.cutoff_sqr();
+	grid_dims gd_reduced = szv_grid_dims(gd);
+	szv_grid ig(m, gd_reduced, cutoff_sqr);
+
+
+	sz lineLength=g.m_data.dim0();
+	sz linesCount=g.m_data.dim1();
+	sz area=lineLength*linesCount;
+//	sz levels=g.m_data.dim2();
+//	sz total=area*levels;
+
+	sz x, y, z, linearI;
+
+	for (linearI = start; linearI < end; ++linearI) {
+		x = (linearI % area) % lineLength;
+		y = (linearI % area) / lineLength;
+		z = (linearI / area);
+
+		std::fill(affinities.begin(), affinities.end(), 0);
+		vec probe_coords;
+		probe_coords = g.index_to_argument(x, y, z);
+		const szv& possibilities = ig.possibilities(probe_coords);
+		VINA_FOR_IN(possibilities_i, possibilities){
+			const sz i = possibilities[possibilities_i];
+			const atom& a = m.grid_atoms[i];
+			const sz t1 = a.get(atu);
+			if(t1 >= nat) continue;
+			const fl r2 = vec_distance_sqr(a.coords, probe_coords);
+			if(r2 <= cutoff_sqr) {
+				VINA_FOR_IN(j, needed) {
+					const sz t2 = needed[j];
+					assert(t2 < nat);
+					const sz type_pair_index = triangular_matrix_index_permissive(num_atom_types(atu), t1, t2);
+					affinities[j] += p.eval_fast(type_pair_index, r2);
+				}
+			}
+		}
+		VINA_FOR_IN(j, needed){
+			sz t = needed[j];
+			assert(t < nat);
+			grids[t].m_data(x, y, z) = affinities[j];
+		}
+
+	}
 }
 
 void cache::populate(const model& m, const precalculate& p, const szv& atom_types_needed, bool display_progress) {
