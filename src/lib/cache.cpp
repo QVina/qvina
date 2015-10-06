@@ -20,6 +20,7 @@
 
 */
 
+#include <boost/date_time/posix_time/posix_time.hpp> // for time in microseconds
 #include <algorithm> // fill, etc
 
 #if 0 // use binary cache
@@ -109,6 +110,8 @@ void cache::load(Archive& ar, const unsigned version) {
 }
 
 void cache::populate(const model& m, const precalculate& p, const szv& atom_types_needed, bool display_progress) {
+using namespace boost::posix_time;
+	ptime time_start1(microsec_clock::local_time());
 	szv needed;
 	VINA_FOR_IN(i, atom_types_needed) {
 		sz t = atom_types_needed[i];
@@ -117,6 +120,11 @@ void cache::populate(const model& m, const precalculate& p, const szv& atom_type
 			grids[t].init(gd);
 		}
 	}
+
+	ptime time_end1(microsec_clock::local_time());
+	time_duration duration1(time_end1 - time_start1);
+	std::cout<< "first parallel part time: " << (duration1.total_milliseconds()/1000.0)<<std::endl;
+
 	if(needed.empty())
 		return;
 	flv affinities(needed.size());
@@ -129,6 +137,9 @@ void cache::populate(const model& m, const precalculate& p, const szv& atom_type
 
 	grid_dims gd_reduced = szv_grid_dims(gd);
 	szv_grid ig(m, gd_reduced, cutoff_sqr);
+
+	std::cout << "starting the 2nd parallel part..."<<std::endl;
+	ptime time_start2(microsec_clock::local_time());
 
 	VINA_FOR(x, g.m_data.dim0()) {
 		VINA_FOR(y, g.m_data.dim1()) {
@@ -159,4 +170,7 @@ void cache::populate(const model& m, const precalculate& p, const szv& atom_type
 			}
 		}
 	}
+	ptime time_end2(microsec_clock::local_time());
+	time_duration duration2(time_end2 - time_start2);
+	std::cout << "finished the 2nd parallel part. time= "<<(duration2.total_milliseconds()/1000.0)<<std::endl;
 }
