@@ -42,6 +42,7 @@ struct cache : public igrid {
 	void write(const path& name) const;
 #endif
 	void populate(const model& m, const precalculate& p, const szv& atom_types_needed, bool display_progress = true);
+	void populateparalell(const model& m, const precalculate& p, const szv& atom_types_needed, bool display_progress, int noOfCpus);
 private:
 	std::string scoring_function_version;
 	atomv atoms; // for verification
@@ -49,6 +50,8 @@ private:
 	fl slope; // does not get (de-)serialized
 	atom_type::t atu;
 	std::vector<grid> grids;
+
+	void populateChunk(int ThreadId, const model& m, const szv& needed, const precalculate& p, grid& g, sz start, sz end);
 
 	friend class boost::serialization::access;
 	template<class Archive>
