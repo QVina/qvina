@@ -343,10 +343,13 @@ void main_procedure(model& m, const boost::optional<model>& ref, // m is non-con
 		}
 		else {
 			bool cache_needed = !(score_only || randomize_only || local_only);
+			//TODO read the grid if available
 			if(cache_needed) doing(verbosity, "Analyzing the binding site", log);
 			cache c("scoring_function_version001", gd, slope, atom_type::XS);
 			if(cache_needed) c.populate(m, prec, m.get_movable_atom_types(prec.atom_typing_used()));
+//			if(cache_needed) c.populateparalell(m, prec, m.get_movable_atom_types(prec.atom_typing_used()),false, cpu);
 			if(cache_needed) done(verbosity, log);
+			//TODO write the grid if requested to do
 			do_search(m, ref, wt, prec, c, prec, c, nc,
 					  out_name,
 					  corner1, corner2,
