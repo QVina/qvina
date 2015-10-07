@@ -20,7 +20,7 @@
 
 */
 
-#include <boost/date_time/posix_time/posix_time.hpp> // for time in microseconds
+//#include <boost/date_time/posix_time/posix_time.hpp> // for time in microseconds
 #include <algorithm> // fill, etc
 
 #if 0 // use binary cache
@@ -112,7 +112,7 @@ void cache::load(Archive& ar, const unsigned version) {
 
 void cache::populateparalell(const model& m, const precalculate& p, const szv& atom_types_needed, bool display_progress, int noOfCpus) {
 using namespace boost::posix_time;
-	ptime time_start1(microsec_clock::local_time());
+//	ptime time_start1(microsec_clock::local_time());
 	szv needed;
 	VINA_FOR_IN(i, atom_types_needed) {
 		sz t = atom_types_needed[i];
@@ -121,9 +121,9 @@ using namespace boost::posix_time;
 			grids[t].init(gd);
 		}
 	}
-	ptime time_end1(microsec_clock::local_time());
-	time_duration duration1(time_end1 - time_start1);
-	std::cout<< "first parallel part time: " << (duration1.total_milliseconds()/1000.0)<<std::endl;
+//	ptime time_end1(microsec_clock::local_time());
+//	time_duration duration1(time_end1 - time_start1);
+//	std::cout<< "first parallel part time: " << (duration1.total_milliseconds()/1000.0)<<std::endl;
 
 	if(needed.empty())
 		return;
@@ -134,8 +134,9 @@ using namespace boost::posix_time;
 	sz total = g.m_data.dim0() * g.m_data.dim1() * g.m_data.dim2();
 	int chunkSize = total / noOfCpus;
 //	std::cout << "CPUs = "<< noOfCpus << ", chunk size=" << chunkSize << std::endl;
-	std::cout << "starting the 2nd parallel part..."<<std::endl;
-	ptime time_start2(microsec_clock::local_time());
+//	std::cout << "starting the 2nd parallel part..."<<std::endl;
+//	ptime time_start2(microsec_clock::local_time());
+
 	//do the parallel population part
 	for (int threadId = 0; threadId < noOfCpus; ++threadId) {
 		sz start=threadId*chunkSize;
@@ -147,9 +148,9 @@ using namespace boost::posix_time;
 		threadGroup.add_thread(th);
 	}
 	threadGroup.join_all();
-	ptime time_end2(microsec_clock::local_time());
-	time_duration duration2(time_end2 - time_start2);
-	std::cout << "finished the 2nd parallel part. time= "<<(duration2.total_milliseconds()/1000.0)<<std::endl;
+//	ptime time_end2(microsec_clock::local_time());
+//	time_duration duration2(time_end2 - time_start2);
+//	std::cout << "finished the 2nd parallel part. time= "<<(duration2.total_milliseconds()/1000.0)<<std::endl;
 }
 
 void cache::populateChunk(int threadId, const model& m, const szv& needed, const precalculate& p, grid& g, sz start, sz end) {
@@ -204,7 +205,7 @@ void cache::populateChunk(int threadId, const model& m, const szv& needed, const
 
 void cache::populate(const model& m, const precalculate& p, const szv& atom_types_needed, bool display_progress) {
 using namespace boost::posix_time;
-	ptime time_start1(microsec_clock::local_time());
+//	ptime time_start1(microsec_clock::local_time());
 	szv needed;
 	VINA_FOR_IN(i, atom_types_needed) {
 		sz t = atom_types_needed[i];
@@ -214,9 +215,9 @@ using namespace boost::posix_time;
 		}
 	}
 
-	ptime time_end1(microsec_clock::local_time());
-	time_duration duration1(time_end1 - time_start1);
-	std::cout<< "first parallel part time: " << (duration1.total_milliseconds()/1000.0)<<std::endl;
+//	ptime time_end1(microsec_clock::local_time());
+//	time_duration duration1(time_end1 - time_start1);
+//	std::cout<< "first parallel part time: " << (duration1.total_milliseconds()/1000.0)<<std::endl;
 
 	if(needed.empty())
 		return;
@@ -231,8 +232,8 @@ using namespace boost::posix_time;
 	grid_dims gd_reduced = szv_grid_dims(gd);
 	szv_grid ig(m, gd_reduced, cutoff_sqr);
 
-	std::cout << "starting the 2nd parallel part..."<<std::endl;
-	ptime time_start2(microsec_clock::local_time());
+//	std::cout << "starting the 2nd parallel part..."<<std::endl;
+//	ptime time_start2(microsec_clock::local_time());
 
 	VINA_FOR(x, g.m_data.dim0()) {
 		VINA_FOR(y, g.m_data.dim1()) {
@@ -263,7 +264,7 @@ using namespace boost::posix_time;
 			}
 		}
 	}
-	ptime time_end2(microsec_clock::local_time());
-	time_duration duration2(time_end2 - time_start2);
-	std::cout << "finished the 2nd parallel part. time= "<<(duration2.total_milliseconds()/1000.0)<<std::endl;
+//	ptime time_end2(microsec_clock::local_time());
+//	time_duration duration2(time_end2 - time_start2);
+//	std::cout << "finished the 2nd parallel part. time= "<<(duration2.total_milliseconds()/1000.0)<<std::endl;
 }
