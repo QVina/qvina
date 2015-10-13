@@ -33,6 +33,27 @@ struct rigid_mismatch : public cache_mismatch {};
 struct grid_dims_mismatch : public cache_mismatch {};
 struct energy_mismatch : public cache_mismatch {};
 
+class cacheParams{
+public:
+	const model* m;
+	const szv* needed;
+	const precalculate* p;
+	const grid* g;
+
+	cacheParams(const model& m_, const szv& needed_, const precalculate& p_, grid& g_){
+		m= &m_;
+		needed=&needed_;
+		p=&p_;
+		g=&g_;
+	}
+	cacheParams(const cacheParams& other){
+		m=other.m;
+		needed=other.needed;
+		p=other.p;
+		g=other.g;
+	}
+};
+
 struct cache : public igrid {
 	cache(const std::string& scoring_function_version_, const grid_dims& gd_, fl slope_, atom_type::t atom_typing_used_);
 	fl eval      (const model& m, fl v) const; // needs m.coords // clean up
@@ -51,7 +72,7 @@ private:
 	atom_type::t atu;
 	std::vector<grid> grids;
 
-	void populateChunk(int ThreadId, const model& m, const szv& needed, const precalculate& p, grid& g, sz start, sz end);
+	void populateChunk(int ThreadId, cacheParams cp, sz start, sz end);
 
 	friend class boost::serialization::access;
 	template<class Archive>
@@ -60,5 +81,7 @@ private:
 	void load(Archive& ar, const unsigned version);
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
+
+
 
 #endif

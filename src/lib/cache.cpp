@@ -110,7 +110,7 @@ void cache::load(Archive& ar, const unsigned version) {
 	ar & grids;
 }
 
-void cache::populateparalell(const model& m, const precalculate& p, const szv& atom_types_needed, bool display_progress, int noOfCpus) {
+void cache::populateparalell(const model& m, const precalculate& p, const szv& atom_types_needed, const bool display_progress, const int noOfCpus) {
 using namespace boost::posix_time;
 	ptime time_start1(microsec_clock::local_time());
 	szv needed;
@@ -132,7 +132,7 @@ using namespace boost::posix_time;
 
 	boost::thread_group threadGroup;
 	sz total = g.m_data.dim0() * g.m_data.dim1() * g.m_data.dim2();
-	int chunkSize = total / noOfCpus;
+	sz chunkSize = total / noOfCpus;
 //	std::cout << "CPUs = "<< noOfCpus << ", chunk size=" << chunkSize << std::endl;
 	std::cout << "starting the 2nd parallel part..."<<std::endl;
 	ptime time_start2(microsec_clock::local_time());
@@ -142,9 +142,11 @@ using namespace boost::posix_time;
 		if (threadId==noOfCpus-1 && total%noOfCpus != 0) {
 			chunkSize= total % noOfCpus;
 		}
-		boost::thread* th = new boost::thread(&cache::populateChunk, this,
-				threadId, m, needed, p, g, start, start + chunkSize);
-		threadGroup.add_thread(th);
+//		boost::thread* th = new boost::thread(&cache::populateChunk, this, threadId, m, needed, p, g, start, start + chunkSize);
+//		threadGroup.add_thread(th);
+		cacheParams cp(m, needed, p, g);
+		threadGroup.create_thread(boost::bind(&cache::populateChunk, this, threadId, cp, start, start + chunkSize));
+
 	}
 	threadGroup.join_all();
 	ptime time_end2(microsec_clock::local_time());
@@ -152,8 +154,15 @@ using namespace boost::posix_time;
 	std::cout << "finished the 2nd parallel part. time= "<<(duration2.total_milliseconds()/1000.0)<<std::endl;
 }
 
-void cache::populateChunk(int threadId, const model& m, const szv& needed, const precalculate& p, grid& g, sz start, sz end) {
+void cache::populateChunk(int threadId, cacheParams cp, sz start, sz end) {
 	std::cout<<"function called with threadId "<<threadId << std::endl;
+	const model& m = *(cp.m);
+	const szv& needed = *(cp.needed);
+	const precalculate& p = *(cp.p);
+	const grid& g = *(cp.g);
+
+
+
 	flv affinities(needed.size());
 	sz nat = num_atom_types(atu);
 	const fl cutoff_sqr = p.cutoff_sqr();
@@ -198,7 +207,6 @@ void cache::populateChunk(int threadId, const model& m, const szv& needed, const
 			assert(t < nat);
 			grids[t].m_data(x, y, z) = affinities[j];
 		}
-
 	}
 }
 
