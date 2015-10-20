@@ -73,16 +73,16 @@ std::string default_output(const std::string& input_name) {
 	return tmp + "_out.pdbqt";
 }
 
-void write_all_output(model& m, const output_container& out, sz how_many,
+void write_all_output(model& m, const output_container& out, sz start, sz how_many,
 				  const std::string& output_name,
 				  const std::vector<std::string>& remarks) {
-	if(out.size() < how_many)
-		how_many = out.size();
+	if(out.size() < start+how_many)
+		how_many = out.size()-start;
 	VINA_CHECK(how_many <= remarks.size());
 	ofile f(make_path(output_name));
-	VINA_FOR(i, how_many) {
+	VINA_RANGE(i, start, start+how_many) {
 		m.set(out[i].c);
-		m.write_model(f, i+1, remarks[i]); // so that model numbers start with 1
+		m.write_model(f, i+1, remarks[i-start]); // so that model numbers start with 1
 	}
 }
 
@@ -121,9 +121,10 @@ void refine_structure(model& m, const precalculate& prec, non_cache& nc, output_
 	quasi_newton quasi_newton_par;
 	quasi_newton_par.max_steps = max_steps;
 	const fl slope_orig = nc.slope;
+	output_container* nullOutputTypePointer=NULL;
 	VINA_FOR(p, 5) {
 		nc.slope = 100 * std::pow(10.0, 2.0*p);
-		quasi_newton_par(m, prec, nc, out, g, cap);
+		quasi_newton_par(m, prec, nc, out, g, cap, *nullOutputTypePointer);
 		m.set(out.c); // just to be sure
 		if(nc.within(m))
 			break;
@@ -153,11 +154,46 @@ output_container remove_redundant(const output_container& in, fl min_rmsd) {
 	return tmp;
 }
 
+#if WRITE_HISTORY
+void writeHistory(model& m, parallel_mc& par, tee& log) {
+	log << "writing history ... Number of threads= "
+			<< par.task_container.size();
+	log.endl();
+	log.flush();
+	const sz chunkSize = 1000;
+	VINA_FOR(i, par.task_container.size()){
+		parallel_mc_task task = par.task_container[i];
+		output_container& history = task.history;
+		sz totalSteps = history.size();
+		log<< "starting history #" << i << ", # of steps=" << totalSteps; log.endl();
+
+		const int width=((int)log10(totalSteps))+1;
+		const std::string fmt("_%0"+boost::lexical_cast<std::string>(width) +"ld");
+
+		for(sz start = 0; start < totalSteps; start+=chunkSize) {
+			std::string historyFileName="history_"+boost::lexical_cast<std::string>(i);
+			if (chunkSize < totalSteps) {
+				char chunk[width+2];
+				sprintf(chunk,fmt.data(),start);
+				historyFileName += chunk;
+			}
+			historyFileName+= ".pdbqt";
+
+			log << "File: " << historyFileName;log.endl(); log.flush();
+			std::vector<std::string> dummyRemarks;
+			for (int j = start; j < start+chunkSize , j< totalSteps; ++j)
+				dummyRemarks.push_back("REMARK step #"+ boost::lexical_cast<std::string>(j+1)+" \tenergy=" + boost::lexical_cast<std::string>(history[j].e).substr(0,9)+"\n");
+			write_all_output(m, history, start, chunkSize, historyFileName, dummyRemarks);
+		}
+	}
+}
+#endif
+
 void do_search(model& m, const boost::optional<model>& ref, const scoring_function& sf, const precalculate& prec, const igrid& ig, const precalculate& prec_widened, const igrid& ig_widened, non_cache& nc, // nc.slope is changed
 			   const std::string& out_name,
 			   const vec& corner1, const vec& corner2,
-			   const parallel_mc& par, fl energy_range, sz num_modes,
-			   int seed, int verbosity, bool score_only, bool local_only, tee& log, const terms& t, const flv& weights) {
+			   /*const*/ parallel_mc& par, fl energy_range, sz num_modes,
+			   int seed, int verbosity, bool score_only, bool local_only, bool write_history, tee& log, const terms& t, const flv& weights) {
 	conf_size s = m.get_size();
 	conf c = m.get_initial_conf();
 	fl e = max_fl;
@@ -205,7 +241,7 @@ void do_search(model& m, const boost::optional<model>& ref, const scoring_functi
 		output_container out_cont;
 		out_cont.push_back(new output_type(out));
 		std::vector<std::string> remarks(1, vina_remark(e, 0, 0));
-		write_all_output(m, out_cont, 1, out_name, remarks); // how_many == 1
+		write_all_output(m, out_cont, 0, 1, out_name, remarks); // how_many == 1
 		done(verbosity, log);
 	}
 	else {
@@ -281,7 +317,7 @@ void do_search(model& m, const boost::optional<model>& ref, const scoring_functi
 			log.endl();
 		}
 		doing(verbosity, "Writing output", log);
-		write_all_output(m, out_cont, how_many, out_name, remarks);
+		write_all_output(m, out_cont, 0, how_many, out_name, remarks);
 		done(verbosity, log);
 
 		if(how_many < 1) {
@@ -289,12 +325,16 @@ void do_search(model& m, const boost::optional<model>& ref, const scoring_functi
 				<< "WARNING: Check that it is large enough for all movable atoms, including those in the flexible side chains.";
 			log.endl();
 		}
+#if WRITE_HISTORY
+		if(write_history)
+			writeHistory(m, par, log);
+#endif
 	}
 }
 
 void main_procedure(model& m, const boost::optional<model>& ref, // m is non-const (FIXME?)
 			     const std::string& out_name,
-				 bool score_only, bool local_only, bool randomize_only, bool no_cache,
+				 bool score_only, bool local_only, bool randomize_only, bool write_history, bool no_cache,
 				 const grid_dims& gd, int exhaustiveness,
 				 const flv& weights,
 				 int cpu, int seed, int verbosity, sz num_modes, fl energy_range, tee& log) {
@@ -339,7 +379,7 @@ void main_procedure(model& m, const boost::optional<model>& ref, // m is non-con
 					  out_name,
 					  corner1, corner2,
 					  par, energy_range, num_modes,
-					  seed, verbosity, score_only, local_only, log, t, weights);
+					  seed, verbosity, score_only, local_only, write_history, log, t, weights);
 		}
 		else {
 			bool cache_needed = !(score_only || randomize_only || local_only);
@@ -354,7 +394,7 @@ void main_procedure(model& m, const boost::optional<model>& ref, // m is non-con
 					  out_name,
 					  corner1, corner2,
 					  par, energy_range, num_modes,
-					  seed, verbosity, score_only, local_only, log, t, weights);
+					  seed, verbosity, score_only, local_only, write_history, log, t, weights);
 		}
 	}
 }
@@ -465,7 +505,7 @@ Thank you!\n";
 		fl weight_hydrophobic = -0.035069;
 		fl weight_hydrogen    = -0.587439;
 		fl weight_rot         =  0.05846;
-		bool score_only = false, local_only = false, randomize_only = false, help = false, help_advanced = false, version = false; // FIXME
+		bool score_only = false, local_only = false, randomize_only = false, help = false, help_advanced = false, version = false, write_history=false; // FIXME
 
 		positional_options_description positional; // remains empty
 
@@ -496,6 +536,9 @@ Thank you!\n";
 			("score_only",     bool_switch(&score_only),     "score only - search space can be omitted")
 			("local_only",     bool_switch(&local_only),     "do local search only")
 			("randomize_only", bool_switch(&randomize_only), "randomize input, attempting to avoid clashes")
+#if WRITE_HISTORY
+			("write_history",  bool_switch(&write_history),  "write history, write search history as 1000 steps pdbqt files")
+#endif
 			("weight_gauss1", value<fl>(&weight_gauss1)->default_value(weight_gauss1),                "gauss_1 weight")
 			("weight_gauss2", value<fl>(&weight_gauss2)->default_value(weight_gauss2),                "gauss_2 weight")
 			("weight_repulsion", value<fl>(&weight_repulsion)->default_value(weight_repulsion),       "repulsion weight")
@@ -677,7 +720,7 @@ Thank you!\n";
 
 		main_procedure(m, ref, 
 					out_name,
-					score_only, local_only, randomize_only, false, // no_cache == false
+					score_only, local_only, randomize_only, write_history, false, // no_cache == false
 					gd, exhaustiveness,
 					weights,
 					cpu, seed, verbosity, max_modes_sz, energy_range, log);

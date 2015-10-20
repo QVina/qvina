@@ -24,14 +24,26 @@
 #define VINA_PARALLEL_MC_H
 
 #include "monte_carlo.h"
+#include "conf.h"
+
+struct parallel_mc_task {
+	model m;
+	output_container out;
+	output_container history;//added
+	rng generator;
+	visited* tried;
+	parallel_mc_task(const model& m_, int seed, /*output_container& history_,*/ visited* visited_) : m(m_), generator(static_cast<rng::result_type>(seed)), /*history(history_),*/ tried(visited_) {}
+};
+typedef boost::ptr_vector<parallel_mc_task> parallel_mc_task_container;
 
 struct parallel_mc {
 	monte_carlo mc;
 	sz num_tasks;
 	sz num_threads;
 	bool display_progress;
+	parallel_mc_task_container task_container;
 	parallel_mc() : num_tasks(8), num_threads(1), display_progress(true) {}
-	void operator()(const model& m, output_container& out, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, rng& generator) const;
+	void operator()(const model& m, output_container& out, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, rng& generator) /*const*/;
 };
 
 #endif

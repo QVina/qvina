@@ -23,6 +23,8 @@
 #ifndef VINA_COMMON_H
 #define VINA_COMMON_H
 
+#define WRITE_HISTORY FALSE
+
 #include <cassert>
 #include <string>
 #include <limits>

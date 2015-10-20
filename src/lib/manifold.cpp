@@ -156,7 +156,8 @@ void manifold::operator()(model& m, output_container& out, const precalculate& p
 	sz np = (std::max)(sz(1), num_phases);
 	recent_history e_internal_stats(0, 10, 10);
 
-
+	output_container* nullOutputTypePointer=NULL;
+	output_container& nullOutputTypeRef= *nullOutputTypePointer;
 	VINA_FOR(phase, np) {
 		output_type tmp(s, 0);
 		tmp.c.randomize(corner1, corner2, generator);
@@ -165,7 +166,7 @@ void manifold::operator()(model& m, output_container& out, const precalculate& p
 			ssd_par(m, p, ig, tmp, g, authentic_v);
 		else {
 			quasi_newton quasi_newton_par; quasi_newton_par.max_steps = ssd_par.evals;
-			quasi_newton_par(m, p, ig, tmp, g, authentic_v);
+			quasi_newton_par(m, p, ig, tmp, g, authentic_v,nullOutputTypeRef);
 		}
 		m.set(tmp.c);
 		tmp.coords = m.get_heavy_atom_movable_coords();

@@ -544,7 +544,7 @@ void string_write_coord(sz i, fl x, std::string& str) {
 	out.setf(std::ios::fixed, std::ios::floatfield);
 	out.setf(std::ios::showpoint);
 	out << std::setw(8) << std::setprecision(3) << x;
-	VINA_CHECK(out.str().size() == 8); 
+//	VINA_CHECK(out.str().size() == 8); //FIXME canceled temporarily for a while
 	VINA_CHECK(str.size() > i + 8);
 	VINA_FOR(j, 8)
 		str[i+j] = out.str()[j];

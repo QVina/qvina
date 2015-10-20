@@ -93,7 +93,7 @@ void subtract_change(Change& b, const Change& a, sz n) { // b -= a
 }
 
 template<typename F, typename Conf, typename Change>
-fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_required_improvement, const sz over) { // x is I/O, final value is returned
+fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_required_improvement, const sz over, output_container& history) { // x is I/O, final value is returned
 
 	//::print(f.v);
 //	printf("XOUYANG %lf\n",f.v[0]);
@@ -107,6 +107,9 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 
 	fl f0 = f(x, g);
 
+#if WRITE_HISTORY
+	history.push_back(new output_type(x, f0));
+#endif
 	fl f_orig = f0;
 	Change g_orig(g);
 	Conf x_orig(x);
@@ -135,6 +138,11 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
   	 	}
 
 		bool h_updated = bfgs_update(h, p, y, alpha);
+
+#if WRITE_HISTORY
+		history.push_back(new output_type(x, f0));
+#endif		
+
  	}
 	if(!(f0 <= f_orig)) { // succeeds for nans too
 		f0 = f_orig;
