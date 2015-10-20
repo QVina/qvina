@@ -25,12 +25,12 @@
 #include "mutate.h"
 #include "quasi_newton.h"
 
-output_type monte_carlo::operator()(model& m, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, incrementable* increment_me, rng& generator) const {
-	output_container tmp;
-	this->operator()(m, tmp, p, ig, p_widened, ig_widened, corner1, corner2, increment_me, generator); // call the version that produces the whole container
-	VINA_CHECK(!tmp.empty());
-	return tmp.front();
-}
+//output_type monte_carlo::operator()(model& m, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, incrementable* increment_me, rng& generator, visited* visited) const {
+//	output_container tmp;
+//	this->operator()(m, tmp, p, ig, p_widened, ig_widened, corner1, corner2, increment_me, generator, visited); // call the version that produces the whole container
+//	VINA_CHECK(!tmp.empty());
+//	return tmp.front();
+//}
 
 bool metropolis_accept(fl old_f, fl new_f, fl temperature, rng& generator) {
 	if(new_f < old_f) return true;
