@@ -95,7 +95,8 @@ void monte_carlo::operator()(model& m, output_container& out, output_container& 
 			++(*increment_me);
 		output_type candidate = tmp;
 		mutate_conf(candidate.c, m, mutation_amplitude, generator);
-		quasi_newton_par(m, p, ig, candidate, g, hunt_cap, history, tried);
+		quasi_newton_par(m, p, ig, candidate, g, hunt_cap, history, tried
+, true);
 		if(step == 0 || metropolis_accept(tmp.e, candidate.e, temperature, generator)) {
 			tmp = candidate;
 
@@ -103,7 +104,8 @@ void monte_carlo::operator()(model& m, output_container& out, output_container& 
 
 			// FIXME only for very promising ones
 			if(tmp.e < best_e || out.size() < num_saved_mins) {
-				quasi_newton_par(m, p, ig, tmp, g, authentic_v, history, tried);
+				quasi_newton_par(m, p, ig, tmp, g, authentic_v, history, tried
+, false);
 				m.set(tmp.c); // FIXME? useless?
 				tmp.coords = m.get_heavy_atom_movable_coords();
 				add_to_output_container(out, tmp, min_rmsd, num_saved_mins); // 20 - max size

@@ -83,6 +83,7 @@ struct model {
 	sz ligand_length(sz ligand_number) const;
 
 //	visited tried;
+	unsigned char global;
 
 	szv get_movable_atom_types(atom_type::t atom_typing_used_) const;
 
@@ -112,6 +113,7 @@ struct model {
 	void seti(const conf& c);
 	void sete(const conf& c);
 	void set (const conf& c);
+	void setGlobal(unsigned char global);
 
 	fl gyration_radius(sz ligand_number) const; // uses coords
 

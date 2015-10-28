@@ -35,10 +35,12 @@ struct quasi_newton_aux {
 	}
 };
 
-void quasi_newton::operator()(model& m, const precalculate& p, const igrid& ig, output_type& out, change& g, const vec& v, output_container& history, visited* tried) const { // g must have correct size
+void quasi_newton::operator()(model& m, const precalculate& p, const igrid& ig, output_type& out, change& g, const vec& v, output_container& history, visited* tried
+, bool global) const { // g must have correct size
 	quasi_newton_aux aux(&m, &p, &ig, v);
 //	std::cout<<"quasi_newton::operator()\n";
-	fl res = bfgs(aux, out.c, g, max_steps, average_required_improvement, 10, history, tried);
+	fl res = bfgs(aux, out.c, g, max_steps, average_required_improvement, 10, &history, tried
+, global);
 	out.e = res;
 }
 

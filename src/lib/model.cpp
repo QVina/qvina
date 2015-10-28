@@ -559,10 +559,33 @@ std::string coords_to_pdbqt_string(const vec& coords, const std::string& str) {
 
 void model::write_context(const context& c, ofile& out) const {
 	verify_bond_lengths();
+//	const char* HUNDRED="100.00";
+//	const char* FIFTY  =" 50.00";
+//	const char* replacement;
+
 	VINA_FOR_IN(i, c) {
 		const std::string& str = c[i].first;
 		if(c[i].second) {
-			out << coords_to_pdbqt_string(coords[c[i].second.get()], str) << '\n';
+			std::string StringWithPdbqtCoords = coords_to_pdbqt_string(coords[c[i].second.get()], str);
+			//lable using the Chain ID
+			StringWithPdbqtCoords[22-1] = 'A'+global;
+
+//			label using B-Factor
+//			if(global){
+//				switch (global) {
+//				case 1:
+//					replacement= FIFTY;
+//					break;
+//				case 2:
+//					replacement= HUNDRED;
+//					break;
+//				}
+//				VINA_FOR(j, 6){
+//					StringWithPdbqtCoords[61-1+j] = replacement[j];
+//				}
+//			}
+
+			out << StringWithPdbqtCoords << '\n';
 		}
 		else
 			out << str << '\n';
@@ -582,6 +605,10 @@ void model::sete(const conf& c) {
 void model::set         (const conf& c) {
 	ligands.set_conf(atoms, coords, c.ligands);
 	flex   .set_conf(atoms, coords, c.flex);
+}
+
+void model::setGlobal   (unsigned char global){
+	this->global=global;
 }
 
 fl model::gyration_radius(sz ligand_number) const {

@@ -101,8 +101,9 @@ void subtract_change(Change& b, const Change& a, sz n) { // b -= a
 //}
 //// N.B. y = individual numbers, f = function= y(x), g = delta f = first order derivative
 template<typename F, typename Conf, typename Change>
-fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_required_improvement, const sz over, output_container& history,
- visited* tried) { // x is I/O, final value is returned
+fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_required_improvement, const sz over, output_container* history,
+ visited* tried
+, bool global) { // x is I/O, final value is returned
 
 //	::print(f.v);printf("\n");
 //	printf("XOUYANG %lf\n",f.v[0]);
@@ -123,13 +124,18 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 //	printf("Amr\t X : "); outputFlv.clear(); x.getV(outputFlv);::print(outputFlv); printf("\n");
 
 
+#if WRITE_HISTORY
+	if(history)
+		history->push_back(new output_type(x, f0, global ? 10 : 7));//Global or local only
+#endif
 	if(tried){
 		if (!(/*f.m->*/tried->interesting(x, f0, g))) {
 			return f0;
 		}else{
 			/*f.m->*/tried->add(x, f0, g);
 #if WRITE_HISTORY
-			history.push_back(new output_type(x, f0));
+			if(history && global)
+				history->push_back(new output_type(x, f0, 2));//QVina accepted
 #endif
 		}
 	}
@@ -166,7 +172,8 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 		if (tried) {
 			/*f.m->*/tried->add(x, f0, g);
 #if WRITE_HISTORY
-			history.push_back(new output_type(x, f0));
+		if(history && !global)
+			history->push_back(new output_type(x, f0, 7));//local search only
 #endif
 		}
  	}

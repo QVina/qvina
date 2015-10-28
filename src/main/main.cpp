@@ -82,6 +82,7 @@ void write_all_output(model& m, const output_container& out, sz start, sz how_ma
 	ofile f(make_path(output_name));
 	VINA_RANGE(i, start, start+how_many) {
 		m.set(out[i].c);
+		m.setGlobal(out[i].global);
 		m.write_model(f, i+1, remarks[i-start]); // so that model numbers start with 1
 	}
 }
@@ -124,7 +125,8 @@ void refine_structure(model& m, const precalculate& prec, non_cache& nc, output_
 	output_container* nullOutputTypePointer=NULL;
 	VINA_FOR(p, 5) {
 		nc.slope = 100 * std::pow(10.0, 2.0*p);
-		quasi_newton_par(m, prec, nc, out, g, cap, *nullOutputTypePointer, NULL);
+		quasi_newton_par(m, prec, nc, out, g, cap, *nullOutputTypePointer, NULL
+, false);
 		m.set(out.c); // just to be sure
 		if(nc.within(m))
 			break;
@@ -160,7 +162,7 @@ void writeHistory(model& m, parallel_mc& par, tee& log) {
 			<< par.task_container.size();
 	log.endl();
 	log.flush();
-	const sz chunkSize = 1000;
+	const sz chunkSize = 10000;
 	VINA_FOR(i, par.task_container.size()){
 		parallel_mc_task task = par.task_container[i];
 		output_container& history = task.history;

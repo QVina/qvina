@@ -415,7 +415,9 @@ struct output_type {
 	conf c;
 	fl e;
 	vecv coords;
-	output_type(const conf& c_, fl e_) : c(c_), e(e_) {}
+	unsigned char global;
+	output_type(const conf& c_, fl e_) : c(c_), e(e_), global(false) {}
+	output_type(const conf& c_, fl e_, unsigned char global_) : c(c_), e(e_), global(global_) {}
 };
 
 typedef boost::ptr_vector<output_type> output_container;

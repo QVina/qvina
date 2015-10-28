@@ -168,7 +168,8 @@ void manifold::operator()(model& m, output_container& out, const precalculate& p
 		else {
 			quasi_newton quasi_newton_par; quasi_newton_par.max_steps = ssd_par.evals;
 			quasi_newton_par(m, p, ig, tmp, g, authentic_v,nullOutputTypeRef
-, NULL); //FIXME added tried by Amr without proper knowledge
+, NULL
+, false); //FIXME added tried by Amr without proper knowledge
 		}
 		m.set(tmp.c);
 		tmp.coords = m.get_heavy_atom_movable_coords();
