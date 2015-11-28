@@ -60,7 +60,7 @@ void parallel_mc::operator()(const model& m, output_container& out, const precal
 	parallel_mc_aux parallel_mc_aux_instance(&mc, &p, &ig, &p_widened, &ig_widened, &corner1, &corner2, (display_progress ? (&pp) : NULL));
 //	parallel_mc_task_container task_container;
 	VINA_FOR(i, num_tasks)
-		task_container.push_back(std::auto_ptr<parallel_mc_task>(new parallel_mc_task(m, random_int(0, 1000000, generator), new visited())));
+		task_container.push_back(std::auto_ptr<parallel_mc_task>(new parallel_mc_task(m, random_int(0, 1000000, generator), new circularvisited())));
 
 	if(display_progress) 
 		pp.init(num_tasks * mc.num_steps);

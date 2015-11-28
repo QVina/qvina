@@ -4,12 +4,16 @@
 #include <stdio.h>
 #include <math.h>
 #include <vector>
+//#include <boost/container/stable_vector.hpp>
 #include "conf.h"
 #include <algorithm>
 #include "common.h"
+#include <mutex>
+
 
 struct ele
 {
+
 	std::vector<double> x;	//the designing variables
 	double			    f;	//the function value
 //	std::vector<double> d;	//the deriatives
@@ -67,29 +71,75 @@ struct ele
 	}
 
 	double dist2(std::vector<double>);
+	double dist2_3D(std::vector<double>);
 
 	bool check(std::vector<double>, double, std::vector<double>);
 };
 
 
-struct visited {
+//class visited{
+//public:
+//	virtual bool interesting(conf x, double f,change g)=0;
+//	virtual bool add(conf conf_v, double f, change change_v)=0;
+//	virtual ~visited()=0;
+//};
+
+class linearvisited /*: public visited*/{
+private:
+	std::vector<ele> list;
+	linearvisited(){};
+	static linearvisited* instance;
+	linearvisited(const linearvisited& a);
+	linearvisited(linearvisited &a);
+	const linearvisited& operator=(const linearvisited& a);
+	std::mutex m;
+
+
+public:
+	static linearvisited* getInstance();
+
+
+
+	//	static linearvisited* getInstance(){
+//		static linearvisited self;
+//		return &self;
+//	}
+
+	bool interesting(conf x, double f,change g) ;
+
+	inline bool add(conf conf_v, double f, change change_v){
+		std::vector<double> tempx =std::vector<double>();
+		conf_v.getV(tempx);
+		std::vector<double> tempd =std::vector<double>();
+		change_v.getV(tempd);
+		ele* element = new ele(tempx, f, tempd);
+		//std::mutex m;
+		m.lock();
+		list.push_back(*element);
+		m.unlock();
+//		std::cout << "buffer size: " << (list.size()) << std::endl;
+		return true;
+	}
+};
+
+class circularvisited /*: public visited*/ {
 	std::vector<ele> list;
 	int n_variable;
 	int p;
 	bool full;
 	
+public:
 	inline int get_maxCheck(){
 //		return ceil(1.5*n_variable);
 		return 4*n_variable;
 	}
 
 	inline int get_maxSize(){
-		return 10*n_variable;
+		return 5*n_variable;
 	}
 
-	bool interesting(conf x, double f,change g);
 
-	visited(){
+	circularvisited(){
 //		std::cout<<"Visited Instance created"<<std::endl;
 		list=std::vector<ele>();
 		n_variable=0;
@@ -97,6 +147,7 @@ struct visited {
 		full=false;
 	}
 
+	bool interesting(conf x, double f,change g);
 	bool add(conf conf_v, double f, change change_v)
 	{
 		std::vector<double> tempx =std::vector<double>();

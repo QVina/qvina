@@ -729,6 +729,8 @@ Thank you!\n";
 		boost::optional<model> ref;
 		done(verbosity, log);
 
+		linearvisited::getInstance();//just to initialize the singleton
+
 		main_procedure(m, ref, 
 					out_name,
 					score_only, local_only, randomize_only, write_history, false, // no_cache == false

@@ -35,7 +35,7 @@ struct quasi_newton_aux {
 	}
 };
 
-void quasi_newton::operator()(model& m, const precalculate& p, const igrid& ig, output_type& out, change& g, const vec& v, output_container& history, visited* tried
+void quasi_newton::operator()(model& m, const precalculate& p, const igrid& ig, output_type& out, change& g, const vec& v, output_container& history, circularvisited* tried
 , bool global) const { // g must have correct size
 	quasi_newton_aux aux(&m, &p, &ig, v);
 //	std::cout<<"quasi_newton::operator()\n";

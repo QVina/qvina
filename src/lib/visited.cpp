@@ -8,6 +8,14 @@ double ele::dist2(std::vector<double> now){
 	}
 	return out;
 }
+double ele::dist2_3D(std::vector<double> now){
+	double out=0;
+	for (int i=0;i<3;i++){
+		double d = this->x[i] - now[i];
+		out += d * d;
+	}
+	return out;
+}
 //static bool comp(std::pair<int, double> p, std::pair<int, double> q)
 //{
 //	return (p.second<q.second);
@@ -71,7 +79,55 @@ bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now
 //	return false;
 }
 
-bool visited::interesting(conf x, double f, change g){
+linearvisited* linearvisited::instance = NULL;
+
+linearvisited* linearvisited::getInstance(){
+	if (linearvisited::instance ==NULL) {
+		static linearvisited self;
+		linearvisited::instance= & self;
+		std::cout << "lazy initialization done"<< std::endl;
+	}
+	return instance;
+}
+
+bool linearvisited::interesting(conf x, double f, change g) {
+	int len=list.size();
+
+	std::vector<double> conf_v;
+	x.getV(conf_v);
+	std::vector<double> change_v;
+	g.getV(change_v);
+	double dist[len];
+	bool maybeChecked[len];
+
+//	memset(maybeChecked,false,sizeof(maybeChecked));
+	//fill dist[] with distances from conf
+	int maxCheck=0;
+	for (int i=0;i<len;i++){
+		dist[i]=this->list[i].dist2_3D(conf_v);
+		maybeChecked[i]= dist[i] <= 100;//10^2, cutoff = 10
+		maxCheck++;
+	}
+
+	bool flag=false;
+	double min=1e10;
+	int p=0;
+//	const int maxCheck = get_maxCheck();
+	for (int i = 0; i < maxCheck; i++){
+		min=1e10;
+		for (int j=0;j<len;j++){
+			if (maybeChecked[j] && (dist[j]<min)){
+				p=j;
+				min=dist[j];
+			}
+		}
+		maybeChecked[p]=false;
+		flag=this->list[p].check(conf_v, f, change_v);
+		if (flag) break;
+	}
+	return flag;
+}
+bool circularvisited::interesting(conf x, double f, change g){
 
 //	printf("%d   %d\n", get_maxCheck(), get_maxSize());
 

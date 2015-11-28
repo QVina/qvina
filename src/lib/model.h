@@ -82,7 +82,7 @@ struct model {
 	sz ligand_longest_branch(sz ligand_number) const;
 	sz ligand_length(sz ligand_number) const;
 
-//	visited tried;
+//	linearvisited buffer_allthreads;
 	unsigned char global;
 
 	szv get_movable_atom_types(atom_type::t atom_typing_used_) const;

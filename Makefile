@@ -18,7 +18,7 @@ INCFLAGS = -I $(BOOST_INCLUDE)
 
 # -pedantic fails on Mac with Boost 1.41 (syntax problems in their headers)
 #CC = ${GPP} ${C_PLATFORM} -ansi -pedantic -Wno-long-long ${C_OPTIONS} $(INCFLAGS)
-CC = ${GPP} ${C_PLATFORM} -ansi -Wno-long-long ${C_OPTIONS} $(INCFLAGS)
+CC = ${GPP} ${C_PLATFORM} -ansi -Wno-long-long ${C_OPTIONS} $(INCFLAGS) -std=c++0x
 
 LDFLAGS = -L$(BASE)/lib -L.
 

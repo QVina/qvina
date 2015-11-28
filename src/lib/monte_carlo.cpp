@@ -82,7 +82,7 @@ output_type monte_carlo::many_runs(model& m, const precalculate& p, const igrid&
 */
 
 // out is sorted
-void monte_carlo::operator()(model& m, output_container& out, output_container& history, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, incrementable* increment_me, rng& generator, visited* tried) const {
+void monte_carlo::operator()(model& m, output_container& out, output_container& history, const precalculate& p, const igrid& ig, const precalculate& p_widened, const igrid& ig_widened, const vec& corner1, const vec& corner2, incrementable* increment_me, rng& generator, circularvisited* tried) const {
 	vec authentic_v(1000, 1000, 1000); // FIXME? this is here to avoid max_fl/max_fl
 	conf_size s = m.get_size();
 	change g(s);

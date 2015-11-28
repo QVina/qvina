@@ -101,9 +101,9 @@ void subtract_change(Change& b, const Change& a, sz n) { // b -= a
 //}
 //// N.B. y = individual numbers, f = function= y(x), g = delta f = first order derivative
 template<typename F, typename Conf, typename Change>
-fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_required_improvement, const sz over, output_container* history,
- visited* tried
-, bool global) { // x is I/O, final value is returned
+fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_required_improvement, const sz over, output_container* history
+		, circularvisited* tried
+		, bool global) { // x is I/O, final value is returned
 
 //	::print(f.v);printf("\n");
 //	printf("XOUYANG %lf\n",f.v[0]);
@@ -116,7 +116,7 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 	Change g_new(g);
 	Conf x_new(x);
 
-
+	linearvisited* buffer_allthreads = linearvisited::getInstance();
 
 	fl f0 = f(x, g); //evaluate the derivative of conf x in change g, and returns the the function value in f0
 
@@ -129,7 +129,7 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 		history->push_back(new output_type(x, f0, global ? 10 : 7));//Global or local only
 #endif
 	if(tried){
-		if (!(/*f.m->*/tried->interesting(x, f0, g))) {
+		if (!(/*f.p->*/buffer_allthreads->interesting(x, f0, g)||tried->interesting(x, f0, g))) {
 			return f0;
 		}else{
 			/*f.m->*/tried->add(x, f0, g);
@@ -170,19 +170,22 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 
 		bool h_updated = bfgs_update(h, p, y, alpha);//updates h only
 		if (tried) {
-			/*f.m->*/tried->add(x, f0, g);
+			tried->add(x, f0, g);
 #if WRITE_HISTORY
 		if(history && !global)
 			history->push_back(new output_type(x, f0, 7));//local search only
 #endif
 		}
  	}
+	if (!global)
+		/*f.p->*/buffer_allthreads->add(x, f0, g);//TODO later we shall add in only either this or the last one of the loop
+
 	if(!(f0 <= f_orig)) { // succeeds for nans too
 		f0 = f_orig;
 		x = x_orig;
 		g = g_orig;
 	}
-		
+
 //	f.m->tried.add(x,g);
 //		printf("%d\n",f.m->tried.size());
  
