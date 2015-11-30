@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 #include <math.h>
-#include <vector>
-//#include <boost/container/stable_vector.hpp>
+//#include <vector>
+#include <boost/container/stable_vector.hpp>
 #include "conf.h"
 #include <algorithm>
 #include "common.h"
@@ -86,7 +86,7 @@ struct ele
 
 class linearvisited /*: public visited*/{
 private:
-	std::vector<ele> list;
+	boost::container::stable_vector<ele> list;
 	linearvisited(){};
 	static linearvisited* instance;
 	linearvisited(const linearvisited& a);
@@ -123,7 +123,7 @@ public:
 };
 
 class circularvisited /*: public visited*/ {
-	std::vector<ele> list;
+	boost::container::stable_vector<ele> list;
 	int n_variable;
 	int p;
 	bool full;
@@ -141,7 +141,7 @@ public:
 
 	circularvisited(){
 //		std::cout<<"Visited Instance created"<<std::endl;
-		list=std::vector<ele>();
+		list=boost::container::stable_vector<ele>();
 		n_variable=0;
 		p=0;
 		full=false;

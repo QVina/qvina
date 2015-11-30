@@ -2,16 +2,16 @@
 
 double ele::dist2(std::vector<double> now){
 	double out=0;
-	for (int i=0;i<size();i++){
-		double d = this->x[i] - now[i];
+	for (int i=0; i < size(); i++){
+		double d = x[i] - now[i];
 		out += d * d;
 	}
 	return out;
 }
 double ele::dist2_3D(std::vector<double> now){
-	double out=0;
+	double d, out=0;
 	for (int i=0;i<3;i++){
-		double d = this->x[i] - now[i];
+		d = x[i] - now[i];
 		out += d * d;
 	}
 	return out;
@@ -32,14 +32,14 @@ bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now
 	bool newXBigger, newYBigger;
 	const long long ONE=0x0000000000000001;
 	long long bitMask;
-	newYBigger=(now_f - this->f) > 0;
+	newYBigger=(now_f - f) > 0;
 //	bool effect=false;
 
 	int nowDSize = now_d.size();
 	for (int i = 0; i < nowDSize; i++) {
 		bitMask = ONE << i;
 
-		if((this->d_zero & bitMask) || !(now_d[i])){//if any of them is zero
+		if((d_zero & bitMask) || !(now_d[i])){//if any of them is zero
 //			counter++;//no need currently
 			continue;
 		}else{
