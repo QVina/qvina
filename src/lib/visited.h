@@ -8,8 +8,14 @@
 #include "conf.h"
 #include <algorithm>
 #include "common.h"
-#include <mutex>
+//#include <mutex>
+#include <boost/thread/locks.hpp>
+#include <boost/thread/shared_mutex.hpp>
 
+
+typedef boost::shared_mutex ReadWriteLock;
+typedef boost::unique_lock< ReadWriteLock > WriteLock;
+typedef boost::shared_lock< ReadWriteLock > ReadLock;
 
 struct ele
 {
@@ -25,10 +31,11 @@ struct ele
 	long long d_zero;// if zero, bit=1; if not zero, bit=0
 	long long d_positive;// positive, bit=1; negative, bit=0
 
-	ele(std::vector<double> x_, double f_, std::vector<double> d_)
+	ele(std::vector<double> x_, double f_, std::vector<double> d_): x(std::vector<double>(x_)),f(f_)
 	{
-		this->x=std::vector<double>(x_);
-		this->f= f_;
+//		this->x=std::vector<double>(x_);
+//		this->f= f_;
+
 //		this->d=std::vector<double>(d_);
 		d_zero=0x0000000000000000;
 		d_positive=0x0000000000000000;
@@ -47,11 +54,6 @@ struct ele
 				d_positive |= bitMask;
 		}
 	}
-
-//	ele(){
-////		this->x=NULL;
-////		this->d=NULL;
-//	}
 
 	inline long long getMask()
 	{
@@ -76,34 +78,21 @@ struct ele
 	bool check(std::vector<double>, double, std::vector<double>);
 };
 
-
-//class visited{
-//public:
-//	virtual bool interesting(conf x, double f,change g)=0;
-//	virtual bool add(conf conf_v, double f, change change_v)=0;
-//	virtual ~visited()=0;
-//};
-
 class linearvisited /*: public visited*/{
+public:
 private:
+	ReadWriteLock myLock;
 	boost::container::stable_vector<ele> list;
-	linearvisited(){};
+	linearvisited(){
+		list=boost::container::stable_vector<ele>();
+	};
 	static linearvisited* instance;
 	linearvisited(const linearvisited& a);
 	linearvisited(linearvisited &a);
 	const linearvisited& operator=(const linearvisited& a);
-	std::mutex m;
-
 
 public:
 	static linearvisited* getInstance();
-
-
-
-	//	static linearvisited* getInstance(){
-//		static linearvisited self;
-//		return &self;
-//	}
 
 	bool interesting(conf x, double f,change g) ;
 
@@ -113,11 +102,21 @@ public:
 		std::vector<double> tempd =std::vector<double>();
 		change_v.getV(tempd);
 		ele* element = new ele(tempx, f, tempd);
-		//std::mutex m;
-		m.lock();
-		list.push_back(*element);
-		m.unlock();
-//		std::cout << "buffer size: " << (list.size()) << std::endl;
+
+		boost::container::stable_vector<ele>::size_type listCapacity = list.capacity();
+//		boost::container::stable_vector<ele>::size_type listSize = list.size();
+//		std::cout << listSize << "\t" <<listCapacity << std::endl;
+		if (listCapacity <= list.size() ) {//can be < in case a new thread attempts to add before the condition
+			WriteLock w_lock(myLock);
+			list.reserve(listCapacity << 1);
+		}
+
+		{
+			WriteLock w_lock(myLock);
+			list.push_back(*element);
+//			w_lock.unlock();
+		}
+
 		return true;
 	}
 };

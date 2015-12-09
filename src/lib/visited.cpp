@@ -99,20 +99,25 @@ bool linearvisited::interesting(conf x, double f, change g) {
 	g.getV(change_v);
 	double dist[len];
 	bool maybeChecked[len];
-
 //	memset(maybeChecked,false,sizeof(maybeChecked));
+
 	//fill dist[] with distances from conf
 	int maxCheck=0;
+	ReadLock r_lock(myLock);
 	for (int i=0;i<len;i++){
 		dist[i]=this->list[i].dist2_3D(conf_v);
 		maybeChecked[i]= dist[i] <= 100;//10^2, cutoff = 10
 		maxCheck++;
+
 	}
+//	r_lock.unlock();
 
 	bool flag=false;
 	double min=1e10;
 	int p=0;
 //	const int maxCheck = get_maxCheck();
+
+//	r_lock.lock();
 	for (int i = 0; i < maxCheck; i++){
 		min=1e10;
 		for (int j=0;j<len;j++){
@@ -125,6 +130,7 @@ bool linearvisited::interesting(conf x, double f, change g) {
 		flag=this->list[p].check(conf_v, f, change_v);
 		if (flag) break;
 	}
+	r_lock.unlock();
 	return flag;
 }
 bool circularvisited::interesting(conf x, double f, change g){
