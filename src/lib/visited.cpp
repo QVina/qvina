@@ -90,7 +90,13 @@ linearvisited* linearvisited::getInstance(){
 	return instance;
 }
 
-bool linearvisited::interesting(conf x, double f, change g) {
+/**
+ * returns -1 if interesting (found at least one point with accepted condition),
+ * or a number >=0 indicating number of done checks otherwise (if nothing is found).
+ */
+int linearvisited::interesting(conf x, double f, change g, int excluded) {
+	//n.b. excluded is not used. it is here only for homology with the other function
+
 	int len=list.size();
 
 	std::vector<double> conf_v;
@@ -102,14 +108,16 @@ bool linearvisited::interesting(conf x, double f, change g) {
 //	memset(maybeChecked,false,sizeof(maybeChecked));
 
 	//fill dist[] with distances from conf
-	int maxCheck=0;
+	int count=0;
 	ReadLock r_lock(myLock);
+
+
 	for (int i=0;i<len;i++){
 		dist[i]=this->list[i].dist2_3D(conf_v);
-		maybeChecked[i]= dist[i] <= 100;//10^2, cutoff = 10
-		maxCheck++;
-
+		maybeChecked[i]= dist[i] <= 25.0;// (cutoff = 5 )^2
+		count++;
 	}
+//	}
 //	r_lock.unlock();
 
 	bool flag=false;
@@ -118,7 +126,11 @@ bool linearvisited::interesting(conf x, double f, change g) {
 //	const int maxCheck = get_maxCheck();
 
 //	r_lock.lock();
-	for (int i = 0; i < maxCheck; i++){
+	const int grandMaxCheck= 1 * conf_v.size();
+	const int maxCheck= (count<= grandMaxCheck)? count:grandMaxCheck;
+
+	int i = 0;
+	for ( ; i < maxCheck; i++){
 		min=1e10;
 		for (int j=0;j<len;j++){
 			if (maybeChecked[j] && (dist[j]<min)){
@@ -127,62 +139,58 @@ bool linearvisited::interesting(conf x, double f, change g) {
 			}
 		}
 		maybeChecked[p]=false;
-		flag=this->list[p].check(conf_v, f, change_v);
-		if (flag) break;
+		if (this->list[p].check(conf_v, f, change_v))
+			return -1; //i.e. return success
 	}
 	r_lock.unlock();
-	return flag;
+	return i;
 }
-bool circularvisited::interesting(conf x, double f, change g){
+
+int circularvisited::interesting(conf x, double f, change g, int excluded){
 
 //	printf("%d   %d\n", get_maxCheck(), get_maxSize());
 
-
 	int len=size();
-		if (len==0){
-			return true;
-		} 
-		else
-		{
-//			if (len<2*n_variable)
-			if (!full){
-//				printf("len==%d<%d\n",len,10*n_variable);
-				return true;
-			}
-			else
-			{
-				std::vector<double> conf_v;
-				x.getV(conf_v);
-				std::vector<double> change_v;
-				g.getV(change_v);
-				double dist[len];
-				bool notPicked[len];
-
-				memset(notPicked,true,sizeof(notPicked));
-				//fill dist[] with distances from conf
-				for (int i=0;i<len;i++){
-					dist[i]=this->get(i).dist2(conf_v);
-				} 
-
-				bool flag=false;
-				double min=1e10;
-				int p=0;
-				const int maxCheck = get_maxCheck();
-				for (int i = 0; i < maxCheck; i++){
-					min=1e10;
-					for (int j=0;j<len;j++){
-						if (notPicked[j] && (dist[j]<min)){
-							p=j;
-							min=dist[j];
-						}
-					}
-					notPicked[p]=false;
-					flag=this->get(p).check(conf_v, f, change_v);
-					if (flag) break;
-				}
-				return flag;
-			}
-		}
-		return true;	
+	if (len==0){
+		return -1; //i.e. interesting
 	}
+	else{
+//		if (len<2*n_variable)
+		if (!full){
+//			printf("len==%d<%d\n",len,10*n_variable);
+			return -1; //i.e. interesting
+		}
 
+		std::vector<double> conf_v;
+		x.getV(conf_v);
+		std::vector<double> change_v;
+		g.getV(change_v);
+		double dist[len];
+		bool notPicked[len];
+
+		memset(notPicked,true,sizeof(notPicked));
+		//fill dist[] with distances from conf
+		for (int i=0;i<len;i++){
+			dist[i]=this->get(i).dist2(conf_v);
+		}
+
+//		bool flag=false;
+		double min=1e10;
+		int p=0;
+		const int maxCheck = get_maxCheck()-excluded;
+		int i = 0;
+		for ( ; i < maxCheck; i++){
+			min=1e10;
+			for (int j=0;j<len;j++){
+				if (notPicked[j] && (dist[j]<min)){
+					p=j;
+					min=dist[j];
+				}
+			}
+			notPicked[p]=false;
+			if (this->get(p).check(conf_v, f, change_v))
+				return -1; //i.e. interesting
+		}
+		return i;//i.e. not interesting after checking i points
+	}
+}

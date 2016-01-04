@@ -129,8 +129,11 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 		history->push_back(new output_type(x, f0, global ? 10 : 7));//Global or local only
 #endif
 	if(tried){
-		if (!(/*f.p->*/buffer_allthreads->interesting(x, f0, g)||tried->interesting(x, f0, g))) {
-			return f0;
+//		if (!(/*f.p->*/buffer_allthreads->interesting(x, f0, g, 0)||tried->interesting(x, f0, g, ret))) {
+
+		int ret;
+		if ((ret = /*f.p->*/buffer_allthreads->interesting(x, f0, g, 0)) >= 0 && tried->interesting(x, f0, g, ret) >= 0){
+			return f0;//i.e. failed
 		}else{
 			/*f.m->*/tried->add(x, f0, g);
 #if WRITE_HISTORY

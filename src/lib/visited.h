@@ -94,7 +94,7 @@ private:
 public:
 	static linearvisited* getInstance();
 
-	bool interesting(conf x, double f,change g) ;
+	int interesting(conf x, double f,change g, int excluded) ;
 
 	inline bool add(conf conf_v, double f, change change_v){
 		std::vector<double> tempx =std::vector<double>();
@@ -129,7 +129,6 @@ class circularvisited /*: public visited*/ {
 	
 public:
 	inline int get_maxCheck(){
-//		return ceil(1.5*n_variable);
 		return 4*n_variable;
 	}
 
@@ -146,7 +145,8 @@ public:
 		full=false;
 	}
 
-	bool interesting(conf x, double f,change g);
+	int interesting(conf x, double f,change g, int excluded) ;
+
 	bool add(conf conf_v, double f, change change_v)
 	{
 		std::vector<double> tempx =std::vector<double>();
