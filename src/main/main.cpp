@@ -729,7 +729,10 @@ Thank you!\n";
 		boost::optional<model> ref;
 		done(verbosity, log);
 
-		linearvisited::getInstance();//just to initialize the singleton
+//		linearvisited::getInstance();//just to initialize the singleton
+		Octree::setDefaultOrigin(Vec3(center_x,center_y,center_z));
+		Octree::setDefaultHalfDimension(Vec3(size_x,size_y,size_z));
+		Octree::getInstance();
 
 		main_procedure(m, ref, 
 					out_name,

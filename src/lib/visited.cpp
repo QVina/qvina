@@ -79,12 +79,84 @@ bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now
 //	return false;
 }
 
-linearvisited* linearvisited::instance = NULL;
+//linearvisited* linearvisited::instance = NULL;
+//
+//linearvisited* linearvisited::getInstance(){
+//	if (linearvisited::instance ==NULL) {
+//		static linearvisited self;
+//		linearvisited::instance= & self;
+//		std::cout << "lazy initialization done"<< std::endl;
+//	}
+//	return instance;
+//}
+//
+///**
+// * returns -1 if interesting (found at least one point with accepted condition),
+// * or a number >=0 indicating number of done checks otherwise (if nothing is found).
+// */
+//int linearvisited::interesting(conf x, double f, change g, int excluded) {
+//	//n.b. excluded is not used. it is here only for homology with the other function
+//
+//	int len=list.size();
+//
+//	std::vector<double> conf_v;
+//	x.getV(conf_v);
+//	std::vector<double> change_v;
+//	g.getV(change_v);
+//	double dist[len];
+//	bool maybeChecked[len];
+////	memset(maybeChecked,false,sizeof(maybeChecked));
+//
+//	//fill dist[] with distances from conf
+//	int count=0;
+//	ReadLock r_lock(myLock);
+//
+//
+//	for (int i=0;i<len;i++){
+//		dist[i]=this->list[i].dist2_3D(conf_v);
+//		maybeChecked[i]= dist[i] <= 25.0;// (cutoff = 5 )^2
+//		count++;
+//	}
+////	}
+////	r_lock.unlock();
+//
+//	bool flag=false;
+//	double min=1e10;
+//	int p=0;
+////	const int maxCheck = get_maxCheck();
+//
+////	r_lock.lock();
+//	const int grandMaxCheck= 1 * conf_v.size();
+//	const int maxCheck= (count<= grandMaxCheck)? count:grandMaxCheck;
+//
+//	int i = 0;
+//	for ( ; i < maxCheck; i++){
+//		min=1e10;
+//		for (int j=0;j<len;j++){
+//			if (maybeChecked[j] && (dist[j]<min)){
+//				p=j;
+//				min=dist[j];
+//			}
+//		}
+//		maybeChecked[p]=false;
+//		if (this->list[p].check(conf_v, f, change_v))
+//			return -1; //i.e. return success
+//	}
+//	r_lock.unlock();
+//	return i;
+//}
 
-linearvisited* linearvisited::getInstance(){
-	if (linearvisited::instance ==NULL) {
-		static linearvisited self;
-		linearvisited::instance= & self;
+
+
+//just initialize the defaults outside the class to have any reference to them later
+Vec3 Octree::defaultHalfDimension;
+Vec3 Octree::defaultOrigin;
+//Singleton design pattern
+Octree* Octree::instance=NULL;
+Octree* Octree::getInstance(){
+	if (!instance) {
+		static Octree self;
+		Octree::instance = & self;
 		std::cout << "lazy initialization done"<< std::endl;
 	}
 	return instance;
@@ -94,55 +166,47 @@ linearvisited* linearvisited::getInstance(){
  * returns -1 if interesting (found at least one point with accepted condition),
  * or a number >=0 indicating number of done checks otherwise (if nothing is found).
  */
-int linearvisited::interesting(conf x, double f, change g, int excluded) {
+int Octree::interesting(conf x, double f, change g, int excluded) {
 	//n.b. excluded is not used. it is here only for homology with the other function
 
-	int len=list.size();
 
+	float cutoff=5.0;
 	std::vector<double> conf_v;
 	x.getV(conf_v);
 	std::vector<double> change_v;
 	g.getV(change_v);
-	double dist[len];
-	bool maybeChecked[len];
-//	memset(maybeChecked,false,sizeof(maybeChecked));
+	std::vector<ele> nearbyPoints;
+	std::vector<double> distances;
+	Vec3 bmin(conf_v[0], conf_v[1], conf_v[2]);
+	bmin= bmin-cutoff;//TODO if there is no operator overloading for this function, you have to implement it
+	Vec3 bmax(conf_v[0], conf_v[1], conf_v[2]);
+	bmax = bmax+cutoff;
+	getPointsWithinCutoff(cutoff*cutoff,conf_v, bmin, bmax, nearbyPoints, distances);
 
-	//fill dist[] with distances from conf
-	int count=0;
-	ReadLock r_lock(myLock);
+	int len=nearbyPoints.size();
+	bool notYetChecked[len];
+	memset(notYetChecked,true,sizeof(notYetChecked));
 
+	const int grandMaxCheck= 1 * conf_v.size(); //1N in this case
+	const int maxCheck= (nearbyPoints.size()<= grandMaxCheck)? nearbyPoints.size():grandMaxCheck;
 
-	for (int i=0;i<len;i++){
-		dist[i]=this->list[i].dist2_3D(conf_v);
-		maybeChecked[i]= dist[i] <= 25.0;// (cutoff = 5 )^2
-		count++;
-	}
-//	}
-//	r_lock.unlock();
-
-	bool flag=false;
 	double min=1e10;
-	int p=0;
-//	const int maxCheck = get_maxCheck();
-
-//	r_lock.lock();
-	const int grandMaxCheck= 1 * conf_v.size();
-	const int maxCheck= (count<= grandMaxCheck)? count:grandMaxCheck;
-
-	int i = 0;
+	int i=0; //counts checked done so far
+	int p; //pointer to current nearest point
 	for ( ; i < maxCheck; i++){
 		min=1e10;
 		for (int j=0;j<len;j++){
-			if (maybeChecked[j] && (dist[j]<min)){
+			if (notYetChecked[j] && (distances[j] <= min)){
 				p=j;
-				min=dist[j];
+				min=distances[p];
 			}
 		}
-		maybeChecked[p]=false;
-		if (this->list[p].check(conf_v, f, change_v))
+		notYetChecked[p]=false;
+
+		if (nearbyPoints[p].check(conf_v, f, change_v)){
 			return -1; //i.e. return success
+		}
 	}
-	r_lock.unlock();
 	return i;
 }
 

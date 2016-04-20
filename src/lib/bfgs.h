@@ -116,7 +116,8 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 	Change g_new(g);
 	Conf x_new(x);
 
-	linearvisited* buffer_allthreads = linearvisited::getInstance();
+//	linearvisited* buffer_allthreads = linearvisited::getInstance();
+	Octree* buffer_allthreads = Octree::getInstance();
 
 	fl f0 = f(x, g); //evaluate the derivative of conf x in change g, and returns the the function value in f0
 
