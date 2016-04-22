@@ -147,13 +147,19 @@ struct Vec3 {
 	Vec3 operator*(float r) const {
 		return Vec3(x*r,y*r,z*r);
 	}
+	bool operator<(const Vec3& o){
+		return x<o.x && y< o.y && z<o.z;
+	}
 };
 
 class Octree {
+	constexpr static float CUTOFF = 5.0f;
+	static Vec3 MINIMUM_HALFDIMENSION;// = new const Vec3(0.01,1.01,0.01);
 	const static int MAX_FRUITS=8;
 	static Octree* instance;
 	static Vec3 defaultOrigin;
 	static Vec3 defaultHalfDimension;
+	ReadWriteLock lock;
 
 
 	// Physical position/size. This implicitly defines the bounding
@@ -187,7 +193,6 @@ public:
 		std::vector<double> tempd =std::vector<double>();
 		change_v.getV(tempd);
 		ele* element = new ele(tempx, f, tempd);
-
 		return insert(element);
 	}
 
@@ -198,7 +203,7 @@ public:
 		for(int i=0; i<8; ++i)
 			children[i] = NULL;
 	}
-	Octree(const Octree& copy): origin(copy.origin), halfDimension(copy.halfDimension), data(copy.data) {}
+//	Octree(const Octree& copy): origin(copy.origin), halfDimension(copy.halfDimension), data(copy.data) {}
 
 	~Octree() {
 		// Recursively destroy octants
@@ -240,7 +245,9 @@ public:
 
 			std::vector<ele>& data= *this->data;
 			// if size less than maximum points, just add the element
+			//also if the cell size became too small to divide, override the maximum content condition and just add.
 			if(data.size()<MAX_FRUITS){
+				WriteLock w_lock(lock);
 				data.push_back(*point);
 				return true;
 			} else {
@@ -249,23 +256,23 @@ public:
 
 				// Split the current node and create new empty trees for each
 				// child octant.
-				double lowX = origin.x - halfDimension.x*0.5;
-				double highX= origin.x + halfDimension.x*0.5;
-				double lowY = origin.y - halfDimension.y*0.5;
-				double highY= origin.y + halfDimension.y*0.5;
-				double lowZ = origin.z - halfDimension.z*0.5;
-				double highZ= origin.z + halfDimension.z*0.5;
+				double lowX = origin.x - halfDimension.x / 2.0;
+				double highX= origin.x + halfDimension.x / 2.0;
+				double lowY = origin.y - halfDimension.y / 2.0;
+				double highY= origin.y + halfDimension.y / 2.0;
+				double lowZ = origin.z - halfDimension.z / 2.0;
+				double highZ= origin.z + halfDimension.z / 2.0;
+//				std::cout<< (halfDimension.x /2.0) << std::endl;
 				for(int i=0; i<8; ++i) {
 					// Compute new bounding box for this child
 					Vec3 newOrigin;
 					newOrigin.x = i&1 ? highX : lowX;
 					newOrigin.y = i&2 ? highY : lowY;
 					newOrigin.z = i&4 ? highZ : lowZ;
-					children[i] = new Octree(newOrigin, (halfDimension* 0.5f));
+					children[i] = new Octree(newOrigin, (halfDimension * 0.5));
 				}
 
-				//raise the internal node flag
-				this->internal=true;
+				WriteLock w_lock(lock);
 				// Re-insert the old point, and insert this new point
 				// (We wouldn't need to insert from the root, because we already
 				// know it's guaranteed to be in this section of the tree)
@@ -274,6 +281,8 @@ public:
 					children[getOctantContainingPoint(oldPoint.x)]->insert(&oldPoint);
 				}
 				children[getOctantContainingPoint(point->x)]->insert(point);
+				//raise the internal node flag
+				this->internal=true;
 				return true;
 			}
 		}
@@ -303,6 +312,7 @@ public:
 			}
 		}else {
 			if(data) {
+				ReadLock r_lock(lock);
 				std::vector<ele>& data = *this->data;
 				for (int i= 0; i < data.size(); ++i) {
 					const std::vector<double>& p = data[i].x;

@@ -151,6 +151,7 @@ bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now
 //just initialize the defaults outside the class to have any reference to them later
 Vec3 Octree::defaultHalfDimension;
 Vec3 Octree::defaultOrigin;
+Vec3 Octree::MINIMUM_HALFDIMENSION = Vec3(0.1, 0.1, 0.1);
 //Singleton design pattern
 Octree* Octree::instance=NULL;
 Octree* Octree::getInstance(){
@@ -169,19 +170,15 @@ Octree* Octree::getInstance(){
 int Octree::interesting(conf x, double f, change g, int excluded) {
 	//n.b. excluded is not used. it is here only for homology with the other function
 
-
-	float cutoff=5.0;
 	std::vector<double> conf_v;
 	x.getV(conf_v);
 	std::vector<double> change_v;
 	g.getV(change_v);
 	std::vector<ele> nearbyPoints;
 	std::vector<double> distances;
-	Vec3 bmin(conf_v[0], conf_v[1], conf_v[2]);
-	bmin= bmin-cutoff;//TODO if there is no operator overloading for this function, you have to implement it
-	Vec3 bmax(conf_v[0], conf_v[1], conf_v[2]);
-	bmax = bmax+cutoff;
-	getPointsWithinCutoff(cutoff*cutoff,conf_v, bmin, bmax, nearbyPoints, distances);
+	Vec3 bmin(conf_v[0]-CUTOFF, conf_v[1]-CUTOFF, conf_v[2]-CUTOFF);
+	Vec3 bmax(conf_v[0]+CUTOFF, conf_v[1]+CUTOFF, conf_v[2]+CUTOFF);
+	getPointsWithinCutoff(CUTOFF*CUTOFF,conf_v, bmin, bmax, nearbyPoints, distances);
 
 	int len=nearbyPoints.size();
 	bool notYetChecked[len];
