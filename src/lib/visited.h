@@ -246,7 +246,7 @@ public:
 			std::vector<ele>& data= *this->data;
 			// if size less than maximum points, just add the element
 			//also if the cell size became too small to divide, override the maximum content condition and just add.
-			if(data.size()<MAX_FRUITS){
+			if(data.size()<MAX_FRUITS || halfDimension < MINIMUM_HALFDIMENSION){
 				WriteLock w_lock(lock);
 				data.push_back(*point);
 				return true;
