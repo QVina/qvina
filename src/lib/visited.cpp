@@ -25,8 +25,7 @@ double ele::dist2_3D(std::vector<double> now){
  * 1- I check also the value of f
  * 2- point is considered interesting if only half of number of variables contains stationary points
 */
-bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now_d)
-{
+bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now_d) const {
 	bool out=false;
 //	int counter=0;//no need currently
 	bool newXBigger, newYBigger;
@@ -79,75 +78,7 @@ bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now
 //	return false;
 }
 
-//linearvisited* linearvisited::instance = NULL;
-//
-//linearvisited* linearvisited::getInstance(){
-//	if (linearvisited::instance ==NULL) {
-//		static linearvisited self;
-//		linearvisited::instance= & self;
-//		std::cout << "lazy initialization done"<< std::endl;
-//	}
-//	return instance;
-//}
-//
-///**
-// * returns -1 if interesting (found at least one point with accepted condition),
-// * or a number >=0 indicating number of done checks otherwise (if nothing is found).
-// */
-//int linearvisited::interesting(conf x, double f, change g, int excluded) {
-//	//n.b. excluded is not used. it is here only for homology with the other function
-//
-//	int len=list.size();
-//
-//	std::vector<double> conf_v;
-//	x.getV(conf_v);
-//	std::vector<double> change_v;
-//	g.getV(change_v);
-//	double dist[len];
-//	bool maybeChecked[len];
-////	memset(maybeChecked,false,sizeof(maybeChecked));
-//
-//	//fill dist[] with distances from conf
-//	int count=0;
-//	ReadLock r_lock(myLock);
-//
-//
-//	for (int i=0;i<len;i++){
-//		dist[i]=this->list[i].dist2_3D(conf_v);
-//		maybeChecked[i]= dist[i] <= 25.0;// (cutoff = 5 )^2
-//		count++;
-//	}
-////	}
-////	r_lock.unlock();
-//
-//	bool flag=false;
-//	double min=1e10;
-//	int p=0;
-////	const int maxCheck = get_maxCheck();
-//
-////	r_lock.lock();
-//	const int grandMaxCheck= 1 * conf_v.size();
-//	const int maxCheck= (count<= grandMaxCheck)? count:grandMaxCheck;
-//
-//	int i = 0;
-//	for ( ; i < maxCheck; i++){
-//		min=1e10;
-//		for (int j=0;j<len;j++){
-//			if (maybeChecked[j] && (dist[j]<min)){
-//				p=j;
-//				min=dist[j];
-//			}
-//		}
-//		maybeChecked[p]=false;
-//		if (this->list[p].check(conf_v, f, change_v))
-//			return -1; //i.e. return success
-//	}
-//	r_lock.unlock();
-//	return i;
-//}
-
-
-
+template<class T> using min_heap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 //just initialize the defaults outside the class to have any reference to them later
 Vec3 Octree::defaultHalfDimension;
 Vec3 Octree::defaultOrigin;
@@ -174,11 +105,10 @@ int Octree::interesting(conf x, double f, change g, int excluded) {
 	x.getV(conf_v);
 	std::vector<double> change_v;
 	g.getV(change_v);
-	std::vector<ele> nearbyPoints;
-	std::vector<double> distances;
+	min_heap<Envelop> nearbyPoints;
 	Vec3 bmin(conf_v[0]-CUTOFF, conf_v[1]-CUTOFF, conf_v[2]-CUTOFF);
 	Vec3 bmax(conf_v[0]+CUTOFF, conf_v[1]+CUTOFF, conf_v[2]+CUTOFF);
-	getPointsWithinCutoff(CUTOFF*CUTOFF,conf_v, bmin, bmax, nearbyPoints, distances);
+	getPointsWithinCutoff(CUTOFF*CUTOFF,conf_v, bmin, bmax, nearbyPoints);
 
 	int len=nearbyPoints.size();
 	bool notYetChecked[len];
@@ -187,22 +117,12 @@ int Octree::interesting(conf x, double f, change g, int excluded) {
 	const int grandMaxCheck= 1 * conf_v.size(); //1N in this case
 	const int maxCheck= (nearbyPoints.size()<= grandMaxCheck)? nearbyPoints.size():grandMaxCheck;
 
-	double min=1e10;
 	int i=0; //counts checked done so far
-	int p; //pointer to current nearest point
 	for ( ; i < maxCheck; i++){
-		min=1e10;
-		for (int j=0;j<len;j++){
-			if (notYetChecked[j] && (distances[j] <= min)){
-				p=j;
-				min=distances[p];
-			}
-		}
-		notYetChecked[p]=false;
-
-		if (nearbyPoints[p].check(conf_v, f, change_v)){
+		if (nearbyPoints.top().elem.check(conf_v, f, change_v)){
 			return -1; //i.e. return success
 		}
+		nearbyPoints.pop();
 	}
 	return i;
 }

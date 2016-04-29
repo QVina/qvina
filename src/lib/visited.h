@@ -3,12 +3,15 @@
 
 #include <stdio.h>
 #include <math.h>
-//#include <vector>
 #include <boost/container/stable_vector.hpp>
+#include <cstdlib>
+#include <queue>
 #include "conf.h"
 #include <algorithm>
+#include <functional>
 #include "common.h"
 //#include <mutex>
+//#include <vector>
 #include <boost/thread/locks.hpp>
 #include <boost/thread/shared_mutex.hpp>
 
@@ -75,51 +78,8 @@ struct ele
 	double dist2(std::vector<double>);
 	double dist2_3D(std::vector<double>);
 
-	bool check(std::vector<double>, double, std::vector<double>);
+	bool check(std::vector<double>, double, std::vector<double>) const;
 };
-
-//class linearvisited /*: public visited*/{
-//public:
-//private:
-//	ReadWriteLock myLock;
-//	boost::container::stable_vector<ele> list;
-//	linearvisited(){
-//		list=boost::container::stable_vector<ele>();
-//	};
-//	static linearvisited* instance;
-//	linearvisited(const linearvisited& a);
-//	linearvisited(linearvisited &a);
-//	const linearvisited& operator=(const linearvisited& a);
-//
-//public:
-//	static linearvisited* getInstance();
-//
-//	int interesting(conf x, double f,change g, int excluded) ;
-//
-//	inline bool add(conf conf_v, double f, change change_v){
-//		std::vector<double> tempx =std::vector<double>();
-//		conf_v.getV(tempx);
-//		std::vector<double> tempd =std::vector<double>();
-//		change_v.getV(tempd);
-//		ele* element = new ele(tempx, f, tempd);
-//
-//		boost::container::stable_vector<ele>::size_type listCapacity = list.capacity();
-////		boost::container::stable_vector<ele>::size_type listSize = list.size();
-////		std::cout << listSize << "\t" <<listCapacity << std::endl;
-//		if (listCapacity <= list.size() ) {//can be < in case a new thread attempts to add before the condition
-//			WriteLock w_lock(myLock);
-//			list.reserve(listCapacity << 1);
-//		}
-//
-//		{
-//			WriteLock w_lock(myLock);
-//			list.push_back(*element);
-////			w_lock.unlock();
-//		}
-//
-//		return true;
-//	}
-//};
 
 struct Vec3 {
 	union {
@@ -141,16 +101,33 @@ struct Vec3 {
 		return Vec3(x+f, y+f, z+f);
 	}
 	Vec3 operator-(float f) const {
-			return Vec3(x-f, y-f, z-f);
+		return Vec3(x-f, y-f, z-f);
 	}
-
 	Vec3 operator*(float r) const {
 		return Vec3(x*r,y*r,z*r);
+	}
+	Vec3 operator/(float r) const {
+		return Vec3(x/r,y/r,z/r);
 	}
 	bool operator<(const Vec3& o){
 		return x<o.x && y< o.y && z<o.z;
 	}
 };
+
+class Envelop{
+public:
+	ele elem;
+	double dist2;
+	Envelop(const ele& ele_, const double dist2_):elem(ele_),dist2(dist2_){}
+	const bool operator<(const Envelop& rhs)const{
+		return dist2 < rhs.dist2;
+	}
+	const bool operator>(const Envelop& rhs)const{
+		return dist2 > rhs.dist2;
+	}
+};
+
+template<class T> using min_heap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 class Octree {
 	constexpr static float CUTOFF = 5.0f;
@@ -161,7 +138,6 @@ class Octree {
 	static Vec3 defaultHalfDimension;
 	ReadWriteLock lock;
 
-
 	// Physical position/size. This implicitly defines the bounding
 	// box of this node
 	Vec3 origin;         //! The physical center of this node
@@ -171,6 +147,7 @@ class Octree {
 	// a point, though in many applications only, the leaves will store data.
 	Octree* children[8]; //! Pointers to child octants
 	bool internal=false;
+	bool terminal=false; //smallest possible size. No more division
 	std::vector<ele> *data=NULL;
 
 	/*
@@ -195,7 +172,6 @@ public:
 		ele* element = new ele(tempx, f, tempd);
 		return insert(element);
 	}
-
 
 	Octree(): origin(defaultOrigin), halfDimension(defaultHalfDimension), data(NULL) {}
 	Octree(const Vec3& origin, const Vec3& halfDimension): origin(origin), halfDimension(halfDimension), data(NULL) {
@@ -246,7 +222,7 @@ public:
 			std::vector<ele>& data= *this->data;
 			// if size less than maximum points, just add the element
 			//also if the cell size became too small to divide, override the maximum content condition and just add.
-			if(data.size()<MAX_FRUITS || halfDimension < MINIMUM_HALFDIMENSION){
+			if(terminal || data.size()<MAX_FRUITS){
 				WriteLock w_lock(lock);
 				data.push_back(*point);
 				return true;
@@ -256,12 +232,14 @@ public:
 
 				// Split the current node and create new empty trees for each
 				// child octant.
-				double lowX = origin.x - halfDimension.x / 2.0;
-				double highX= origin.x + halfDimension.x / 2.0;
-				double lowY = origin.y - halfDimension.y / 2.0;
-				double highY= origin.y + halfDimension.y / 2.0;
-				double lowZ = origin.z - halfDimension.z / 2.0;
-				double highZ= origin.z + halfDimension.z / 2.0;
+				Vec3 newHalfDimension = halfDimension / 2.0;
+				bool terminal=newHalfDimension < Octree::MINIMUM_HALFDIMENSION;
+				double lowX = origin.x - newHalfDimension.x;
+				double highX= origin.x + newHalfDimension.x;
+				double lowY = origin.y - newHalfDimension.y;
+				double highY= origin.y + newHalfDimension.y;
+				double lowZ = origin.z - newHalfDimension.z;
+				double highZ= origin.z + newHalfDimension.z;
 //				std::cout<< (halfDimension.x /2.0) << std::endl;
 				for(int i=0; i<8; ++i) {
 					// Compute new bounding box for this child
@@ -269,7 +247,8 @@ public:
 					newOrigin.x = i&1 ? highX : lowX;
 					newOrigin.y = i&2 ? highY : lowY;
 					newOrigin.z = i&4 ? highZ : lowZ;
-					children[i] = new Octree(newOrigin, (halfDimension * 0.5));
+					children[i] = new Octree(newOrigin, newHalfDimension);
+					children[i]->terminal=terminal;
 				}
 
 				WriteLock w_lock(lock);
@@ -292,7 +271,7 @@ public:
 	// This is a really simple routine for querying the tree for points
 	// within a bounding box defined by min/max points (bmin, bmax)
 	// All results are pushed into 'results'
-	void getPointsWithinCutoff(float cutoff2,std::vector<double> point, const Vec3& bmin, const Vec3& bmax, std::vector<ele>& results, std::vector<double>& distances) {
+	void getPointsWithinCutoff(float cutoff2,std::vector<double> point, const Vec3& boundarymin, const Vec3& boundarymax, min_heap<Envelop>& results) {
 		// If we're at a leaf node, just see if the current data point is inside
 		// the query bounding box
 		if(isInternalNode()) {
@@ -300,28 +279,40 @@ public:
 			// the query bounding box lies outside the octants of this node.
 			for(int i=0; i<8; ++i) {
 				// Compute the min/max corners of this child octant
-				Vec3 cmax = children[i]->origin + children[i]->halfDimension;
-				Vec3 cmin = children[i]->origin - children[i]->halfDimension;
+				Vec3 cellmax = children[i]->origin + children[i]->halfDimension;
+				Vec3 cellmin = children[i]->origin - children[i]->halfDimension;
 
 				// If the query rectangle is outside the child's bounding box, then continue
-				if(cmax.x<bmin.x || cmax.y<bmin.y || cmax.z<bmin.z) continue;
-				if(cmin.x>bmax.x || cmin.y>bmax.y || cmin.z>bmax.z) continue;
+				if(cellmax.x<boundarymin.x || cellmax.y<boundarymin.y || cellmax.z<boundarymin.z) continue;
+				if(cellmin.x>boundarymax.x || cellmin.y>boundarymax.y || cellmin.z>boundarymax.z) continue;
 
 				// At this point, we've determined that this child is intersecting the query bounding box
-				children[i]->getPointsWithinCutoff(cutoff2, point, bmin,bmax,results, distances);
+				children[i]->getPointsWithinCutoff(cutoff2, point, boundarymin,boundarymax,results);
 			}
 		}else {
 			if(data) {
-				ReadLock r_lock(lock);
-				std::vector<ele>& data = *this->data;
-				for (int i= 0; i < data.size(); ++i) {
-					const std::vector<double>& p = data[i].x;
-					if(p[0]>bmax.x || p[1]>bmax.y || p[2]>bmax.z) continue;
-					if(p[0]<bmin.x || p[1]<bmin.y || p[2]<bmin.z) continue;
-					double dist2 = data[i].dist2_3D(point);
-					if(dist2<=cutoff2){
-						results.push_back(data[i]);
-						distances.push_back(dist2);
+				double temp;
+			//if terminal (indivisible) and distance between the two centers in 3D <=  cutoff/2
+//				if(terminal && (point[0]-origin.x)*(point[0]-origin.x)+(point[1]-origin.y)*(point[1]-origin.y)+(point[2]-origin.z)*(point[1]-origin.y) < cutoff2/4){
+				if(terminal && ((temp=(point[0]-origin.x))*temp)+((temp=(point[1]-origin.y))*temp)+((temp=(point[2]-origin.z))*temp) < cutoff2/4){
+//					add all points
+					ReadLock r_lock(lock);
+					std::vector<ele>& data = *this->data;
+					for (int i= 0; i < data.size(); ++i) {
+						results.push(*new Envelop(data[i],data[i].dist2(point)));
+					}
+				}else{
+					//	add point by point
+					ReadLock r_lock(lock);
+					std::vector<ele>& data = *this->data;
+					for (int i= 0; i < data.size(); ++i) {
+						const std::vector<double>& p = data[i].x;
+						if(p[0]>boundarymax.x || p[1]>boundarymax.y || p[2]>boundarymax.z) continue;
+						if(p[0]<boundarymin.x || p[1]<boundarymin.y || p[2]<boundarymin.z) continue;
+						double dist2_3D = data[i].dist2_3D(point);
+						if(dist2_3D<=cutoff2){
+							results.push(*new Envelop(data[i],data[i].dist2(point)));
+						}
 					}
 				}
 			}
