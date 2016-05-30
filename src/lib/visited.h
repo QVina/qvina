@@ -5,7 +5,7 @@
 #include <math.h>
 #include <boost/container/stable_vector.hpp>
 #include <cstdlib>
-#include <queue>
+//#include <queue>
 #include "conf.h"
 #include <algorithm>
 #include <functional>
@@ -14,7 +14,8 @@
 //#include <vector>
 #include <boost/thread/locks.hpp>
 #include <boost/thread/shared_mutex.hpp>
-
+#include <boost/heap/fibonacci_heap.hpp>
+//#include <boost/heap/heap_concepts.hpp>
 
 typedef boost::shared_mutex ReadWriteLock;
 typedef boost::unique_lock< ReadWriteLock > WriteLock;
@@ -127,7 +128,7 @@ public:
 	}
 };
 
-template<class T> using min_heap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+typedef boost::heap::fibonacci_heap< Envelop, boost::heap::compare<std::greater<Envelop> > > EnvelopPriorityQueue;
 
 class Octree {
 	constexpr static float CUTOFF = 5.0f;
@@ -198,10 +199,10 @@ public:
 		return oct;
 	}
 
-//	bool isLeafNode() const {
+//	inline bool isLeafNode() const {
 //		return !internal;
 //	}
-	bool isInternalNode() const {
+	inline bool isInternalNode() const {
 		return internal;
 	}
 
@@ -234,6 +235,7 @@ public:
 				// child octant.
 				Vec3 newHalfDimension = halfDimension / 2.0;
 				bool terminal=newHalfDimension < Octree::MINIMUM_HALFDIMENSION;
+				//the next precalculations will decrease the total number of calculations to half
 				double lowX = origin.x - newHalfDimension.x;
 				double highX= origin.x + newHalfDimension.x;
 				double lowY = origin.y - newHalfDimension.y;
@@ -244,14 +246,15 @@ public:
 				for(int i=0; i<8; ++i) {
 					// Compute new bounding box for this child
 					Vec3 newOrigin;
-					newOrigin.x = i&1 ? highX : lowX;
-					newOrigin.y = i&2 ? highY : lowY;
-					newOrigin.z = i&4 ? highZ : lowZ;
+					newOrigin.x = i&1 ? origin.x + newHalfDimension.x : origin.x - newHalfDimension.x;
+					newOrigin.y = i&2 ? origin.y + newHalfDimension.y : origin.y - newHalfDimension.y;
+					newOrigin.z = i&4 ? origin.z + newHalfDimension.z : origin.z - newHalfDimension.z;
 					children[i] = new Octree(newOrigin, newHalfDimension);
 					children[i]->terminal=terminal;
 				}
 
-				WriteLock w_lock(lock);
+				ReadLock r_lock(lock);//test performance as read lock only (not write)
+
 				// Re-insert the old point, and insert this new point
 				// (We wouldn't need to insert from the root, because we already
 				// know it's guaranteed to be in this section of the tree)
@@ -271,7 +274,7 @@ public:
 	// This is a really simple routine for querying the tree for points
 	// within a bounding box defined by min/max points (bmin, bmax)
 	// All results are pushed into 'results'
-	void getPointsWithinCutoff(float cutoff2,std::vector<double> point, const Vec3& boundarymin, const Vec3& boundarymax, min_heap<Envelop>& results) {
+	void getPointsWithinCutoff(float cutoff2,std::vector<double> point, const Vec3& boundarymin, const Vec3& boundarymax, EnvelopPriorityQueue& results) {
 		// If we're at a leaf node, just see if the current data point is inside
 		// the query bounding box
 		if(isInternalNode()) {
@@ -296,19 +299,19 @@ public:
 //				if(terminal && (point[0]-origin.x)*(point[0]-origin.x)+(point[1]-origin.y)*(point[1]-origin.y)+(point[2]-origin.z)*(point[1]-origin.y) < cutoff2/4){
 				if(terminal && ((temp=(point[0]-origin.x))*temp)+((temp=(point[1]-origin.y))*temp)+((temp=(point[2]-origin.z))*temp) < cutoff2/4){
 //					add all points
-					ReadLock r_lock(lock);
 					std::vector<ele>& data = *this->data;
+					ReadLock r_lock(lock);
 					for (int i= 0; i < data.size(); ++i) {
 						results.push(*new Envelop(data[i],data[i].dist2(point)));
 					}
 				}else{
 					//	add point by point
-					ReadLock r_lock(lock);
 					std::vector<ele>& data = *this->data;
+					ReadLock r_lock(lock);
 					for (int i= 0; i < data.size(); ++i) {
-						const std::vector<double>& p = data[i].x;
-						if(p[0]>boundarymax.x || p[1]>boundarymax.y || p[2]>boundarymax.z) continue;
-						if(p[0]<boundarymin.x || p[1]<boundarymin.y || p[2]<boundarymin.z) continue;
+//						const std::vector<double>& p = data[i].x;
+//						if(p[0]>boundarymax.x || p[1]>boundarymax.y || p[2]>boundarymax.z) continue;
+//						if(p[0]<boundarymin.x || p[1]<boundarymin.y || p[2]<boundarymin.z) continue;
 						double dist2_3D = data[i].dist2_3D(point);
 						if(dist2_3D<=cutoff2){
 							results.push(*new Envelop(data[i],data[i].dist2(point)));

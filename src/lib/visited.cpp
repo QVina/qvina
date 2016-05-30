@@ -78,7 +78,8 @@ bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now
 //	return false;
 }
 
-template<class T> using min_heap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+//template<class T> using min_heap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+
 //just initialize the defaults outside the class to have any reference to them later
 Vec3 Octree::defaultHalfDimension;
 Vec3 Octree::defaultOrigin;
@@ -105,7 +106,7 @@ int Octree::interesting(conf x, double f, change g, int excluded) {
 	x.getV(conf_v);
 	std::vector<double> change_v;
 	g.getV(change_v);
-	min_heap<Envelop> nearbyPoints;
+	EnvelopPriorityQueue nearbyPoints;
 	Vec3 bmin(conf_v[0]-CUTOFF, conf_v[1]-CUTOFF, conf_v[2]-CUTOFF);
 	Vec3 bmax(conf_v[0]+CUTOFF, conf_v[1]+CUTOFF, conf_v[2]+CUTOFF);
 	getPointsWithinCutoff(CUTOFF*CUTOFF,conf_v, bmin, bmax, nearbyPoints);
@@ -117,12 +118,14 @@ int Octree::interesting(conf x, double f, change g, int excluded) {
 	const int grandMaxCheck= 1 * conf_v.size(); //1N in this case
 	const int maxCheck= (nearbyPoints.size()<= grandMaxCheck)? nearbyPoints.size():grandMaxCheck;
 
+	EnvelopPriorityQueue::ordered_iterator begin = nearbyPoints.ordered_begin();
+//	EnvelopPriorityQueue::ordered_iterator end   = nearbyPoints.ordered_end();
+
 	int i=0; //counts checked done so far
-	for ( ; i < maxCheck; i++){
-		if (nearbyPoints.top().elem.check(conf_v, f, change_v)){
+	for (EnvelopPriorityQueue::ordered_iterator it=begin; i < maxCheck; i++, it++){
+		if (it->elem.check(conf_v, f, change_v)){
 			return -1; //i.e. return success
 		}
-		nearbyPoints.pop();
 	}
 	return i;
 }
