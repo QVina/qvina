@@ -14,7 +14,7 @@
 //#include <vector>
 #include <boost/thread/locks.hpp>
 #include <boost/thread/shared_mutex.hpp>
-#include <boost/heap/fibonacci_heap.hpp>
+//#include <boost/heap/fibonacci_heap.hpp>
 //#include <boost/heap/heap_concepts.hpp>
 
 typedef boost::shared_mutex ReadWriteLock;
@@ -114,21 +114,6 @@ struct Vec3 {
 		return x<o.x && y< o.y && z<o.z;
 	}
 };
-
-class Envelop{
-public:
-	ele elem;
-	double dist2;
-	Envelop(const ele& ele_, const double dist2_):elem(ele_),dist2(dist2_){}
-	const bool operator<(const Envelop& rhs)const{
-		return dist2 < rhs.dist2;
-	}
-	const bool operator>(const Envelop& rhs)const{
-		return dist2 > rhs.dist2;
-	}
-};
-
-typedef boost::heap::fibonacci_heap< Envelop, boost::heap::compare<std::greater<Envelop> > > EnvelopPriorityQueue;
 
 class Octree {
 	constexpr static float CUTOFF = 5.0f;
@@ -274,7 +259,7 @@ public:
 	// This is a really simple routine for querying the tree for points
 	// within a bounding box defined by min/max points (bmin, bmax)
 	// All results are pushed into 'results'
-	void getPointsWithinCutoff(float cutoff2,std::vector<double> point, const Vec3& boundarymin, const Vec3& boundarymax, EnvelopPriorityQueue& results) {
+	void getPointsWithinCutoff(float cutoff2,std::vector<double> point, const Vec3& boundarymin, const Vec3& boundarymax, std::vector<ele>& results, std::vector<double>& distances) {
 		// If we're at a leaf node, just see if the current data point is inside
 		// the query bounding box
 		if(isInternalNode()) {
@@ -290,7 +275,7 @@ public:
 				if(cellmin.x>boundarymax.x || cellmin.y>boundarymax.y || cellmin.z>boundarymax.z) continue;
 
 				// At this point, we've determined that this child is intersecting the query bounding box
-				children[i]->getPointsWithinCutoff(cutoff2, point, boundarymin,boundarymax,results);
+				children[i]->getPointsWithinCutoff(cutoff2, point, boundarymin,boundarymax,results, distances);
 			}
 		}else {
 			if(data) {
@@ -302,7 +287,9 @@ public:
 					std::vector<ele>& data = *this->data;
 					ReadLock r_lock(lock);
 					for (int i= 0; i < data.size(); ++i) {
-						results.push(*new Envelop(data[i],data[i].dist2(point)));
+//						results.push(*new Envelop(data[i],data[i].dist2(point)));
+						results.push_back(data[i]);
+						distances.push_back(data[i].dist2(point));
 					}
 				}else{
 					//	add point by point
@@ -314,7 +301,9 @@ public:
 //						if(p[0]<boundarymin.x || p[1]<boundarymin.y || p[2]<boundarymin.z) continue;
 						double dist2_3D = data[i].dist2_3D(point);
 						if(dist2_3D<=cutoff2){
-							results.push(*new Envelop(data[i],data[i].dist2(point)));
+//							results.push(*new Envelop(data[i],data[i].dist2(point)));
+							results.push_back(data[i]);
+							distances.push_back(data[i].dist2(point));
 						}
 					}
 				}
