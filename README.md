@@ -9,4 +9,4 @@ It is also witnessed that QVina 2 is more accurate than GOLD 5.2 and is only sli
 
 to cite Quick Vina 2 please cite:
 
-Amr Alhossary, Stephanus Daniel Handoko, Yuguang Mu, and Chee-Keong Kwoh. "Fast, Accurate, and Reliable Molecular Docking with QuickVina 2". Bioinformatics first published online February 24, 2015 doi:10.1093/bioinformatics/btv082
+Amr Alhossary, Stephanus Daniel Handoko, Yuguang Mu, and Chee-Keong Kwoh. "Fast, Accurate, and Reliable Molecular Docking with QuickVina 2". Bioinformatics (2015) 31 (13): 2214-2216. doi:10.1093/bioinformatics/btv082
