@@ -1,10 +1,11 @@
 # Welcome to QuickVina
-This is the source code repository and the temporary website for both **QuickVina 2** and **QuickVina-W**, until I release a new version and build new nice website (coming sooo soon).
+This is the source code repository and the temporary website for both **QuickVina 2** and **QuickVina-W**, until I release a new version and build new nice website 
+The new site is coming sooo soon. Stay tuned. :-)
 
-There are sites tools to use
+There are two tools to use
 
-## QuickVina 2
-==============
+QuickVina 2
+--------------
 
 Accurately speed up AutoDock Vina, the famous molecular docking tool.
 
@@ -19,10 +20,11 @@ Amr Alhossary, Stephanus Daniel Handoko, Yuguang Mu, and Chee-Keong Kwoh. Bioinf
 
 
 
-## QuickVina-W
-==============
+QuickVina-W
+--------------
 
 Adding the ability of __Blind Docking__ to QuickVina 2.
+
 _QuickVina-W_ is __faster__ than _QuickVina 2_ and __more accurate__ than _AutoDock Vina_.
 
 ### important note:
