@@ -459,7 +459,7 @@ model parse_bundle(const boost::optional<std::string>& rigid_name_opt, const boo
 
 int main(int argc, char* argv[]) {
 	using namespace boost::program_options;
-	const std::string version_string = "AutoDock Vina 1.1.2 (May 11, 2011)";
+	const std::string version_string = "QuickVina-W 1.1 (24 Dec, 2017)";
 	const std::string error_message = "\n\n\
 Please contact the author, Dr. Oleg Trott <ot14@columbia.edu>, so\n\
 that this problem can be resolved. The reproducibility of the\n\
@@ -481,13 +481,20 @@ Thank you!\n";
 
 	const std::string cite_message = "\
 ############################################################################\n\
-# If you used Quick Vina 2 in your work, please cite:                      #\n\
+# If you used Qvina-W in your work, please cite:                           #\n\
 #                                                                          #\n\
+# Nafisa M. Hassan, Amr A. Alhossary, Yuguang Mu, and Chee-Keong Kwoh,     #\n\
+# Protein-Ligand Blind Docking Using QuickVina-W With Inter-Process        #\n\
+# Spatio-Temporal Integration, Scientific Reports 7(1):2017,               #\n\
+# doi:10.1038/s41598-017-15571-7                                           #\n\
+#                                                                          #\n\
+# You are also encouraged to cite:                                         #\n\
+# QuickVina 2                                                              #\n\
 # Amr Alhossary, Stephanus Daniel Handoko, Yuguang Mu, and Chee-Keong Kwoh,#\n\
 # Fast, Accurate, and Reliable Molecular Docking with QuickVina 2,         #\n\
 # Bioinformatics (2015), doi: 10.1093/bioinformatics/btv082                #\n\
 #                                                                          #\n\
-# You are also encouraged to cite Quick Vina 1:                            #\n\
+# Quick Vina 1:                                                            #\n\
 # Stephanus Daniel Handoko, Xuchang Ouyang, Chinh Tran To Su, Chee Keong   #\n\
 # Kwoh, Yew Soon Ong,                                                      #\n\
 # QuickVina: Accelerating AutoDock Vina Using Gradient-Based Heuristics for#\n\
