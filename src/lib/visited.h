@@ -84,7 +84,7 @@ struct visited {
 	}
 
 	inline int get_maxSize(){
-		return 10*n_variable;
+		return 5*n_variable;
 	}
 
 	bool interesting(conf x, double f,change g);
