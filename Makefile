@@ -39,7 +39,7 @@ LIBS = -l boost_system${BOOST_LIB_VERSION} -l boost_thread${BOOST_LIB_VERSION} -
 	$(CC) $(CFLAGS) -I src/lib -o $@ -c $< 
 
 all: depend vina vina_split
-	cp vina qvina02 
+	mv vina qvina-w 
 
 include dependencies
 
