@@ -33,14 +33,6 @@ endif()
 # Install lib and binaries to ./bin
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/src bin)
-
-install(TARGETS vina
-        EXPORT vina
-        RUNTIME DESTINATION bin
-        )
-
-install(TARGETS vina_split
-        EXPORT vina_split
-        RUNTIME DESTINATION bin
-        )
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/vina)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/qvina2)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/qvinaw)
