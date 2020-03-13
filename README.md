@@ -45,6 +45,18 @@ conda config --add channels conda-forge
 conda install qvina
 ```
 
+## Usage
+
+```bash
+./bin/vina --receptor data/hsg1.pdbqt \
+           --ligand data/ind.pdbqt \
+           --center_x 2.5 --center_y 6.5 --center_z -7.5 \
+           --size_x 22.5 --size_y 22.5 --size_z 22.5
+```
+
+- See `./bin/vina --help` for more help.
+- Replace `vina` by `qvina2` or `qvinaw` as needed.
+
 ## Compilation
 
 ```bash

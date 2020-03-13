@@ -1,0 +1,255 @@
+MODEL 1
+REMARK VINA RESULT:     -15.4      0.000      0.000
+REMARK  6 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: N1_1  and  C31_39 
+REMARK       I    between atoms: C2_3  and  C3_4 
+REMARK       I    between atoms: C3_4  and  N2_6 
+REMARK    2  A    between atoms: N2_6  and  C4_7 
+REMARK       I    between atoms: N3_11  and  C10_14 
+REMARK       I    between atoms: C10_14  and  C11_15 
+REMARK    3  A    between atoms: C11_15  and  O2_16 
+REMARK       I    between atoms: C11_15  and  C12_17 
+REMARK       I    between atoms: C12_17  and  C13_18 
+REMARK       I    between atoms: C13_18  and  C14_19 
+REMARK       I    between atoms: C13_18  and  C21_26 
+REMARK    4  A    between atoms: C14_19  and  C15_20 
+REMARK       I    between atoms: C21_26  and  N4_28 
+REMARK       I    between atoms: N4_28  and  C22_29 
+REMARK    5  A    between atoms: C23_30  and  O4_31 
+REMARK    6  A    between atoms: C31_39  and  C32_40 
+ROOT
+HETATM    1  N1  IND I 201       4.068   6.554  -3.153  1.00 28.25     0.096 N 
+HETATM    2  C1  IND I 201       2.725   6.839  -3.726  1.00 30.30     0.307 C 
+HETATM    3  C2  IND I 201       1.869   5.736  -4.315  1.00 27.27     0.200 C 
+HETATM    4  C3  IND I 201       0.609   6.353  -4.860  1.00 28.85     0.242 C 
+HETATM    5  O1  IND I 201       0.654   7.081  -5.844  1.00 29.59    -0.271 OA
+HETATM    6  N2  IND I 201      -0.514   6.083  -4.224  1.00 22.29    -0.351 N 
+HETATM    7  N3  IND I 201       2.771   5.190  -5.389  1.00 28.91    -0.395 N 
+HETATM    8  C8  IND I 201       4.218   5.035  -5.100  1.00 26.24     0.148 C 
+HETATM    9  C9  IND I 201       4.863   6.057  -4.186  1.00 27.47     0.292 C 
+HETATM   10  C10 IND I 201       2.309   4.032  -6.127  1.00 20.86     0.149 C 
+HETATM   11  C11 IND I 201       2.385   4.186  -7.646  1.00 21.68     0.136 C 
+HETATM   12  C12 IND I 201       1.286   4.837  -8.506  1.00 21.49     0.047 C 
+HETATM   13  C13 IND I 201       1.460   4.978 -10.024  1.00 26.89     0.084 C 
+HETATM   14  C14 IND I 201       0.245   5.642 -10.692  1.00 28.67     0.052 C 
+HETATM   15  C21 IND I 201       2.714   5.765 -10.386  1.00 29.35     0.222 C 
+HETATM   16  O3  IND I 201       2.958   6.849  -9.836  1.00 32.66    -0.273 OA
+HETATM   17  N4  IND I 201       3.427   5.269 -11.394  1.00 31.19    -0.350 N 
+HETATM   18  C22 IND I 201       4.443   6.060 -12.069  1.00 29.22     0.147 C 
+HETATM   19  C23 IND I 201       4.517   5.746 -13.553  1.00 28.82     0.149 C 
+HETATM   20  C24 IND I 201       5.910   6.152 -13.975  1.00 32.05     0.073 C 
+HETATM   21  C25 IND I 201       6.884   5.973 -12.838  1.00 31.29    -0.047 A 
+HETATM   22  C26 IND I 201       8.244   5.840 -12.683  1.00 32.00     0.008 A 
+HETATM   23  C27 IND I 201       8.748   5.647 -11.393  1.00 28.00     0.001 A 
+HETATM   24  C28 IND I 201       7.888   5.593 -10.284  1.00 29.01     0.001 A 
+HETATM   25  C29 IND I 201       6.511   5.714 -10.412  1.00 27.70     0.010 A 
+HETATM   26  C30 IND I 201       5.919   5.900 -11.621  1.00 31.86    -0.027 A 
+HETATM   27  H4  IND I 201      -0.403   5.514  -3.373  1.00  0.00     0.163 HD
+HETATM   28  H32 IND I 201       3.253   4.303 -11.705  1.00  0.00     0.163 HD
+ENDROOT
+BRANCH   1  29
+HETATM   29  C31 IND I 201       4.694   7.610  -2.349  1.00 36.25     0.312 C 
+BRANCH  29  30
+HETATM   30  C32 IND I 201       4.351   7.794  -0.866  1.00 42.75    -0.013 A 
+HETATM   31  C33 IND I 201       4.713   6.869   0.124  1.00 47.41     0.125 A 
+HETATM   32  N5  IND I 201       4.453   6.979   1.499  1.00 51.38    -0.273 NA
+HETATM   33  C34 IND I 201       3.767   8.159   1.780  1.00 50.60     0.116 A 
+HETATM   34  C35 IND I 201       3.375   9.121   0.844  1.00 49.34     0.020 A 
+HETATM   35  C36 IND I 201       3.673   8.937  -0.504  1.00 44.71     0.012 A 
+ENDBRANCH  29  30
+ENDBRANCH   1  29
+BRANCH   6  36
+HETATM   36  C4  IND I 201      -1.859   6.453  -4.527  1.00 23.47     0.022 C 
+HETATM   37  C5  IND I 201      -2.746   5.873  -3.410  1.00 27.66     0.037 C 
+HETATM   38  C6  IND I 201      -2.286   6.004  -5.766  1.00 21.71     0.037 C 
+HETATM   39  C7  IND I 201      -2.096   7.899  -4.471  1.00 22.75     0.037 C 
+ENDBRANCH   6  36
+BRANCH  11  40
+HETATM   40  O2  IND I 201       2.385   2.816  -7.912  1.00 15.87    -0.394 OA
+HETATM   41  H21 IND I 201       3.228   2.387  -7.505  1.00  0.00     0.210 HD
+ENDBRANCH  11  40
+BRANCH  14  42
+HETATM   42  C15 IND I 201       0.412   5.787 -12.161  1.00 26.89    -0.057 A 
+HETATM   43  C16 IND I 201       0.559   4.692 -13.011  1.00 29.22     0.007 A 
+HETATM   44  C17 IND I 201       0.750   4.875 -14.374  1.00 29.22     0.001 A 
+HETATM   45  C18 IND I 201       0.793   6.177 -14.877  1.00 30.97     0.000 A 
+HETATM   46  C19 IND I 201       0.637   7.279 -14.027  1.00 29.25     0.001 A 
+HETATM   47  C20 IND I 201       0.445   7.078 -12.659  1.00 29.96     0.007 A 
+ENDBRANCH  14  42
+BRANCH  19  48
+HETATM   48  O4  IND I 201       4.222   4.376 -13.780  1.00 28.32    -0.393 OA
+HETATM   49  H35 IND I 201       5.038   3.915 -14.208  1.00  0.00     0.210 HD
+ENDBRANCH  19  48
+TORSDOF 14
+ENDMDL
+MODEL 2
+REMARK VINA RESULT:     -14.0      1.977     11.102
+REMARK  6 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: N1_1  and  C31_39 
+REMARK       I    between atoms: C2_3  and  C3_4 
+REMARK       I    between atoms: C3_4  and  N2_6 
+REMARK    2  A    between atoms: N2_6  and  C4_7 
+REMARK       I    between atoms: N3_11  and  C10_14 
+REMARK       I    between atoms: C10_14  and  C11_15 
+REMARK    3  A    between atoms: C11_15  and  O2_16 
+REMARK       I    between atoms: C11_15  and  C12_17 
+REMARK       I    between atoms: C12_17  and  C13_18 
+REMARK       I    between atoms: C13_18  and  C14_19 
+REMARK       I    between atoms: C13_18  and  C21_26 
+REMARK    4  A    between atoms: C14_19  and  C15_20 
+REMARK       I    between atoms: C21_26  and  N4_28 
+REMARK       I    between atoms: N4_28  and  C22_29 
+REMARK    5  A    between atoms: C23_30  and  O4_31 
+REMARK    6  A    between atoms: C31_39  and  C32_40 
+ROOT
+HETATM    1  N1  IND I 201       0.668   6.504 -12.006  1.00 28.25     0.096 N 
+HETATM    2  C1  IND I 201       2.039   6.752 -11.483  1.00 30.30     0.307 C 
+HETATM    3  C2  IND I 201       2.877   5.630 -10.903  1.00 27.27     0.200 C 
+HETATM    4  C3  IND I 201       4.174   6.213 -10.411  1.00 28.85     0.242 C 
+HETATM    5  O1  IND I 201       4.187   6.958  -9.438  1.00 29.59    -0.271 OA
+HETATM    6  N2  IND I 201       5.266   5.895 -11.079  1.00 22.29    -0.351 N 
+HETATM    7  N3  IND I 201       1.994   5.132  -9.791  1.00 28.91    -0.395 N 
+HETATM    8  C8  IND I 201       0.534   5.023 -10.030  1.00 26.24     0.148 C 
+HETATM    9  C9  IND I 201      -0.107   6.051 -10.939  1.00 27.47     0.292 C 
+HETATM   10  C10 IND I 201       2.441   3.972  -9.049  1.00 20.86     0.149 C 
+HETATM   11  C11 IND I 201       2.422   4.152  -7.531  1.00 21.68     0.136 C 
+HETATM   12  C12 IND I 201       3.570   4.780  -6.719  1.00 21.49     0.047 C 
+HETATM   13  C13 IND I 201       3.452   4.950  -5.199  1.00 26.89     0.084 C 
+HETATM   14  C14 IND I 201       4.711   5.584  -4.583  1.00 28.67     0.052 C 
+HETATM   15  C21 IND I 201       2.238   5.785  -4.809  1.00 29.35     0.222 C 
+HETATM   16  O3  IND I 201       2.011   6.868  -5.370  1.00 32.66    -0.273 OA
+HETATM   17  N4  IND I 201       1.543   5.330  -3.770  1.00 31.19    -0.350 N 
+HETATM   18  C22 IND I 201       0.577   6.166  -3.076  1.00 29.22     0.147 C 
+HETATM   19  C23 IND I 201       0.543   5.878  -1.585  1.00 28.82     0.149 C 
+HETATM   20  C24 IND I 201      -0.821   6.338  -1.123  1.00 32.05     0.073 C 
+HETATM   21  C25 IND I 201      -1.838   6.174  -2.225  1.00 31.29    -0.047 A 
+HETATM   22  C26 IND I 201      -3.206   6.085  -2.332  1.00 32.00     0.008 A 
+HETATM   23  C27 IND I 201      -3.759   5.889  -3.602  1.00 28.00     0.001 A 
+HETATM   24  C28 IND I 201      -2.940   5.787  -4.737  1.00 29.01     0.001 A 
+HETATM   25  C29 IND I 201      -1.556   5.864  -4.657  1.00 27.70     0.010 A 
+HETATM   26  C30 IND I 201      -0.918   6.049  -3.471  1.00 31.86    -0.027 A 
+HETATM   27  H4  IND I 201       5.107   5.316 -11.916  1.00  0.00     0.163 HD
+HETATM   28  H32 IND I 201       1.694   4.363  -3.449  1.00  0.00     0.163 HD
+ENDROOT
+BRANCH   1  29
+HETATM   29  C31 IND I 201       0.052   7.568 -12.807  1.00 36.25     0.312 C 
+BRANCH  29  30
+HETATM   30  C32 IND I 201       0.482   7.829 -14.255  1.00 42.75    -0.013 A 
+HETATM   31  C33 IND I 201       0.580   6.815 -15.219  1.00 47.41     0.125 A 
+HETATM   32  N5  IND I 201       0.946   6.979 -16.565  1.00 51.38    -0.273 NA
+HETATM   33  C34 IND I 201       1.211   8.318 -16.845  1.00 50.60     0.116 A 
+HETATM   34  C35 IND I 201       1.133   9.376 -15.934  1.00 49.34     0.020 A 
+HETATM   35  C36 IND I 201       0.761   9.129 -14.614  1.00 44.71     0.012 A 
+ENDBRANCH  29  30
+ENDBRANCH   1  29
+BRANCH   6  36
+HETATM   36  C4  IND I 201       6.632   6.224 -10.827  1.00 23.47     0.022 C 
+HETATM   37  C5  IND I 201       7.471   5.509 -11.903  1.00 27.66     0.037 C 
+HETATM   38  C6  IND I 201       7.059   5.860  -9.561  1.00 21.71     0.037 C 
+HETATM   39  C7  IND I 201       6.936   7.646 -11.010  1.00 22.75     0.037 C 
+ENDBRANCH   6  36
+BRANCH  11  40
+HETATM   40  O2  IND I 201       2.385   2.788  -7.242  1.00 15.87    -0.394 OA
+HETATM   41  H21 IND I 201       3.107   2.300  -7.790  1.00  0.00     0.210 HD
+ENDBRANCH  11  40
+BRANCH  14  42
+HETATM   42  C15 IND I 201       4.598   5.758  -3.113  1.00 26.89    -0.057 A 
+HETATM   43  C16 IND I 201       4.351   4.692  -2.247  1.00 29.22     0.007 A 
+HETATM   44  C17 IND I 201       4.216   4.906  -0.882  1.00 29.22     0.001 A 
+HETATM   45  C18 IND I 201       4.332   6.209  -0.392  1.00 30.97     0.000 A 
+HETATM   46  C19 IND I 201       4.587   7.280  -1.257  1.00 29.25     0.001 A 
+HETATM   47  C20 IND I 201       4.721   7.048  -2.627  1.00 29.96     0.007 A 
+ENDBRANCH  14  42
+BRANCH  19  48
+HETATM   48  O4  IND I 201       0.799   4.503  -1.344  1.00 28.32    -0.393 OA
+HETATM   49  H35 IND I 201       1.555   4.409  -0.651  1.00  0.00     0.210 HD
+ENDBRANCH  19  48
+TORSDOF 14
+ENDMDL
+MODEL 3
+REMARK VINA RESULT:     -12.5      2.028     11.140
+REMARK  6 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: N1_1  and  C31_39 
+REMARK       I    between atoms: C2_3  and  C3_4 
+REMARK       I    between atoms: C3_4  and  N2_6 
+REMARK    2  A    between atoms: N2_6  and  C4_7 
+REMARK       I    between atoms: N3_11  and  C10_14 
+REMARK       I    between atoms: C10_14  and  C11_15 
+REMARK    3  A    between atoms: C11_15  and  O2_16 
+REMARK       I    between atoms: C11_15  and  C12_17 
+REMARK       I    between atoms: C12_17  and  C13_18 
+REMARK       I    between atoms: C13_18  and  C14_19 
+REMARK       I    between atoms: C13_18  and  C21_26 
+REMARK    4  A    between atoms: C14_19  and  C15_20 
+REMARK       I    between atoms: C21_26  and  N4_28 
+REMARK       I    between atoms: N4_28  and  C22_29 
+REMARK    5  A    between atoms: C23_30  and  O4_31 
+REMARK    6  A    between atoms: C31_39  and  C32_40 
+ROOT
+HETATM    1  N1  IND I 201       0.738   6.524 -12.267  1.00 28.25     0.096 N 
+HETATM    2  C1  IND I 201       2.081   6.821 -11.699  1.00 30.30     0.307 C 
+HETATM    3  C2  IND I 201       2.952   5.725 -11.119  1.00 27.27     0.200 C 
+HETATM    4  C3  IND I 201       4.207   6.353 -10.577  1.00 28.85     0.242 C 
+HETATM    5  O1  IND I 201       4.159   7.075  -9.588  1.00 29.59    -0.271 OA
+HETATM    6  N2  IND I 201       5.330   6.100 -11.220  1.00 22.29    -0.351 N 
+HETATM    7  N3  IND I 201       2.062   5.162 -10.045  1.00 28.91    -0.395 N 
+HETATM    8  C8  IND I 201       0.615   4.993 -10.328  1.00 26.24     0.148 C 
+HETATM    9  C9  IND I 201      -0.046   6.012 -11.233  1.00 27.47     0.292 C 
+HETATM   10  C10 IND I 201       2.540   4.006  -9.315  1.00 20.86     0.149 C 
+HETATM   11  C11 IND I 201       2.469   4.151  -7.795  1.00 21.68     0.136 C 
+HETATM   12  C12 IND I 201       3.565   4.810  -6.937  1.00 21.49     0.047 C 
+HETATM   13  C13 IND I 201       3.397   4.940  -5.417  1.00 26.89     0.084 C 
+HETATM   14  C14 IND I 201       4.607   5.615  -4.751  1.00 28.67     0.052 C 
+HETATM   15  C21 IND I 201       2.135   5.710  -5.044  1.00 29.35     0.222 C 
+HETATM   16  O3  IND I 201       1.876   6.795  -5.588  1.00 32.66    -0.273 OA
+HETATM   17  N4  IND I 201       1.433   5.201  -4.036  1.00 31.19    -0.350 N 
+HETATM   18  C22 IND I 201       0.411   5.977  -3.353  1.00 29.22     0.147 C 
+HETATM   19  C23 IND I 201       0.348   5.653  -1.870  1.00 28.82     0.149 C 
+HETATM   20  C24 IND I 201      -1.049   6.041  -1.438  1.00 32.05     0.073 C 
+HETATM   21  C25 IND I 201      -2.025   5.857  -2.572  1.00 31.29    -0.047 A 
+HETATM   22  C26 IND I 201      -3.384   5.709  -2.721  1.00 32.00     0.008 A 
+HETATM   23  C27 IND I 201      -3.892   5.518  -4.011  1.00 28.00     0.001 A 
+HETATM   24  C28 IND I 201      -3.037   5.480  -5.124  1.00 29.01     0.001 A 
+HETATM   25  C29 IND I 201      -1.661   5.616  -5.002  1.00 27.70     0.010 A 
+HETATM   26  C30 IND I 201      -1.066   5.802  -3.794  1.00 31.86    -0.027 A 
+HETATM   27  H4  IND I 201       5.222   5.534 -12.074  1.00  0.00     0.163 HD
+HETATM   28  H32 IND I 201       1.619   4.235  -3.732  1.00  0.00     0.163 HD
+ENDROOT
+BRANCH   1  29
+HETATM   29  C31 IND I 201       0.096   7.577 -13.062  1.00 36.25     0.312 C 
+BRANCH  29  30
+HETATM   30  C32 IND I 201       0.480   7.818 -14.527  1.00 42.75    -0.013 A 
+HETATM   31  C33 IND I 201       1.427   8.774 -14.922  1.00 47.41     0.125 A 
+HETATM   32  N5  IND I 201       1.844   9.037 -16.237  1.00 51.38    -0.273 NA
+HETATM   33  C34 IND I 201       1.184   8.205 -17.140  1.00 50.60     0.116 A 
+HETATM   34  C35 IND I 201       0.232   7.234 -16.815  1.00 49.34     0.020 A 
+HETATM   35  C36 IND I 201      -0.127   7.035 -15.484  1.00 44.71     0.012 A 
+ENDBRANCH  29  30
+ENDBRANCH   1  29
+BRANCH   6  36
+HETATM   36  C4  IND I 201       6.673   6.484 -10.921  1.00 23.47     0.022 C 
+HETATM   37  C5  IND I 201       6.666   8.009 -10.710  1.00 27.66     0.037 C 
+HETATM   38  C6  IND I 201       7.576   6.136 -11.911  1.00 21.71     0.037 C 
+HETATM   39  C7  IND I 201       7.169   5.940  -9.652  1.00 22.75     0.037 C 
+ENDBRANCH   6  36
+BRANCH  11  40
+HETATM   40  O2  IND I 201       2.486   2.779  -7.536  1.00 15.87    -0.394 OA
+HETATM   41  H21 IND I 201       1.868   2.572  -6.739  1.00  0.00     0.210 HD
+ENDBRANCH  11  40
+BRANCH  14  42
+HETATM   42  C15 IND I 201       4.445   5.749  -3.281  1.00 26.89    -0.057 A 
+HETATM   43  C16 IND I 201       4.495   6.982  -2.630  1.00 29.22     0.007 A 
+HETATM   44  C17 IND I 201       4.376   7.057  -1.249  1.00 29.22     0.001 A 
+HETATM   45  C18 IND I 201       4.207   5.876  -0.523  1.00 30.97     0.000 A 
+HETATM   46  C19 IND I 201       4.149   4.638  -1.174  1.00 29.25     0.001 A 
+HETATM   47  C20 IND I 201       4.270   4.579  -2.564  1.00 29.96     0.007 A 
+ENDBRANCH  14  42
+BRANCH  19  48
+HETATM   48  O4  IND I 201       0.659   4.285  -1.651  1.00 28.32    -0.393 OA
+HETATM   49  H35 IND I 201       0.564   4.067  -0.649  1.00  0.00     0.210 HD
+ENDBRANCH  19  48
+TORSDOF 14
+ENDMDL
