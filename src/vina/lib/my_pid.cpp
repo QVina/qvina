@@ -20,28 +20,19 @@
 
 */
 
-#ifndef VINA_PARALLEL_PROGRESS_H
-#define VINA_PARALLEL_PROGRESS_H
-
-#include <boost/progress.hpp>
-#include <boost/thread/mutex.hpp>
-
-#include "incrementable.h"
-
-struct parallel_progress : public incrementable {
-	parallel_progress() : p(NULL) {}
-	void init(unsigned long n) { p = new boost::progress_display(n); }
-	void operator++() {
-		if(p) {
-			boost::mutex::scoped_lock self_lk(self);
-			++(*p);
-		}
-	}
-	virtual ~parallel_progress() { delete p; }
-private:
-	boost::mutex self;
-	boost::progress_display* p;
-};
-
+#ifdef WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
 #endif
 
+#include "../include/my_pid.h"
+
+int my_pid()
+{
+#ifdef WIN32
+    return GetCurrentProcessId();
+#else
+    return getpid();
+#endif
+}

@@ -20,28 +20,8 @@
 
 */
 
-#ifndef VINA_PARALLEL_PROGRESS_H
-#define VINA_PARALLEL_PROGRESS_H
+#include "../include/parallel_progress.h"
 
-#include <boost/progress.hpp>
-#include <boost/thread/mutex.hpp>
+//#include <boost/thread/condition.hpp> // FIXME do we need this?
 
-#include "incrementable.h"
-
-struct parallel_progress : public incrementable {
-	parallel_progress() : p(NULL) {}
-	void init(unsigned long n) { p = new boost::progress_display(n); }
-	void operator++() {
-		if(p) {
-			boost::mutex::scoped_lock self_lk(self);
-			++(*p);
-		}
-	}
-	virtual ~parallel_progress() { delete p; }
-private:
-	boost::mutex self;
-	boost::progress_display* p;
-};
-
-#endif
-
+// FIXME rm
