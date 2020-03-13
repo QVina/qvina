@@ -14,8 +14,8 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   Author: Dr. Oleg Trott <ot14@columbia.edu>, 
-           The Olson Lab, 
+   Author: Dr. Oleg Trott <ot14@columbia.edu>,
+           The Olson Lab,
            The Scripps Research Institute
 
 */
@@ -26,9 +26,8 @@
 #include "conf.h"
 #include "atom.h" // for atomv
 
-fl rmsd_upper_bound(const vecv& a, const vecv& b);
-std::pair<sz, fl> find_closest(const vecv& a, const output_container& b);
-void add_to_output_container(output_container& out, const output_type& t, fl min_rmsd, sz max_size);
-
+fl rmsd_upper_bound(const vecv &a, const vecv &b);
+std::pair<sz, fl> find_closest(const vecv &a, const output_container &b);
+void add_to_output_container(output_container &out, const output_type &t, fl min_rmsd, sz max_size);
 
 #endif

@@ -14,15 +14,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   Author: Dr. Oleg Trott <ot14@columbia.edu>, 
-           The Olson Lab, 
+   Author: Dr. Oleg Trott <ot14@columbia.edu>,
+           The Olson Lab,
            The Scripps Research Institute
 
 */
 
-#include "current_weights.h"
+#include "../include/current_weights.h"
 
-flv current_weights(const terms& t) { // verifies size compatibility with t
+flv current_weights(const terms &t)
+{																				  // verifies size compatibility with t
 	const fl a[] = {-0.035579, -0.005156, 0.840245, -0.035069, -0.587439, 1.923}; // design.out227
 	//const fl a[] =   {-0.035579, -0.005156, 0.840245, -0.035069, 0, -0.587439, 0.3, 0}; // FROM design.out227 (FIXME 0.37)
 	//const fl a[] = {-0.035579, -0.005156, 0.840245, -0.035069, 0, -0.587439, 1.923}; // from design.out227
@@ -40,10 +41,10 @@ flv current_weights(const terms& t) { // verifies size compatibility with t
 	sz n = sizeof(a) / sizeof(const fl);
 	flv tmp;
 	VINA_FOR(i, n)
-		tmp.push_back(a[i]);
+	tmp.push_back(a[i]);
 	// FIXME rm
 	sz tmp_size = tmp.size();
-	sz conf_indep_size  = t.size_conf_independent(true);
+	sz conf_indep_size = t.size_conf_independent(true);
 	sz t_size = t.size();
 	sz t_names_size = t.get_names(true).size();
 

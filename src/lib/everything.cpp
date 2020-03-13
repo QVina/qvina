@@ -14,58 +14,72 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   Author: Dr. Oleg Trott <ot14@columbia.edu>, 
-           The Olson Lab, 
+   Author: Dr. Oleg Trott <ot14@columbia.edu>,
+           The Olson Lab,
            The Scripps Research Institute
 
 */
 
-#include "everything.h"
-#include "int_pow.h"
+#include "../include/everything.h"
+#include "../include/int_pow.h"
 
-inline fl gaussian(fl x, fl width) {
-	return std::exp(-sqr(x/width));
+inline fl gaussian(fl x, fl width)
+{
+	return std::exp(-sqr(x / width));
 }
 
 // distance_additive terms
 
-template<unsigned i>
-struct electrostatic : public distance_additive {
+template <unsigned i>
+struct electrostatic : public distance_additive
+{
 	fl cap;
-	electrostatic(fl cap_, fl cutoff_) : distance_additive(cutoff_), cap(cap_) {
+	electrostatic(fl cap_, fl cutoff_) : distance_additive(cutoff_), cap(cap_)
+	{
 		name = std::string("electrostatic(i=") + to_string(i) + ", ^=" + to_string(cap) + ", c=" + to_string(cutoff) + ")";
 	}
-	fl eval(const atom_base& a, const atom_base& b, fl r) const {
+	fl eval(const atom_base &a, const atom_base &b, fl r) const
+	{
 		fl tmp = int_pow<i>(r);
 		fl q1q2 = a.charge * b.charge;
-		if(tmp < epsilon_fl) return q1q2 * cap;
-		else                 return q1q2 * (std::min)(cap, 1/int_pow<i>(r));
+		if (tmp < epsilon_fl)
+			return q1q2 * cap;
+		else
+			return q1q2 * (std::min)(cap, 1 / int_pow<i>(r));
 	}
 };
 
-fl solvation_parameter(const atom_type& a) {
-	if(a.ad < AD_TYPE_SIZE) return ad_type_property(a.ad).solvation;
-	else if(a.xs == XS_TYPE_Met_D) return metal_solvation_parameter;
-	VINA_CHECK(false); 
-	return 0; // placating the compiler
-}
-
-fl volume(const atom_type& a) {
-	if(a.ad < AD_TYPE_SIZE) return ad_type_property(a.ad).volume;
-	else if(a.xs < XS_TYPE_SIZE) return 4*pi / 3 * int_pow<3>(xs_radius(a.xs));
+fl solvation_parameter(const atom_type &a)
+{
+	if (a.ad < AD_TYPE_SIZE)
+		return ad_type_property(a.ad).solvation;
+	else if (a.xs == XS_TYPE_Met_D)
+		return metal_solvation_parameter;
 	VINA_CHECK(false);
 	return 0; // placating the compiler
 }
 
+fl volume(const atom_type &a)
+{
+	if (a.ad < AD_TYPE_SIZE)
+		return ad_type_property(a.ad).volume;
+	else if (a.xs < XS_TYPE_SIZE)
+		return 4 * pi / 3 * int_pow<3>(xs_radius(a.xs));
+	VINA_CHECK(false);
+	return 0; // placating the compiler
+}
 
-struct ad4_solvation : public distance_additive {
+struct ad4_solvation : public distance_additive
+{
 	fl desolvation_sigma;
 	fl solvation_q;
 	bool charge_dependent;
-	ad4_solvation(fl desolvation_sigma_, fl solvation_q_, bool charge_dependent_, fl cutoff_) : distance_additive(cutoff_), solvation_q(solvation_q_), charge_dependent(charge_dependent_), desolvation_sigma(desolvation_sigma_) {
+	ad4_solvation(fl desolvation_sigma_, fl solvation_q_, bool charge_dependent_, fl cutoff_) : distance_additive(cutoff_), solvation_q(solvation_q_), charge_dependent(charge_dependent_), desolvation_sigma(desolvation_sigma_)
+	{
 		name = std::string("ad4_solvation(d-sigma=") + to_string(desolvation_sigma) + ", s/q=" + to_string(solvation_q) + ", q=" + to_string(charge_dependent) + ", c=" + to_string(cutoff) + ")";
 	}
-	fl eval(const atom_base& a, const atom_base& b, fl r) const {
+	fl eval(const atom_base &a, const atom_base &b, fl r) const
+	{
 		fl q1 = a.charge;
 		fl q2 = b.charge;
 
@@ -83,225 +97,280 @@ struct ad4_solvation : public distance_additive {
 
 		fl my_solv = charge_dependent ? solvation_q : 0;
 
-		fl tmp = ((solv1 + my_solv * std::abs(q1)) * volume2 + 
-			    (solv2 + my_solv * std::abs(q2)) * volume1) * std::exp(-sqr(r/(2*desolvation_sigma)));
+		fl tmp = ((solv1 + my_solv * std::abs(q1)) * volume2 +
+				  (solv2 + my_solv * std::abs(q2)) * volume1) *
+				 std::exp(-sqr(r / (2 * desolvation_sigma)));
 
 		VINA_CHECK(not_max(tmp));
 		return tmp;
 	}
 };
 
-inline fl optimal_distance(sz xs_t1, sz xs_t2) {
+inline fl optimal_distance(sz xs_t1, sz xs_t2)
+{
 	return xs_radius(xs_t1) + xs_radius(xs_t2);
 }
 
-struct gauss : public usable {
+struct gauss : public usable
+{
 	fl offset; // added to optimal distance
 	fl width;
-	gauss(fl offset_, fl width_, fl cutoff_) : usable(cutoff_), offset(offset_), width(width_) {
+	gauss(fl offset_, fl width_, fl cutoff_) : usable(cutoff_), offset(offset_), width(width_)
+	{
 		name = std::string("gauss(o=") + to_string(offset) + ", w=" + to_string(width) + ", c=" + to_string(cutoff) + ")";
 	}
-	fl eval(sz t1, sz t2, fl r) const {
+	fl eval(sz t1, sz t2, fl r) const
+	{
 		return gaussian(r - (optimal_distance(t1, t2) + offset), width);
 	}
 };
 
-struct repulsion : public usable {
+struct repulsion : public usable
+{
 	fl offset; // added to vdw
-	repulsion(fl offset_, fl cutoff_) : usable(cutoff_), offset(offset_) {
+	repulsion(fl offset_, fl cutoff_) : usable(cutoff_), offset(offset_)
+	{
 		name = std::string("repulsion(o=") + to_string(offset) + ")";
 	}
-	fl eval(sz t1, sz t2, fl r) const {
+	fl eval(sz t1, sz t2, fl r) const
+	{
 		fl d = r - (optimal_distance(t1, t2) + offset);
-		if(d > 0) 
+		if (d > 0)
 			return 0;
-		return d*d;
+		return d * d;
 	}
 };
 
-inline fl slope_step(fl x_bad, fl x_good, fl x) {
-	if(x_bad < x_good) {
-		if(x <= x_bad) return 0;
-		if(x >= x_good) return 1;
+inline fl slope_step(fl x_bad, fl x_good, fl x)
+{
+	if (x_bad < x_good)
+	{
+		if (x <= x_bad)
+			return 0;
+		if (x >= x_good)
+			return 1;
 	}
-	else {
-		if(x >= x_bad) return 0;
-		if(x <= x_good) return 1;
+	else
+	{
+		if (x >= x_bad)
+			return 0;
+		if (x <= x_good)
+			return 1;
 	}
 	return (x - x_bad) / (x_good - x_bad);
 }
 
-struct hydrophobic : public usable {
+struct hydrophobic : public usable
+{
 	fl good;
 	fl bad;
-	hydrophobic(fl good_, fl bad_, fl cutoff_) : usable(cutoff_), good(good_), bad(bad_) {
+	hydrophobic(fl good_, fl bad_, fl cutoff_) : usable(cutoff_), good(good_), bad(bad_)
+	{
 		name = "hydrophobic(g=" + to_string(good) + ", b=" + to_string(bad) + ", c=" + to_string(cutoff) + ")";
 	}
-	fl eval(sz t1, sz t2, fl r) const {
-		if(xs_is_hydrophobic(t1) && xs_is_hydrophobic(t2))
+	fl eval(sz t1, sz t2, fl r) const
+	{
+		if (xs_is_hydrophobic(t1) && xs_is_hydrophobic(t2))
 			return slope_step(bad, good, r - optimal_distance(t1, t2));
-		else return 0;
+		else
+			return 0;
 	}
 };
 
-struct non_hydrophobic : public usable {
+struct non_hydrophobic : public usable
+{
 	fl good;
 	fl bad;
-	non_hydrophobic(fl good_, fl bad_, fl cutoff_) : usable(cutoff_), good(good_), bad(bad_) {
+	non_hydrophobic(fl good_, fl bad_, fl cutoff_) : usable(cutoff_), good(good_), bad(bad_)
+	{
 		name = "non_hydrophobic(g=" + to_string(good) + ", b=" + to_string(bad) + ", c=" + to_string(cutoff) + ")";
 	}
-	fl eval(sz t1, sz t2, fl r) const {
-		if(!xs_is_hydrophobic(t1) && !xs_is_hydrophobic(t2))
+	fl eval(sz t1, sz t2, fl r) const
+	{
+		if (!xs_is_hydrophobic(t1) && !xs_is_hydrophobic(t2))
 			return slope_step(bad, good, r - optimal_distance(t1, t2));
-		else return 0;
+		else
+			return 0;
 	}
 };
 
-template<unsigned n, unsigned m>
-void find_vdw_coefficients(fl position, fl depth, fl& c_n, fl& c_m) {
-	BOOST_STATIC_ASSERT(n != m); 
-	c_n = int_pow<n>(position) * depth * m / (fl(n)-fl(m));
-	c_m = int_pow<m>(position) * depth * n / (fl(m)-fl(n));
+template <unsigned n, unsigned m>
+void find_vdw_coefficients(fl position, fl depth, fl &c_n, fl &c_m)
+{
+	BOOST_STATIC_ASSERT(n != m);
+	c_n = int_pow<n>(position) * depth * m / (fl(n) - fl(m));
+	c_m = int_pow<m>(position) * depth * n / (fl(m) - fl(n));
 }
 
-
-template<unsigned i, unsigned j>
-struct vdw : public usable {
+template <unsigned i, unsigned j>
+struct vdw : public usable
+{
 	fl smoothing;
 	fl cap;
-	vdw(fl smoothing_, fl cap_, fl cutoff_) 
-		: usable(cutoff_), smoothing(smoothing_), cap(cap_) {
+	vdw(fl smoothing_, fl cap_, fl cutoff_)
+		: usable(cutoff_), smoothing(smoothing_), cap(cap_)
+	{
 		name = "vdw(i=" + to_string(i) + ", j=" + to_string(j) + ", s=" + to_string(smoothing) + ", ^=" + to_string(cap) + ", c=" + to_string(cutoff) + ")";
 	}
-	fl eval(sz t1, sz t2, fl r) const {
+	fl eval(sz t1, sz t2, fl r) const
+	{
 		fl d0 = optimal_distance(t1, t2);
-		fl depth = 1; 
+		fl depth = 1;
 		fl c_i = 0;
 		fl c_j = 0;
 		find_vdw_coefficients<i, j>(d0, depth, c_i, c_j);
-		if     (r > d0 + smoothing) r -= smoothing;
-		else if(r < d0 - smoothing) r += smoothing;
-		else r = d0;
+		if (r > d0 + smoothing)
+			r -= smoothing;
+		else if (r < d0 - smoothing)
+			r += smoothing;
+		else
+			r = d0;
 
 		fl r_i = int_pow<i>(r);
 		fl r_j = int_pow<j>(r);
-		if(r_i > epsilon_fl && r_j > epsilon_fl)
+		if (r_i > epsilon_fl && r_j > epsilon_fl)
 			return (std::min)(cap, c_i / r_i + c_j / r_j);
-		else 
+		else
 			return cap;
 	}
 };
 
-struct non_dir_h_bond : public usable {
+struct non_dir_h_bond : public usable
+{
 	fl good;
 	fl bad;
-	non_dir_h_bond(fl good_, fl bad_, fl cutoff_) : usable(cutoff_), good(good_), bad(bad_) {
+	non_dir_h_bond(fl good_, fl bad_, fl cutoff_) : usable(cutoff_), good(good_), bad(bad_)
+	{
 		name = std::string("non_dir_h_bond(g=") + to_string(good) + ", b=" + to_string(bad) + ")";
 	}
-	fl eval(sz t1, sz t2, fl r) const {
-		if(xs_h_bond_possible(t1, t2))
+	fl eval(sz t1, sz t2, fl r) const
+	{
+		if (xs_h_bond_possible(t1, t2))
 			return slope_step(bad, good, r - optimal_distance(t1, t2));
 		return 0;
 	}
 };
 
-inline fl read_iterator(flv::const_iterator& i) {
-	fl x = *i; 
+inline fl read_iterator(flv::const_iterator &i)
+{
+	fl x = *i;
 	++i;
 	return x;
 }
 
-fl smooth_div(fl x, fl y) {
-	if(std::abs(x) < epsilon_fl) return 0;
-	if(std::abs(y) < epsilon_fl) return ((x*y > 0) ? max_fl : -max_fl); // FIXME I hope -max_fl does not become NaN
+fl smooth_div(fl x, fl y)
+{
+	if (std::abs(x) < epsilon_fl)
+		return 0;
+	if (std::abs(y) < epsilon_fl)
+		return ((x * y > 0) ? max_fl : -max_fl); // FIXME I hope -max_fl does not become NaN
 	return x / y;
 }
 
-struct num_tors_add : public conf_independent {
+struct num_tors_add : public conf_independent
+{
 	num_tors_add() { name = "num_tors_add"; }
 	sz size() const { return 1; }
-	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {
+	fl eval(const conf_independent_inputs &in, fl x, flv::const_iterator &i) const
+	{
 		//fl w = 0.1 * read_iterator(i); // [-1 .. 1]
 		fl w = read_iterator(i); // FIXME?
 		return x + w * in.num_tors;
 	}
 };
 
-struct num_tors_sqr : public conf_independent {
+struct num_tors_sqr : public conf_independent
+{
 	num_tors_sqr() { name = "num_tors_sqr"; }
 	sz size() const { return 1; }
-	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {
+	fl eval(const conf_independent_inputs &in, fl x, flv::const_iterator &i) const
+	{
 		fl w = 0.1 * read_iterator(i); // [-1 .. 1]
 		return x + w * sqr(fl(in.num_tors)) / 5;
 	}
 };
 
-struct num_tors_sqrt : public conf_independent {
+struct num_tors_sqrt : public conf_independent
+{
 	num_tors_sqrt() { name = "num_tors_sqrt"; }
 	sz size() const { return 1; }
-	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {
+	fl eval(const conf_independent_inputs &in, fl x, flv::const_iterator &i) const
+	{
 		fl w = 0.1 * read_iterator(i); // [-1 .. 1]
 		return x + w * std::sqrt(fl(in.num_tors)) / sqrt(5.0);
 	}
 };
 
-struct num_tors_div : public conf_independent {
+struct num_tors_div : public conf_independent
+{
 	num_tors_div() { name = "num_tors_div"; }
 	sz size() const { return 1; }
-	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {
+	fl eval(const conf_independent_inputs &in, fl x, flv::const_iterator &i) const
+	{
 		fl w = 0.1 * (read_iterator(i) + 1); // w is in [0..0.2]
-		return smooth_div(x, 1 + w * in.num_tors/5.0);
+		return smooth_div(x, 1 + w * in.num_tors / 5.0);
 	}
 };
 
-struct ligand_length : public conf_independent {
+struct ligand_length : public conf_independent
+{
 	ligand_length() { name = "ligand_length"; }
 	sz size() const { return 1; }
-	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {
+	fl eval(const conf_independent_inputs &in, fl x, flv::const_iterator &i) const
+	{
 		fl w = read_iterator(i);
 		return x + w * in.ligand_lengths_sum;
 	}
 };
 
-struct num_ligands : public conf_independent {
+struct num_ligands : public conf_independent
+{
 	num_ligands() { name = "num_ligands"; }
 	sz size() const { return 1; }
-	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {
+	fl eval(const conf_independent_inputs &in, fl x, flv::const_iterator &i) const
+	{
 		fl w = 1 * read_iterator(i); // w is in [-1.. 1]
 		return x + w * in.num_ligands;
 	}
 };
 
-struct num_heavy_atoms_div : public conf_independent {
+struct num_heavy_atoms_div : public conf_independent
+{
 	num_heavy_atoms_div() { name = "num_heavy_atoms_div"; }
 	sz size() const { return 1; }
-	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {
-		fl w = 0.05 * read_iterator(i); 
-		return smooth_div(x, 1 + w * in.num_heavy_atoms); 
+	fl eval(const conf_independent_inputs &in, fl x, flv::const_iterator &i) const
+	{
+		fl w = 0.05 * read_iterator(i);
+		return smooth_div(x, 1 + w * in.num_heavy_atoms);
 	}
 };
 
-struct num_heavy_atoms : public conf_independent {
+struct num_heavy_atoms : public conf_independent
+{
 	num_heavy_atoms() { name = "num_heavy_atoms"; }
 	sz size() const { return 1; }
-	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {
-		fl w = 0.05 * read_iterator(i); 
+	fl eval(const conf_independent_inputs &in, fl x, flv::const_iterator &i) const
+	{
+		fl w = 0.05 * read_iterator(i);
 		return x + w * in.num_heavy_atoms;
 	}
 };
 
-struct num_hydrophobic_atoms : public conf_independent {
+struct num_hydrophobic_atoms : public conf_independent
+{
 	num_hydrophobic_atoms() { name = "num_hydrophobic_atoms"; }
 	sz size() const { return 1; }
-	fl eval(const conf_independent_inputs& in, fl x, flv::const_iterator& i) const {
-		fl w = 0.05 * read_iterator(i); 
+	fl eval(const conf_independent_inputs &in, fl x, flv::const_iterator &i) const
+	{
+		fl w = 0.05 * read_iterator(i);
 		return x + w * in.num_hydrophobic_atoms;
 	}
 };
 
-everything::everything() { // enabled according to design.out227
+everything::everything()
+{						  // enabled according to design.out227
 	const unsigned d = 0; // default
-	const fl cutoff = 8; //6;
+	const fl cutoff = 8;  //6;
 
 	// FIXME? enable some?
 	//// distance_additive
@@ -351,7 +420,7 @@ everything::everything() { // enabled according to design.out227
 
 	//add(d, new repulsion( 0.4, cutoff)); // offset, cutoff
 	//add(d, new repulsion( 0.2, cutoff)); // offset, cutoff
-	add(1, new repulsion( 0.0, cutoff)); // offset, cutoff // WEIGHT:  0.840245
+	add(1, new repulsion(0.0, cutoff)); // offset, cutoff // WEIGHT:  0.840245
 	//add(d, new repulsion(-0.2, cutoff)); // offset, cutoff
 	//add(d, new repulsion(-0.4, cutoff)); // offset, cutoff
 	//add(d, new repulsion(-0.6, cutoff)); // offset, cutoff
@@ -377,13 +446,13 @@ everything::everything() { // enabled according to design.out227
 	//add(d, new num_ligands());
 
 	add(1, new num_tors_div()); // WEIGHT: 1.923 -- FIXME too close to limit?
-	//add(d, new num_heavy_atoms_div());
-	//add(d, new num_heavy_atoms());
-	//add(1, new num_tors_add());
-	//add(d, new num_tors_sqr());
-	//add(d, new num_tors_sqrt());
-	//add(d, new num_hydrophobic_atoms());
-	///add(1, new ligand_length());
+								//add(d, new num_heavy_atoms_div());
+								//add(d, new num_heavy_atoms());
+								//add(1, new num_tors_add());
+								//add(d, new num_tors_sqr());
+								//add(d, new num_tors_sqrt());
+								//add(d, new num_hydrophobic_atoms());
+								///add(1, new ligand_length());
 
 	//add(d, new num_tors(100, 100, false)); // cap, past_cap, heavy_only
 	//add(1, new num_tors(100, 100,  true)); // cap, past_cap, heavy_only

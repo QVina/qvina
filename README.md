@@ -43,3 +43,5 @@ mkdir -p build/
 cmake ..
 make
 ```
+
+Executables `vina` and `vina_split` will be available in `bin/`.
