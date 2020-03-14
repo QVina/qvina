@@ -81,7 +81,7 @@ bool ele::check(std::vector<double> now_x, double now_f, std::vector<double> now
 
 bool visited::interesting(conf x, double f, change g)
 {
-	int len = size();
+	static const int len = size();
 	if (len == 0)
 	{
 		return true;
