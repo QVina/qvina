@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Boost library
-set(BOOST_VERSION "1.71.0")
+set(BOOST_VERSION "1.70.0")
 find_package(Boost ${BOOST_VERSION} REQUIRED COMPONENTS system)
 find_package(Boost ${BOOST_VERSION} REQUIRED COMPONENTS serialization)
 find_package(Boost ${BOOST_VERSION} REQUIRED COMPONENTS filesystem)
