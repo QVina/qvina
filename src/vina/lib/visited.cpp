@@ -100,6 +100,7 @@ bool visited::interesting(conf x, double f, change g)
 			x.getV(conf_v);
 			std::vector<double> change_v;
 			g.getV(change_v);
+
 			std::vector<double> dist(len);
 			std::vector<bool> notPicked(len);
 

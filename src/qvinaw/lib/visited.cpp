@@ -113,8 +113,8 @@ int Octree::interesting(conf x, double f, change g, int excluded) {
 	getPointsWithinCutoff(CUTOFF*CUTOFF,conf_v, bmin, bmax, nearbyPoints, distances);
 
 	int len=nearbyPoints.size();
-	bool notYetChecked[len];
-	memset(notYetChecked,true,sizeof(notYetChecked));
+	std::vector<bool> notYetChecked(len);
+	std::fill(notYetChecked.begin(), notYetChecked.end(), true);
 
 	const int grandMaxCheck= 1 * conf_v.size(); //1N in this case
 	const int maxCheck= (nearbyPoints.size()<= grandMaxCheck)? nearbyPoints.size():grandMaxCheck;
@@ -143,7 +143,7 @@ int circularvisited::interesting(conf x, double f, change g, int excluded){
 
 //	printf("%d   %d\n", get_maxCheck(), get_maxSize());
 
-	int len=size();
+	static const int len = size();
 	if (len==0){
 		return -1; //i.e. interesting
 	}
@@ -158,10 +158,11 @@ int circularvisited::interesting(conf x, double f, change g, int excluded){
 		x.getV(conf_v);
 		std::vector<double> change_v;
 		g.getV(change_v);
-		double dist[len];
-		bool notPicked[len];
 
-		memset(notPicked,true,sizeof(notPicked));
+		std::vector<double> dist(len);
+		std::vector<bool> notPicked(len);
+
+		std::fill(notPicked.begin(), notPicked.end(), true);
 		//fill dist[] with distances from conf
 		for (int i=0;i<len;i++){
 			dist[i]=this->get(i).dist2(conf_v);
