@@ -100,10 +100,10 @@ bool visited::interesting(conf x, double f, change g)
 			x.getV(conf_v);
 			std::vector<double> change_v;
 			g.getV(change_v);
-			double dist[len];
-			bool notPicked[len];
+			std::vector<double> dist(len);
+			std::vector<bool> notPicked(len);
 
-			memset(notPicked, true, sizeof(notPicked));
+			std::fill(notPicked.begin(), notPicked.end(), true);
 			//fill dist[] with distances from conf
 			for (int i = 0; i < len; i++)
 			{
