@@ -14,8 +14,8 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   Author: Dr. Oleg Trott <ot14@columbia.edu>, 
-           The Olson Lab, 
+   Author: Dr. Oleg Trott <ot14@columbia.edu>,
+           The Olson Lab,
            The Scripps Research Institute
 
 */
@@ -60,9 +60,9 @@ void parallel_mc::operator()(const model& m, output_container& out, const precal
 	parallel_mc_aux parallel_mc_aux_instance(&mc, &p, &ig, &p_widened, &ig_widened, &corner1, &corner2, (display_progress ? (&pp) : NULL));
 //	parallel_mc_task_container task_container;
 	VINA_FOR(i, num_tasks)
-		task_container.push_back(std::auto_ptr<parallel_mc_task>(new parallel_mc_task(m, random_int(0, 1000000, generator), new circularvisited())));
+		task_container.push_back(std::unique_ptr<parallel_mc_task>(new parallel_mc_task(m, random_int(0, 1000000, generator), new circularvisited())));
 
-	if(display_progress) 
+	if(display_progress)
 		pp.init(num_tasks * mc.num_steps);
 	parallel_iter<parallel_mc_aux, parallel_mc_task_container, parallel_mc_task, true> parallel_iter_instance(&parallel_mc_aux_instance, num_threads);
 	parallel_iter_instance.run(task_container);
