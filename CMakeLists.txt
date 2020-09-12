@@ -11,17 +11,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Boost library
-set(BOOST_VERSION "1.70.0")
+set(Boost_USE_STATIC_LIBS OFF)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
+set(BOOST_ALL_DYN_LINK ON)
+
 find_package(Boost ${BOOST_VERSION} REQUIRED COMPONENTS system)
 find_package(Boost ${BOOST_VERSION} REQUIRED COMPONENTS serialization)
 find_package(Boost ${BOOST_VERSION} REQUIRED COMPONENTS filesystem)
 find_package(Boost ${BOOST_VERSION} REQUIRED COMPONENTS program_options)
 find_package(Boost ${BOOST_VERSION} REQUIRED COMPONENTS thread)
-
-set(Boost_USE_STATIC_LIBS OFF)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
-set(BOOST_ALL_DYN_LINK ON)
 
 # Set the build type
 if( NOT CMAKE_BUILD_TYPE )
