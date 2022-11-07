@@ -19,6 +19,7 @@ INCFLAGS = -I $(BOOST_INCLUDE)
 # -pedantic fails on Mac with Boost 1.41 (syntax problems in their headers)
 #CC = ${GPP} ${C_PLATFORM} -ansi -pedantic -Wno-long-long ${C_OPTIONS} $(INCFLAGS)
 CC = ${GPP} ${C_PLATFORM} -ansi -Wno-long-long ${C_OPTIONS} $(INCFLAGS) -std=c++0x
+exe_name = qvina-w
 
 LDFLAGS = -L$(BASE)/lib -L.
 
@@ -39,7 +40,13 @@ LIBS = -l boost_system${BOOST_LIB_VERSION} -l boost_thread${BOOST_LIB_VERSION} -
 	$(CC) $(CFLAGS) -I src/lib -o $@ -c $< 
 
 all: depend vina vina_split
-	mv vina qvina-w 
+	mv vina $(exe_name)
+
+set_serial:
+	$(eval CC := $(CC) -Dserial=TRUE)
+	$(eval exe_name := $(exe_name)_serial)
+	
+serial: set_serial all
 
 include dependencies
 

@@ -459,7 +459,7 @@ model parse_bundle(const boost::optional<std::string>& rigid_name_opt, const boo
 
 int main(int argc, char* argv[]) {
 	using namespace boost::program_options;
-	const std::string version_string = "QuickVina-W 1.1 (24 Dec, 2017)";
+	const std::string version_string = "QuickVina-W 1.2 (06 Nov, 2022)";
 	const std::string error_message = "\n\n\
 Please contact the author, Dr. Oleg Trott <ot14@columbia.edu>, so\n\
 that this problem can be resolved. The reproducibility of the\n\
@@ -712,6 +712,10 @@ Thank you!\n";
 			}
 		}
 		if(vm.count("cpu") == 0) {
+#ifdef serial
+			cpu = 1;
+			log << "Number of CPUs not passed in, using 1\n";
+#else
 			unsigned num_cpus = boost::thread::hardware_concurrency();
 			if(verbosity > 1) {
 				if(num_cpus > 0)
@@ -723,6 +727,13 @@ Thank you!\n";
 				cpu = num_cpus;
 			else
 				cpu = 1;
+#endif
+		} else {
+#ifdef serial
+			if (cpu > 1) {
+				throw usage_error("number of CPUs in case of serial build must be 1");
+			}
+#endif
 		}
 		if(cpu < 1) 
 			cpu = 1;

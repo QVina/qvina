@@ -10,8 +10,10 @@
 #include <algorithm>
 #include <functional>
 #include "common.h"
-//#include <mutex>
 //#include <vector>
+
+#ifndef serial
+//#include <mutex>
 #include <boost/thread/locks.hpp>
 #include <boost/thread/shared_mutex.hpp>
 //#include <boost/heap/fibonacci_heap.hpp>
@@ -20,6 +22,7 @@
 typedef boost::shared_mutex ReadWriteLock;
 typedef boost::unique_lock< ReadWriteLock > WriteLock;
 typedef boost::shared_lock< ReadWriteLock > ReadLock;
+#endif
 
 struct ele
 {
@@ -122,7 +125,9 @@ class Octree {
 	static Octree* instance;
 	static Vec3 defaultOrigin;
 	static Vec3 defaultHalfDimension;
+#ifndef serial
 	ReadWriteLock lock;
+#endif
 
 	// Physical position/size. This implicitly defines the bounding
 	// box of this node
@@ -209,7 +214,9 @@ public:
 			// if size less than maximum points, just add the element
 			//also if the cell size became too small to divide, override the maximum content condition and just add.
 			if(terminal || data.size()<MAX_FRUITS){
+#ifndef serial
 				WriteLock w_lock(lock);
+#endif
 				data.push_back(*point);
 				return true;
 			} else {
@@ -238,8 +245,9 @@ public:
 					children[i]->terminal=terminal;
 				}
 
+#ifndef serial
 				ReadLock r_lock(lock);//test performance as read lock only (not write)
-
+#endif
 				// Re-insert the old point, and insert this new point
 				// (We wouldn't need to insert from the root, because we already
 				// know it's guaranteed to be in this section of the tree)
@@ -285,7 +293,9 @@ public:
 				if(terminal && ((temp=(point[0]-origin.x))*temp)+((temp=(point[1]-origin.y))*temp)+((temp=(point[2]-origin.z))*temp) < cutoff2/4){
 //					add all points
 					std::vector<ele>& data = *this->data;
+#ifndef serial
 					ReadLock r_lock(lock);
+#endif
 					for (int i= 0; i < data.size(); ++i) {
 //						results.push(*new Envelop(data[i],data[i].dist2(point)));
 						results.push_back(data[i]);
@@ -294,7 +304,9 @@ public:
 				}else{
 					//	add point by point
 					std::vector<ele>& data = *this->data;
+#ifndef serial
 					ReadLock r_lock(lock);
+#endif
 					for (int i= 0; i < data.size(); ++i) {
 //						const std::vector<double>& p = data[i].x;
 //						if(p[0]>boundarymax.x || p[1]>boundarymax.y || p[2]>boundarymax.z) continue;
