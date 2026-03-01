@@ -86,29 +86,34 @@ void monte_carlo::operator()(model& m, output_container& out, const precalculate
 	vec authentic_v(1000, 1000, 1000); // FIXME? this is here to avoid max_fl/max_fl
 	conf_size s = m.get_size();
 	change g(s);
-	output_type tmp(s, 0);
-	tmp.c.randomize(corner1, corner2, generator);
+	conf tmp_conf(s);
+	tmp_conf.randomize(corner1, corner2, generator);
+	fl tmp_e = 0;
 	fl best_e = max_fl;
 	quasi_newton quasi_newton_par; quasi_newton_par.max_steps = ssd_par.evals;
 	VINA_U_FOR(step, num_steps) {
 		if(increment_me)
 			++(*increment_me);
-		output_type candidate = tmp;
+		output_type candidate(tmp_conf, tmp_e);
 		mutate_conf(candidate.c, m, mutation_amplitude, generator);
 		quasi_newton_par(m, p, ig, candidate, g, hunt_cap);
-		if(step == 0 || metropolis_accept(tmp.e, candidate.e, temperature, generator)) {
-			tmp = candidate;
+		if(step == 0 || metropolis_accept(tmp_e, candidate.e, temperature, generator)) {
+			tmp_conf = candidate.c;
+			tmp_e = candidate.e;
 
-			m.set(tmp.c); // FIXME? useless?
+			m.set(tmp_conf); // FIXME? useless?
 
 			// FIXME only for very promising ones
-			if(tmp.e < best_e || out.size() < num_saved_mins) {
-				quasi_newton_par(m, p, ig, tmp, g, authentic_v);
-				m.set(tmp.c); // FIXME? useless?
-				tmp.coords = m.get_heavy_atom_movable_coords();
-				add_to_output_container(out, tmp, min_rmsd, num_saved_mins); // 20 - max size
-				if(tmp.e < best_e)
-					best_e = tmp.e;
+			if(tmp_e < best_e || out.size() < num_saved_mins) {
+				output_type refined(tmp_conf, tmp_e);
+				quasi_newton_par(m, p, ig, refined, g, authentic_v);
+				m.set(refined.c); // FIXME? useless?
+				refined.coords = m.get_heavy_atom_movable_coords();
+				add_to_output_container(out, refined, min_rmsd, num_saved_mins); // 20 - max size
+				tmp_conf = refined.c;
+				tmp_e = refined.e;
+				if(tmp_e < best_e)
+					best_e = tmp_e;
  			}
   		}
  	}

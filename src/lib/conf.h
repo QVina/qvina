@@ -24,6 +24,7 @@
 #define VINA_CONF_H
 
 #include <boost/ptr_container/ptr_vector.hpp> // typedef output_container
+#include <utility>
 
 #include "quaternion.h"
 #include "random.h"
@@ -85,7 +86,7 @@ struct rigid_change {
 		::print(position);
 		::print(orientation);
 	}
-	void getV( std::vector<double>& out)
+	void getV( std::vector<double>& out) const
 	{
 		::getV(position,out);
 		::getV(orientation,out);
@@ -142,7 +143,7 @@ struct rigid_conf {
 		::print(orientation);
 	} 
 
-	void getV(std::vector<double> & out)
+	void getV(std::vector<double> & out) const
 	{
 		::getV(position,out);
 		::getV(orientation,out);
@@ -164,7 +165,7 @@ struct ligand_change {
 		rigid.print();
 		printnl(torsions);
 	}
-	void getV(std::vector<double> & out)
+	void getV(std::vector<double> & out) const
 	{
 		rigid.getV(out);
 		for (int i=0;i<torsions.size();i++)
@@ -194,7 +195,7 @@ struct ligand_conf {
 		printnl(torsions);
 	}
 
-	void getV(std::vector<double> & out)
+	void getV(std::vector<double> & out) const
 	{
 		rigid.getV(out);
 		for (int i=0;i<torsions.size();i++)
@@ -216,7 +217,7 @@ struct residue_change {
 	void print() const {
 		printnl(torsions);
 	}
-	void getV(std::vector<double>& out)
+	void getV(std::vector<double>& out) const
 	{
 		for (int i=0;i<torsions.size();i++)
 		{
@@ -239,7 +240,7 @@ struct residue_conf {
 	void print() const {
 		printnl(torsions);
 	}
-	void getV(std::vector<double>& out)
+	void getV(std::vector<double>& out) const
 	{
 		for (int i=0;i<torsions.size();i++)
 		{
@@ -257,55 +258,76 @@ private:
 struct change {
 	std::vector<ligand_change> ligands;
 	std::vector<residue_change> flex;
+	std::vector<fl*> flat_index;
+
+	void rebuild_flat_index() {
+		flat_index.clear();
+		sz total = 0;
+		VINA_FOR_IN(i, ligands)
+			total += 6 + ligands[i].torsions.size();
+		VINA_FOR_IN(i, flex)
+			total += flex[i].torsions.size();
+		flat_index.reserve(total);
+
+		VINA_FOR_IN(i, ligands) {
+			ligand_change& lig = ligands[i];
+			VINA_FOR(k, 3)
+				flat_index.push_back(&lig.rigid.position[k]);
+			VINA_FOR(k, 3)
+				flat_index.push_back(&lig.rigid.orientation[k]);
+			VINA_FOR_IN(k, lig.torsions)
+				flat_index.push_back(&lig.torsions[k]);
+		}
+		VINA_FOR_IN(i, flex) {
+			residue_change& res = flex[i];
+			VINA_FOR_IN(k, res.torsions)
+				flat_index.push_back(&res.torsions[k]);
+		}
+	}
+
 	change(const conf_size& s) : ligands(s.ligands.size()), flex(s.flex.size()) {
 		VINA_FOR_IN(i, ligands)
 			ligands[i].torsions.resize(s.ligands[i], 0);
 		VINA_FOR_IN(i, flex)
 			flex[i].torsions.resize(s.flex[i], 0);
+		rebuild_flat_index();
+	}
+	change(const change& other) : ligands(other.ligands), flex(other.flex) {
+		rebuild_flat_index();
+	}
+	change(change&& other) : ligands(std::move(other.ligands)), flex(std::move(other.flex)) {
+		rebuild_flat_index();
+	}
+	change& operator=(const change& other) {
+		if(this != &other) {
+			ligands = other.ligands;
+			flex = other.flex;
+			rebuild_flat_index();
+		}
+		return *this;
+	}
+	change& operator=(change&& other) {
+		if(this != &other) {
+			ligands = std::move(other.ligands);
+			flex = std::move(other.flex);
+			rebuild_flat_index();
+		}
+		return *this;
 	}
 	fl operator()(sz index) const { // returns by value
-		VINA_FOR_IN(i, ligands) {
-			const ligand_change& lig = ligands[i];
-			if(index < 3) return lig.rigid.position[index];
-			index -= 3;
-			if(index < 3) return lig.rigid.orientation[index];
-			index -= 3;
-			if(index < lig.torsions.size()) return lig.torsions[index];
-			index -= lig.torsions.size();
-		}
-		VINA_FOR_IN(i, flex) {
-			const residue_change& res = flex[i];
-			if(index < res.torsions.size()) return res.torsions[index];
-			index -= res.torsions.size();
-		}
-		VINA_CHECK(false); 
-		return 0; // shouldn't happen, placating the compiler
+#ifndef NDEBUG
+		VINA_CHECK(index < flat_index.size());
+#endif
+		return *flat_index[index];
 	}
 	fl& operator()(sz index) {
-		VINA_FOR_IN(i, ligands) {
-			ligand_change& lig = ligands[i];
-			if(index < 3) return lig.rigid.position[index];
-			index -= 3;
-			if(index < 3) return lig.rigid.orientation[index];
-			index -= 3;
-			if(index < lig.torsions.size()) return lig.torsions[index];
-			index -= lig.torsions.size();
-		}
-		VINA_FOR_IN(i, flex) {
-			residue_change& res = flex[i];
-			if(index < res.torsions.size()) return res.torsions[index];
-			index -= res.torsions.size();
-		}
-		VINA_CHECK(false); 
-		return ligands[0].rigid.position[0]; // shouldn't happen, placating the compiler
+#ifndef NDEBUG
+		VINA_CHECK(index < flat_index.size());
+#endif
+		return *flat_index[index];
 	}
 	sz num_floats() const {
-		sz tmp = 0;
-		VINA_FOR_IN(i, ligands)
-			tmp += 6 + ligands[i].torsions.size();
-		VINA_FOR_IN(i, flex)
-			tmp += flex[i].torsions.size();
-		return tmp;
+		return flat_index.size();
 	}
 	void print() const {
 		VINA_FOR_IN(i, ligands)
@@ -313,7 +335,7 @@ struct change {
 		VINA_FOR_IN(i, flex)
 			flex[i].print();
 	}
-	void getV(std::vector<double>& out)  {
+	void getV(std::vector<double>& out) const {
 		VINA_FOR_IN(i, ligands)
 			ligands[i].getV(out);
 		VINA_FOR_IN(i, flex)
@@ -395,7 +417,7 @@ struct conf {
 		VINA_FOR_IN(i, flex)
 			flex[i].print();
 	} 
-	void getV(std::vector<double>& out)
+	void getV(std::vector<double>& out) const
 	{
 		VINA_FOR_IN(i, ligands)
 			ligands[i].getV(out);

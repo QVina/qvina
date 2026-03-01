@@ -49,10 +49,10 @@ inline fl scalar_product(const Change& a, const Change& b, sz n) {
 }
 
 template<typename Change>
-inline bool bfgs_update(flmat& h, const Change& p, const Change& y, const fl alpha) {
+inline bool bfgs_update(flmat& h, const Change& p, const Change& y, const fl alpha, Change& minus_hy) {
 	const fl yp  = scalar_product(y, p, h.dim());
 	if(alpha * yp < epsilon_fl) return false; // FIXME?
-	Change minus_hy(y); minus_mat_vec_product(h, y, minus_hy);
+	minus_mat_vec_product(h, y, minus_hy);
 	const fl yhy = - scalar_product(y, minus_hy, h.dim());
 	const fl r = 1 / (alpha * yp); // 1 / (s^T * y) , where s = alpha * p // FIXME   ... < epsilon
 	const sz n = p.num_floats();
@@ -62,6 +62,12 @@ inline bool bfgs_update(flmat& h, const Change& p, const Change& y, const fl alp
 	                                + minus_hy(j) * p(i)) +
 			           + alpha * alpha * (r*r * yhy  + r) * p(i) * p(j); // s * s == alpha * alpha * p * p
 	return true;
+}
+
+template<typename Change>
+void difference_change(const Change& a, const Change& b, Change& out, sz n) { // out = a - b
+	VINA_FOR(i, n)
+		out(i) = a(i) - b(i);
 }
 
 template<typename F, typename Conf, typename Change>
@@ -106,8 +112,6 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 
 //	::print(f.v);printf("\n");
 //	printf("XOUYANG %lf\n",f.v[0]);
-	flv outputFlv;//by Amr
-		
 	sz n = g.num_floats();//
 	flmat h(n, 0);
 	set_diagonal(h, 1);
@@ -132,6 +136,8 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 	Change g_orig(g);
 	Conf x_orig(x);
 	Change p(g);//descent direction
+	Change y(g);
+	Change minus_hy(g);
 
 //	flv f_values; f_values.reserve(max_steps+1);//TODO what is the use of this vector ???
 //	f_values.push_back(f0);
@@ -140,7 +146,7 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 		minus_mat_vec_product(h, g, p);//find and fill direction p
 		fl f1 = 0;
 		const fl alpha = line_search(f, n, x, g, f0, p, x_new, g_new, f1);//find amplitudes of change vector and update from p to f1
-		Change y(g_new); subtract_change(y, g, n);//y(k) = del f(x(k+1)) - del f(x(k))
+		difference_change(g_new, g, y, n); // y(k) = del f(x(k+1)) - del f(x(k))
 
 //		printf("%f\t",f1);
 //		printf("Amr\t y%d\t",(step)); outputFlv.clear(); y.getV(outputFlv); ::print(outputFlv);printf("\n");
@@ -149,15 +155,16 @@ fl bfgs(F& f, Conf& x, Change& g, const unsigned max_steps, const fl average_req
 		f0 = f1;
 		x = x_new;
 		g = g_new; // ?
-		if(!(std::sqrt(scalar_product(g, g, n)) >= 1e-5)) break; // breaks for nans too // FIXME !!?? 
+		const fl g_norm_sqr = scalar_product(g, g, n);
+		if(!(g_norm_sqr >= 1e-10)) break; // breaks for nans too // FIXME !!??
 
 		if(step == 0) {
-				const fl yy = scalar_product(y, y, n);
-			if(std::abs(yy) > epsilon_fl)
-				set_diagonal(h, alpha * scalar_product(y, p, n) / yy);
-  	 	}
+					const fl yy = scalar_product(y, y, n);
+				if(std::abs(yy) > epsilon_fl)
+					set_diagonal(h, alpha * scalar_product(y, p, n) / yy);
+	  	 	}
 
-		bool h_updated = bfgs_update(h, p, y, alpha);//updates h only
+		bfgs_update(h, p, y, alpha, minus_hy);//updates h only
 		f.m->tried.add(x, f0, g);
  	}
 

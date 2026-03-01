@@ -21,13 +21,9 @@ struct ele
 	long long d_zero;// if zero, bit=1; if not zero, bit=0
 	long long d_positive;// positive, bit=1; negative, bit=0
 
-	ele(std::vector<double> x_, double f_, std::vector<double> d_)
-	{
-		this->x=std::vector<double>(x_);
-		this->f= f_;
+	ele(const std::vector<double>& x_, double f_, const std::vector<double>& d_)
+		: x(x_), f(f_), d_zero(0), d_positive(0) {
 //		this->d=std::vector<double>(d_);
-		d_zero=0;
-		d_positive=0;
 		const long long ONE=1;
 		long long bitMask =0;
 
@@ -54,20 +50,20 @@ struct ele
 		return out; 
 	} 
 
-	inline int size()
+	inline int size() const
 	{
 		return x.size();
 	}
 
-	void print()
+	void print() const
 	{
 		::print(x);printf(" %f\n",f);
 		printf("d_zero=%lld\td_positive=%lld\n",d_zero,d_positive);
 	}
 
-	double dist2(std::vector<double>);
+	double dist2(const std::vector<double>& now) const;
 
-	bool check(std::vector<double>, double, std::vector<double>);
+	bool check(const std::vector<double>& now_x, double now_f, const std::vector<double>& now_d) const;
 };
 
 
@@ -76,14 +72,15 @@ struct visited
 	std::vector<ele> list;
 	int n_variable;
 	std::vector<double> tempx;
-	double				tempf;
 	std::vector<double> tempd;
+	std::vector<double> dist_scratch;
+	std::vector<unsigned char> not_picked_scratch;
 	int p;
 	bool full;
 	
 
 
-	bool interesting(conf x, double f,change g);
+	bool interesting(const conf& x, double f, const change& g);
 
 	visited()
 	{ 
@@ -93,17 +90,25 @@ struct visited
 		full=false;
 	}
 
-	bool add(conf conf_v, double f, change change_v)
+	bool add(const conf& conf_v, double f, const change& change_v)
 	{
-		tempx=std::vector<double>();
-		tempd=std::vector<double>();
+		tempx.clear();
+		tempd.clear();
+		if(n_variable > 0) {
+			tempx.reserve(n_variable);
+			tempd.reserve(n_variable);
+		}
 		conf_v.getV(tempx);
-		tempf=f;
 		change_v.getV(tempd);
 
 		if (list.size()==0)
 		{
 			n_variable=tempx.size();
+			tempx.reserve(n_variable);
+			tempd.reserve(n_variable);
+			list.reserve(10 * n_variable);
+			dist_scratch.reserve(10 * n_variable);
+			not_picked_scratch.reserve(10 * n_variable);
 		}
 		else
 		{
@@ -114,11 +119,9 @@ struct visited
 			}
 		}
 		
-		ele e(tempx,tempf, tempd);
-		
 		if (!full)
 		{
-			list.push_back(e);
+			list.emplace_back(tempx, f, tempd);
 			if (list.size()>=10*n_variable)
 			{
 				full=true;
@@ -127,28 +130,28 @@ struct visited
 		}
 		else
 		{
-			list[p]=e;
+			list[p]=ele(tempx, f, tempd);
 			p=(p+1)%(10*n_variable);
 		}
 		 
 		return true;
 	} 
 	
-	inline ele get(int i)
+	inline const ele& get(int i) const
 	// no boundary check
 	{ 
 		return list[i];
 	} 
 
-	inline int size()
+	inline int size() const
 	{
 		return list.size();
 	} 
 
-	void print()
-	 {
-		for (int i=0;i<size();i++)
-	 	{
+	void print() const
+		 {
+			for (int i=0;i<size();i++)
+		 	{
 			this->get(i).print();
 			printf("\n");
 		}

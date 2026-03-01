@@ -42,17 +42,24 @@ std::pair<sz, fl> find_closest(const vecv& a, const output_container& b) {
 
 void add_to_output_container(output_container& out, const output_type& t, fl min_rmsd, sz max_size) {
 	std::pair<sz, fl> closest_rmsd = find_closest(t.coords, out);
+	bool changed = false;
 	if(closest_rmsd.first < out.size() && closest_rmsd.second < min_rmsd) { // have a very similar one
 		if(t.e < out[closest_rmsd.first].e) { // the new one is better, apparently
 			out[closest_rmsd.first] = t; // FIXME? slow
+			changed = true;
 		}
 	}
 	else { // nothing similar
-		if(out.size() < max_size)
+		if(out.size() < max_size) {
 			out.push_back(new output_type(t)); // the last one had the worst energy - replacing 
+			changed = true;
+		}
 		else
-			if(!out.empty() && t.e < out.back().e) // FIXME? - just changed
+			if(!out.empty() && t.e < out.back().e) { // FIXME? - just changed
 				out.back() = t; // FIXME? slow
+				changed = true;
+			}
 	}
-	out.sort();
+	if(changed)
+		out.sort();
 }

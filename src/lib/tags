@@ -592,7 +592,7 @@ inflex	parse_pdbqt.cpp	/^	atomv inflex;$/;"	m	struct:non_rigid_parsed	file:
 inflex	parse_pdbqt.cpp	/^	bool inflex;$/;"	m	struct:atom_reference	file:
 inflex_inflex_bonds	parse_pdbqt.cpp	/^	distance_type_matrix inflex_inflex_bonds;$/;"	m	struct:non_rigid_parsed	file:
 init	grid.cpp	/^void grid::init(const grid_dims& gd) {$/;"	f	class:grid
-init	parallel_progress.h	/^	void init(unsigned long n) { p = new boost::progress_display(n); }$/;"	f	struct:parallel_progress
+init	parallel_progress.h	/^	void init(unsigned long n) { p = new boost::timer::progress_display(n); }$/;"	f	struct:parallel_progress
 init	tee.h	/^	void init(const path& name) {$/;"	f	struct:tee
 init_from_smooth_fst	precalculate.h	/^	void init_from_smooth_fst(const flv& rs) {$/;"	f	struct:precalculate_element
 initial_factor	ssd.h	/^	fl initial_factor;$/;"	m	struct:ssd
@@ -872,7 +872,7 @@ output_type	conf.h	/^struct output_type {$/;"	s
 p	naive_non_cache.h	/^	const precalculate* p;$/;"	m	struct:naive_non_cache
 p	non_cache.h	/^	const precalculate* p;$/;"	m	struct:non_cache
 p	parallel_mc.cpp	/^	const precalculate* p;$/;"	m	struct:parallel_mc_aux	file:
-p	parallel_progress.h	/^	boost::progress_display* p;$/;"	m	struct:parallel_progress
+p	parallel_progress.h	/^	boost::timer::progress_display* p;$/;"	m	struct:parallel_progress
 p	quasi_newton.cpp	/^	const precalculate* p;$/;"	m	struct:quasi_newton_aux	file:
 pK_to_energy	common.h	/^inline fl pK_to_energy(fl pK) { return pK_to_energy_factor * pK; }$/;"	f
 pK_to_energy_factor	common.h	/^const fl pK_to_energy_factor = -8.31 \/* RT in J\/K\/mol *\/ * 0.001 \/* kilo *\/ * 300 \/* K *\/ \/ 4.184 \/* J\/cal *\/ * std::log(10.0); \/\/  -0.6 kcal\/mol * log(10) = -1.38$/;"	v
