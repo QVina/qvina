@@ -23,10 +23,23 @@
 #ifndef VINA_RANDOM_H
 #define VINA_RANDOM_H
 
-#include <boost/random.hpp>
 #include "common.h"
+#include "randomnumgen_numpycompatible.hpp"
 
-typedef boost::mt19937 rng;
+// QuickVina's RNG, replaced by a NumPy-compatible Mersenne Twister.
+//
+// This branch exists so a Python port can be validated against QuickVina the way
+// PyQVina was validated against idock: run both from the same seed and diff the
+// trajectories. That only works if both draw the *same numbers in the same
+// order*, which means matching NumPy's engine and its distributions, not just
+// its engine -- boost::uniform_real and numpy.random.uniform consume the stream
+// differently even from an identical mt19937.
+//
+// Nothing else about the search changes. The seed still selects a trajectory;
+// this only changes which trajectory a given seed selects, so results from this
+// branch are comparable with each other and with the port, not with released
+// QuickVina builds.
+typedef RandomNumGen_NumpyCompatible_64 rng;
 
 fl random_fl(fl a, fl b, rng& generator); // expects a < b, returns rand in [a, b]
 fl random_normal(fl mean, fl sigma, rng& generator); // expects sigma >= 0

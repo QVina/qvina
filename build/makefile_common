@@ -1,4 +1,4 @@
-LIBOBJ = visited.o cache.o coords.o current_weights.o everything.o grid.o szv_grid.o manifold.o model.o monte_carlo.o mutate.o my_pid.o naive_non_cache.o non_cache.o parallel_mc.o parse_pdbqt.o pdb.o quasi_newton.o quaternion.o random.o ssd.o terms.o weighted_terms.o
+LIBOBJ = randomnumgen_numpycompatible.o visited.o cache.o coords.o current_weights.o everything.o grid.o szv_grid.o manifold.o model.o monte_carlo.o mutate.o my_pid.o naive_non_cache.o non_cache.o parallel_mc.o parse_pdbqt.o pdb.o quasi_newton.o quaternion.o random.o ssd.o terms.o weighted_terms.o
 MAINOBJ = main.o
 SPLITOBJ = split.o
 
@@ -6,7 +6,9 @@ INCFLAGS = -I $(BOOST_INCLUDE)
 
 # -pedantic fails on Mac with Boost 1.41 (syntax problems in their headers)
 #CC = ${GPP} ${C_PLATFORM} -ansi -pedantic -Wno-long-long ${C_OPTIONS} $(INCFLAGS)
-CC = ${GPP} ${C_PLATFORM} -ansi -Wno-long-long ${C_OPTIONS} $(INCFLAGS)
+# -std=c++11 (was -ansi): the NumPy-compatible generator needs <random>
+# and std::uint_fast32_t. idock's own build already uses -std=c++17.
+CC = ${GPP} ${C_PLATFORM} -std=c++11 -Wno-long-long ${C_OPTIONS} $(INCFLAGS)
 
 LDFLAGS = -L$(BASE)/lib -L.
 
